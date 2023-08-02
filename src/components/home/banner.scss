@@ -1,0 +1,82 @@
+.banner-area {
+        width: 100%;
+        height: 800px;
+        position: relative;
+        // background-color: red;
+        font-family: Quicksand-Bold, Quicksand;
+        font-weight: bold;
+        color: rgba(43, 17, 6, .1);
+        // line-height: 625px;
+        overflow: hidden;
+        .left-banner {
+            z-index: 2;
+        }
+        .launch-btn 
+        {  display: block;
+            width: 260px;
+            height:64px;
+            border-radius: 16px;
+            line-height: 64px;
+            &:hover {
+                color:#2B1106
+            }
+        }
+    .right-banner {
+        z-index: 2;
+        img {
+            width: 100%;
+        }
+    }
+    .bkg-text {
+        position: absolute;
+        font-size: 500px;
+        font-family: Quicksand-Bold, Quicksand;
+        font-weight: bold;
+        color: rgba(43, 17, 6, .03);
+        line-height: 625px;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .banner-area {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 20px 40px 24px !important;
+
+        height: auto !important;
+    }
+    .welcome {
+        font-size: 13px !important;
+    }
+    .slogan {
+        font-size: 32px !important;
+        line-height: 40px !important;
+        margin-top: 12px !important
+    }
+    .desc {
+        font-size: 18px !important;
+        font-family: "Quicksand-Regular" !important;
+        margin-top:12px !important
+    }
+    .launch-btn {
+        height: 42px !important;
+        line-height: 42px !important;
+        font-size: 14px !important;
+        margin: 0 auto !important;
+        margin-top: 12px !important
+    }
+    .right-banner {
+        margin-top: 24px !important
+    }
+    .bkg-text {
+       font-size: 80px !important;
+       text-align: center !important;
+       width: 100%;
+       top: 0 !important;
+       line-height: 100px !important;
+    }
+}
+

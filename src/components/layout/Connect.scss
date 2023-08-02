@@ -1,0 +1,185 @@
+.connect {
+
+    .connect-btn {
+        width: 160px;
+        height: 42px;
+        background: #F68731;
+        border-radius: 42px;
+        color: #fff;
+        border: none
+    }
+    .add-btn {
+        width: 100px;
+        // height: 42px;
+        // background: #F68731;
+        // color: #fff;
+        height:44px;
+        // width: 54px;
+        border-radius: 22px;
+        border: 1px solid rgba(46, 15, 0, .1);
+    }
+
+  .TransparentStyle{
+    color: #fff !important;
+    border: 1px solid #fff3 !important;
+  }
+}
+.connect-drawer{
+  .ant-drawer-content{
+    background:url(../../assets/image/wallets/masking-out.png) #fff;
+    background-repeat: no-repeat;
+    background-size: 130% 113%;
+    background-position-x: -44px;
+    background-position-y: -58px;
+  }
+    border-radius: 12px;
+    .drawer {
+        // position: fixed;
+        // right: -100%;
+        // top:83px;
+        // bottom: 20px;
+        // z-index: 99;
+        transition:all 0.3s ease-in-out;
+        width: 396px;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 29px 14px rgba(0,0,0,0.13);
+        overflow: hidden;
+        border-radius: 12px;
+        // &.show {
+        //     right: 30px;
+        // }
+    }
+    .button {
+        width: 160px;
+        height: 40px;
+        border-radius: 40px;
+        border: 1px solid #2B1106;
+        line-height: 40px;
+        margin-left: 12px;
+        color: #2B1106;
+        font-weight: bold;
+    }
+    .connect-btn {
+        width: 160px;
+        height: 42px;
+        background: rgba(246, 135, 49, 1);
+        border-radius: 21px;
+        border: none
+    }
+    .token-icon {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
+    .wallet-item {
+        width: 100%;
+        height: 48px;
+        background: #F6F8FA;
+        border-radius: 24px;
+        border: 1px dashed rgba(246, 135, 49, .1);
+        text-align: center;
+        line-height: 46px;
+        font-size:14px;
+        margin-top: 12px;
+
+        .wallet-logo {
+            width: 20px;
+            height:20px;
+            border-radius: 2px;
+        }
+        // .wallet-name {
+        //     width:50px;
+        // }
+        &.active {
+            background-color: rgba(246, 135, 49, 1);
+            color: #fff;
+            border: none
+        }
+    }
+
+    .account-item {
+        width: 49%;
+        height: 48px;
+        background: #F6F8FA;
+        border-radius: 12px;
+        // border: 1px solid #979797;
+        text-align: center;
+        line-height: 46px;
+        font-size:12px;
+        margin-top: 12px;
+
+        .wallet-logo {
+            width: 20px;
+            height:20px;
+            border-radius: 2px;
+        }
+        // .wallet-name {
+        //     width:50px;
+        // }
+        &.active {
+            background-color: #2B1106;
+            color: #fff;
+            border: none
+        }
+    }
+    .no-wallet-account {
+        width: 100%;
+        height:160px;
+        border-radius: 12px;
+        text-align: center;
+        background: rgba(250, 248, 248, 1)
+       
+    }
+    .nav-item {
+        width: 158px;
+        display: inline-block;
+        height:42px;
+        border-radius: 21px;
+        border: 1px solid #2B1106;
+        text-decoration: none;
+        text-align: center;
+        line-height: 40px;
+        color:#2B1106;
+        margin-top:12px;
+    }
+    .bg {
+        width: 100%;
+        position: absolute;
+        z-index: -1;
+        left: 0;
+        &.bg-top{
+            top: 0;
+
+        }
+        &.bg-bottom {
+            bottom: 0
+        }
+    }
+    .reward-area {
+        background: rgba(255, 245, 237, 0.8);
+        border-radius: 12px;
+        border: 1px solid #F68731;
+        .check-btn {
+            height: 32px;
+background: #F68731;
+border-radius: 32px;
+display: inline-block;
+line-height: 32px;
+padding: 0 10px;
+&:hover {
+    color: #fff;
+}
+        }
+    }
+
+}
+@media screen and (max-width: 1455px) {
+    .add-network {
+        display: none;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .add-network {
+        display: block;
+    }
+}

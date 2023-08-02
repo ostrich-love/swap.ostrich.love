@@ -1,0 +1,55 @@
+.my-modal {
+  .ant-modal-content {
+    background-color: #fff;
+    color: #141416;
+    border-radius: 32px !important;
+  }
+
+  .ant-modal-body {
+    padding: 0;
+  }
+
+  .modal-header {
+    padding: 24px 30px;
+    position: relative;
+    &.has-border {
+      border-bottom: 1px solid #DDDDDD;
+    }
+    .modal-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-right: -8px;
+      .h2 {
+        font-size: 24px;
+      }
+      .modal-close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        width: 42px;
+        height: 42px;
+        border-radius: 41px;
+        // position: absolute;
+        right: -10px;
+        top: -10px;
+        img {
+          width: 12px;
+          height:12px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .modal-header {
+      padding: 15px 20px;
+      .modal-title {
+        h2 {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}

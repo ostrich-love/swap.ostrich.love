@@ -1,0 +1,23 @@
+.pinecone-switch {
+  position: relative;
+  cursor: pointer;
+  .switch-inner {
+    width: 48px;
+    height: 10px;
+    background: #EBF0F4;
+    border-radius: 4px;
+    &.switch-on {
+      background: #f68731;
+    }
+  }
+  .off-icon {
+    position: absolute;
+    top: -8px;
+    left: 0;
+  }
+  .on-icon {
+    position: absolute;
+    top: -8px;
+    right: -3px;
+  }
+}

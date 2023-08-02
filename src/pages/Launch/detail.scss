@@ -1,0 +1,326 @@
+.project-detail {
+  background: #F6F8FA url('../../assets/image/newlaunch/bg.png') center bottom/100% no-repeat;
+
+  font-family: Quicksand-Medium, Quicksand;
+ 
+  .speed-info {
+    width: 100%;
+    padding: 20px;
+    background: #FFEED9;
+    border-radius: 24px;
+    opacity: 0.8;
+  }
+  .project-inner {
+    width: 100%;
+    max-width: 1480px;
+    padding: 0 20px;
+    margin: 0 auto;
+    position: relative;
+
+    .die-img {
+      position: absolute;
+      bottom: -40px;
+      width: 240px;
+      right: 40px;
+    }
+    .token-icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    .songshu {
+      width: 109px;
+    }
+    .add-metamask {
+      width: 30px;
+    }
+    .add-btn {
+      width: 105px;
+      height: 36px;
+      border-radius: 12px;
+      border: none;
+
+      &:hover {
+        color: #2b2b2b;
+      }
+    }
+
+    .project-info-detail {
+      width: 970px;
+      max-width: 100%;
+      padding-right: 20px;
+
+      .slogan {
+        width: 100%;
+      }
+
+      .project-info-items {
+        .project-info-item {
+          width: 315px;
+        }
+      }
+
+      .schedule-table,
+      .claim-table {
+        width: 100%;
+        th {
+          background:#FCECE2;
+          color: rgba(35, 33, 32, 0.4)
+        }
+        tr:nth-of-type(odd){
+          background:#FCF6F2;
+        } 
+        tr:nth-of-type(even){
+          background: #fff;
+        } 
+        th,
+        td {
+          height: 40px;
+          text-align: center;
+          border: 1px solid rgba(35, 33, 32, .2);
+          font-size: 14px;
+        }
+
+        .claim-btn {
+          color: rgba(0, 22, 255, 1);
+          text-decoration: underline;
+
+          &.disalbed {
+            opacity: 0.5;
+          }
+        }
+      }
+      .noData {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 100px;
+        div{
+          font-size: 14px;
+          font-family: AvenirNext-Medium, AvenirNext;
+          font-weight: 500;
+          color: #2B1106;
+          margin-top: 20px;
+        }
+      }
+    }
+    .project-participate {
+      min-width:360px;
+      max-width: 100%;
+      height: max-content;
+      background: #FFFFFF;
+      border-radius: 24px;
+      border: 1px solid #E9E9E9;
+      position: relative;
+      flex:1;
+
+      .voice {
+        position: absolute;
+        left: -15px;
+        top: -21px;
+        width: 55px;
+      }
+
+      .status {
+        position: absolute;
+        right: 0;
+        width: 268px;
+        height: 30px;
+        line-height: 30px;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #FFF09A 100%);
+        text-align: right;
+        padding-right: 16px;
+        border-radius: 0 24px 0 0;
+
+        &.ongoing {
+          color: rgba(135, 115, 0, 1)
+        }
+      }
+
+      .ido-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #232120;
+        line-height: 56px;
+      }
+
+      .ido-info {
+        background-color:#FCF6F2;
+        border-radius: 12px;
+      }
+
+      .hr {
+        width: 100%;
+        height: 1px;
+        border-bottom: 1px solid #E9E9E9;
+      }
+
+      .amount-area {
+        width: 100%;
+        height: 52px;
+        background: #FFFFFF;
+        border-radius: 12px;
+        border: 1px solid #DCDCDC;
+
+        input {
+          background-color: transparent;
+          border: 0;
+          outline: none;
+        }
+
+        .unit {
+          width: 120px !important;
+          height: 40px;
+          background: #F6F8FA;
+          border-radius: 12px;
+          line-height: 40px;
+          overflow: hidden;
+          &.my-select {
+            border: none !important
+          }
+        }
+      }
+
+      .part-btn {
+        height: 52px;
+        border-radius: 12px;
+        border: none
+      }
+
+      .expect {
+        color: rgba(220, 132, 158, 1)
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .songshu {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .project-detail {
+    padding-top: 0px !important;
+
+    .project-header {
+      flex-direction: column;
+
+      .project-brief {
+        width: 100%;
+
+        .logo {
+          width: 64px;
+          height: 64px;
+        }
+
+        .project-name {
+          font-size: 20px !important;
+        }
+      }
+
+      .project-link {
+        width: 100%;
+        display: flex;
+        // flex-direction: column;
+        align-items: center;
+        padding-top: 0px;
+        .add-btn {
+          margin-left: 0 !important;
+          // width: 100%;
+          // margin-top: 24px !important;
+          color: #fff !important;
+        }
+      }
+    }
+
+    .project-info {
+      flex-direction: column-reverse;
+      margin-top: 20px !important;
+
+      .project-participate {
+        width: 100% !important;
+      }
+    }
+
+    .project-info-detail {
+      padding-right: 0 !important;
+      padding-top: 12px;
+
+      .slogan {
+        margin-bottom: 20px !important;
+      }
+
+      .project-info-items {
+        .project-info-item {
+          width: 50% !important;
+
+          .info-type {
+            font-size: 12px !important;
+          }
+
+          .info-type-content {
+            font-size: 14px !important;
+          }
+        }
+      }
+    }
+  }
+}
+.Launch-modal{
+  .modal-title{
+    justify-content: center !important;
+    font-size: 20px !important;;
+    color: #1F1D1C;
+    .fwb {
+      font-weight: 500 !important;
+    }
+    margin-bottom: 12px;
+  }
+  .modal-close{
+    position: absolute !important;
+    right:0px !important;
+    top: 0px !important;
+  }
+
+  user-select: none;
+  .content{
+    line-height:20px;
+    font-size: 14px;
+    font-family: AvenirNext-Regular, AvenirNext;
+    font-weight: 400;
+    color: #1F1D1C;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .buttom{
+    width: 230px;
+    line-height: 56px;
+    background: #F68731;
+    border-radius: 28px;
+    
+    text-align: center;
+    font-size: 18px;
+    font-family: AvenirNext-DemiBold, AvenirNext;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin-top: 24px;
+    cursor: pointer;
+  }
+  .ant-modal-content{
+    border-radius: 12px !important
+  }
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.select-icon {
+  width: 20px;
+  height:20px;
+  border-radius: 50%;
+}

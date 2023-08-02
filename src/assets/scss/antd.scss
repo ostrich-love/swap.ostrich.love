@@ -1,0 +1,346 @@
+.my-tab {
+  .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    // color: #E07D26
+    color: #fff;
+    font-size: 18px;
+    border-width: 4px;
+
+    // border-color: red
+    .c23 {
+      color: rgba(35, 33, 32, 1)
+    }
+  }
+
+  .ant-tabs-tab .ant-tabs-tab-btn {
+    // color: #E07D26
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 18px;
+  }
+
+  .ant-tabs-nav {
+    &:before {
+      border-bottom: 1px solid rgba(35, 33, 32, .1) !important;
+    }
+  }
+
+  .ant-tabs-ink-bar {
+    background: rgba(246, 135, 49, 1);
+    height: 3px !important;
+  }
+
+  @media (max-width: 768px) {
+    .ant-tabs-nav {
+      margin-bottom: 10px;
+    }
+
+    .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+      font-size: 16px;
+    }
+
+    .ant-tabs-tab .ant-tabs-tab-btn {
+      font-size: 16px;
+    }
+
+    .ant-tabs-tab+.ant-tabs-tab {
+      margin: 0 0 0 20px;
+    }
+
+    .ant-tabs-tab {
+      padding: 15px 0;
+    }
+  }
+}
+
+.my-radio {
+  .ant-radio-checked::after {
+    border: 1px solid #FF4263
+  }
+
+  .ant-radio-checked .ant-radio-inner {
+
+    border: 1px solid #FF4263
+  }
+
+  .ant-radio-inner {
+    background-color: transparent;
+  }
+
+  .ant-radio-checked .ant-radio-inner {
+    background-color: #FF4263;
+  }
+
+  .ant-radio-inner::after {
+    background-color: #FFF;
+  }
+}
+
+.my-radio-card {
+  padding: 8px 6px !important;
+  background: #F0F2F5;
+  border-radius: 10px;
+  height: 50px;
+  border: 1px solid #E9E9E9;
+  display: flex;
+
+  .ant-radio-button-wrapper {
+    border: none !important;
+    background-color: #F0F2F5;
+    color: rgba(0, 0, 0, .5);
+    padding: 0 10px !important;
+
+    &:hover {
+      color: rgba(0, 0, 0, .5);
+    }
+
+    &.ant-radio-button-wrapper-checked {
+      background-color: #fff !important;
+      color: rgba(0, 0, 0, .8) !important;
+      border-radius: 10px;
+      box-shadow: none !important;
+    }
+
+    &::before {
+      background-color: transparent !important;
+    }
+  }
+}
+
+.my-select {
+  width: 180px !important;
+  height: 42px;
+  background: #F0F2F5;
+  border-radius: 12px;
+  border: 1px solid #E9E9E9;
+  display: flex !important;
+
+  .ant-select-selector {
+    background: #F0F2F5 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
+
+.token-select {
+  .ant-select-item-option-content {
+    padding: 5px 0
+  }
+  .ant-select-item-option-selected{
+    background-color: #ffeed966 !important;
+  }
+}
+
+.my-button {
+  border: none !important;
+  border-radius: 12px !important;
+  min-height: 40px;
+}
+.large-btn {
+  height: 50px !important;
+  border-radius: 25px !important;
+}
+
+.ant-btn {
+  &:hover {
+    border-color: transparent !important;
+    border-width: 0;
+    color: inherit !important;
+    opacity: 0.8;
+  }
+
+  &:active {
+    border: none !important;
+    color: inherit !important
+  }
+
+  &:focus {
+    border: none !important;
+    color: inherit !important
+  }
+}
+
+.my-switch {
+  &.ant-switch-checked {
+    background: #F68731;
+    // background: linear-gradient(64deg, #F2F6A1 0%, #DC849E 100%);
+  }
+}
+
+.orich-notification {
+  &.ant-notification-notice {
+    border-radius: 24px;
+    width: 444px;
+
+    .ant-notification-notice-content {
+      margin-right: 30px;
+
+      .ant-notification-notice-with-icon {
+        .ant-notification-notice-icon {
+          top: 50%;
+          transform: translate(0, -50%);
+        }
+
+        .ant-notification-notice-message {
+          margin-left: 62px;
+          font-size: 16px;
+          font-weight: bold;
+          color: #2B1106;
+          line-height: 20px;
+        }
+
+        .ant-notification-notice-description {
+          margin-left: 62px;
+
+          a {
+            color: rgba(225, 115, 134, 1)
+          }
+        }
+      }
+    }
+
+    .ant-notification-notice-close {
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .my-radio-card {
+    padding: 4px 3px !important;
+    height: 42px;
+    zoom: 0.9;
+
+    .ant-radio-button-wrapper {
+      font-size: 9px !important;
+    }
+  }
+}
+
+.dex-tab {
+  .ant-tabs-tab {
+    padding: 8px !important;
+  }
+  .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    background: #FFFFFF;
+    border-radius: 20px;
+    height:40px;
+    line-height: 40px;
+    opacity: 1;
+  }
+  .ant-tabs-tab {
+    margin-left: 0 !important;
+  }
+  .ant-tabs-tab .ant-tabs-tab-btn {
+    opacity: 0.3;
+    font-size: 18px;
+    width: 160px;
+    text-align: center;
+  }
+
+  >.ant-tabs-nav {
+    margin-bottom: 0px !important;
+    background: rgba(255,255,255,0.3);
+    border-radius: 28px;
+    border: 1px solid #FFFFFF;
+    &:before {
+      border-bottom: 0px solid rgba(35, 33, 32, .1) !important;
+    }
+  }
+
+  .ant-tabs-ink-bar {
+    // background: rgba(246, 135, 49, 1);
+    height: 0px !important;
+  }
+
+  @media (max-width: 768px) {
+    .ant-tabs-nav {
+      margin-bottom: 10px;
+    }
+
+    .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+      font-size: 16px;
+    }
+
+    .ant-tabs-tab .ant-tabs-tab-btn {
+      font-size: 16px;
+    }
+
+    .ant-tabs-tab+.ant-tabs-tab {
+      margin: 0 0 0 20px;
+    }
+
+    .ant-tabs-tab {
+      padding: 15px 0;
+    }
+  }
+}
+
+.invite-tab {
+  background: transparent;
+  border-radius: 28px;
+  border: 1px solid #ffffff2e;
+  padding: 4px;
+  // height:40px;
+  // line-height: 40px;
+  .tab-item {
+
+    &.active {
+      background: #ffffff2e;
+      border-radius: 20px;
+      height:40px;
+      line-height: 40px;
+      opacity: 1;
+    }
+    
+  }
+  .icon-copy{
+    width: 30px;
+    height: 100%;
+  }
+}
+
+.dex-radio-card {
+  padding: 5px !important;
+  background: #fbfafa;
+  border-radius: 12px;
+  height: 42px;
+  border: 1px solid #f3f2f1;
+  display: flex;
+
+  .ant-radio-button-wrapper {
+    border: none !important;
+    background: transparent;
+    color: #2B1106;
+    padding: 0 24px !important;
+    font-size: 12px;
+    font-weight: bold;
+
+    &:hover {
+      color: #2B1106;
+    }
+
+    &.ant-radio-button-wrapper-checked {
+      background: rgba(246, 135, 49, 1) !important;
+      color: #fff !important;
+      border-radius: 10px;
+      box-shadow: none !important;
+      color: #fff;
+    }
+
+    &::before {
+      background-color: transparent !important;
+    }
+  }
+}
+
+
+.ant-table {
+  .ant-table-thead>tr>th {
+    background: #D8D8D8;
+    font-weight: 500;
+  }
+
+  .ant-table-tbody>tr>td {
+    font-weight: 700;
+  }
+}

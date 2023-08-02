@@ -1,0 +1,220 @@
+.liquidity-content {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  border-radius: 24px;
+  padding: 30px;
+
+  .speed-info {
+    width: 100%;
+    padding: 20px;
+    background: #FFEED9;
+    border-radius: 24px;
+    opacity: 0.8;
+  }
+  .token-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
+  .liquidity-connect {
+    .you-liquidity {
+      padding: 24px 30px;
+      border-radius: 20px;
+      background-color: #EEF3FC;
+      .no-connect-tips {
+        width: 100%;
+        height: 56px;
+        text-align: center;
+        padding: 2px;
+        border-radius: 16px;
+        // opacity: 0.5;
+        background: linear-gradient(127deg, #F2F6A1 -50%, #DC849E 100%);
+        .no-connect-tips-in {
+          width: 100%;
+          height: 100%;
+          // line-height: 52px;
+          background-color: #EEF3FC;
+          border-radius: 16px;
+          span {
+            background: linear-gradient(64deg, #F2F6A1 -50%, #DC849E 100%);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+      }
+    }
+    .add-liquidity-btn {
+      width: 100%;
+      height: 64px;
+      line-height: 64px;
+      background: rgba(246, 135, 49, 1);
+      border-radius:32px;
+      // opacity: 0.8;
+      text-align: center;
+      padding: 0;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff !important;
+    }
+    .linked {
+      .linked-item {
+        width: 100%;
+        padding: 20px;
+        border-radius: 24px;
+        background-color: #EEF3FC;
+        & + .linked-item {
+          margin-top: 10px;
+        }
+        .coin-left {
+          position: absolute;
+          z-index: 1;
+          width: 20px;
+          height:20px;
+          border-radius: 50%;
+        }
+        .coin-right {
+          position: absolute;
+          left: 18px;
+          width: 20px;
+          height:20px;
+          border-radius: 50%;
+        }
+        .icon {
+          width: 20px;
+          height:20px;
+          border-radius: 50%;
+        }
+        .token-detail {
+          width: 100%;
+          padding: 20px;
+          border-radius: 24px;
+          .share-line {
+            border: 1px dashed #EEF3FC;
+          }
+          .add-btn {
+            height: 40px;
+            text-align: center;
+            padding: 2px;
+            border-radius: 16px;
+            background: linear-gradient(127deg, #F2F6A1 -50%, #DC849E 100%);
+            .add-btn-in {
+              width: 100%;
+              height: 100%;
+              line-height: 36px;
+              background-color: #fff;
+              border-radius: 16px;
+              padding: 0;
+              span {
+                background: linear-gradient(64deg, #F2F6A1 -50%, #DC849E 100%);
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+              }
+            }
+          }
+          .remove-btn {
+            height: 40px;
+            line-height: 40px;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            padding: 0;
+            background: rgba(246, 135, 49, 1);
+          }
+
+          .remove-cancel-btn {
+            height: 40px;
+            line-height: 40px;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            padding: 0;
+            background: rgba(246, 135, 49, 1);
+          }
+          .radio-btn {
+            height: 26px;
+            line-height: 26px;
+            border-radius: 8px;
+            border: 1px solid #2B1106;
+            text-align: center;
+            &.active {
+              background: rgba(246, 135, 49, 1);
+              color: #fff;
+              border: none
+            }
+          }
+          .confirm-remove {
+
+            height: 40px;
+            line-height: 40px;
+            border-radius: 16px;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+  .min-pinecone {
+    position: absolute;
+    right: 10px;
+    top: -20px;
+  }
+  .squirrel-left {
+    position: absolute;
+    top: 0;
+    left: -197.04px;
+    width: 170px;
+    height: 190px;
+  }
+  .squirrel-right {
+    position: absolute;
+    top: 0;
+    right: -208.8px;
+    width: 188.8px;
+    height: 190px;
+  }
+  .add-liquidity {
+    .liquidity-from {
+      width: 100%;
+      padding: 16px;
+      border-radius: 24px;
+      background: #EEF3FC;
+      // opacity: 0.8;
+      .switch-coin {
+        // width: 103px;
+        padding: 0 10px;
+        height: 38px;
+        background: #FFFFFF;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+      .radio-btn {
+        height: 26px;
+        line-height: 26px;
+        border-radius: 8px;
+        border: 1px solid #2B1106;
+        text-align: center;
+      }
+    }
+    .add-icon {
+      margin: 16px auto;
+    }
+    .unlock-wallet {
+      width: 100%;
+      height: 64px;
+      line-height: 64px;
+      text-align: center;
+      background: rgba(246, 135, 49, 1);
+      // opacity: 0.8;
+      border-radius: 32px;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 0;
+      color: #fff !important;
+    }
+  }
+}

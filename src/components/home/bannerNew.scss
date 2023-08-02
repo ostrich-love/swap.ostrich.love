@@ -1,0 +1,36 @@
+.banner-new {
+    position: relative;
+    height: 214px;
+
+    .banner-new-wrapper {
+        width: 100%;
+        max-width: 1480px;
+        height: 214px;
+        margin: auto;
+
+        .content {
+            width: 439px;
+            height: 128px;
+            padding-top: 26px;
+            font-size: 56px;
+            font-weight: bold;
+            color: #640B0D;
+            line-height: 64px;
+        }
+
+
+            
+    }
+    .slick-dots {
+        justify-content: start !important;
+
+        li button {
+            background: rgba($color: #640B0D, $alpha: 0.2) !important;
+        }
+
+        li.slick-active {
+            background: rgba($color: #640B0D, $alpha: 1) !important;
+        }
+    }
+
+}

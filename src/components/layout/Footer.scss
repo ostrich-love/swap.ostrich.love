@@ -1,0 +1,71 @@
+.footer {
+    background-color: #fff;
+    padding: 20px;
+    .footer-top {
+        border-bottom: 1px solid rgba(255,255,255, .1)
+    }
+    .footer-inner {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto
+    }
+    .nav-name, .nav-item-inner {
+        width: 150px;
+        text-align: left;
+        font-size: 16px;
+        font-family: AvenirNext-DemiBold, AvenirNext;
+        font-weight: 600;
+    }
+    .desc {
+        width: 280px;
+    }
+    .buy-btn {
+        width: 160px;
+        height: 42px;
+        border-radius: 12px;
+        border: 1px solid #fff;
+        line-height: 40px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .footer {
+        padding: 36px 24px !important;
+        .footer-top {
+            flex-direction: column;
+        }
+        .left-part {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            .buy-btn { 
+               width: 100%;
+               margin-top:36px !important
+            }
+        }
+        .other-info {
+            padding-top: 36px !important;
+            padding-bottom: 10px !important;
+            .copyright {
+                text-align: center;
+                width: 100%;
+            }
+        }
+        .right-part  {
+            margin-top: 0px !important;
+            width: 100%;
+            .nav-name, .nav-item-inner  {
+                text-align: left !important;
+                margin-top:24px !important
+            }
+            .nav-name {
+                margin-bottom: 36px !important;
+            }
+            .nav-item {
+                width: 50% !important;
+            }
+        }
+        
+    }
+     
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="362px" height="58px" viewBox="0 0 362 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>渐变框</title>
+    <defs>
+        <linearGradient x1="-27.6175964%" y1="49.244389%" x2="94.9200706%" y2="51.2098765%" id="linearGradient-1">
+            <stop stop-color="#F2F6A1" offset="0%"></stop>
+            <stop stop-color="#DC849E" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="launchpad-Liquidity-未连接-" transform="translate(-779.000000, -386.000000)" stroke="url(#linearGradient-1)" stroke-width="2">
+            <path d="M796,387 L1124,387 C1132.83656,387 1140,394.163444 1140,403 L1140,427 C1140,435.836556 1132.83656,443 1124,443 L796,443 C787.163444,443 780,435.836556 780,427 L780,403 C780,394.163444 787.163444,387 796,387 Z" id="渐变框"></path>
+        </g>
+    </g>
+</svg>

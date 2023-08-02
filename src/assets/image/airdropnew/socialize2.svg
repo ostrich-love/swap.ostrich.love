@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="14px" viewBox="0 0 15 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 5</title>
+    <defs>
+        <path d="M12.6975368,12.0954609 L14.9527412,1.13607209 C15.1659841,0.16678653 14.629646,-0.149846754 13.9834557,0.0633960701 L0.659010114,5.32984763 C-0.200423086,5.65294282 -0.200423086,6.18928083 0.54915775,6.40252366 L3.98689055,7.47519968 L11.9414941,2.42845285 C12.2645893,2.20874812 12.6975368,2.31860048 12.3744416,2.53184331 L5.92546168,8.44448525 L5.71221885,12.0954609 C6.02885214,12.0954609 6.24855687,11.9920704 6.35194733,11.7788276 L7.96742327,10.1633516 L11.4051561,12.7416512 C12.0513464,13.0647464 12.5876845,12.8515036 12.6975368,12.0954609 Z" id="path-1"></path>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Ostrich-Ostrich-Evolution3-Verify-错误提示" transform="translate(-1007.000000, -1057.000000)">
+            <g id="Clipped" transform="translate(1007.001992, 1057.833348)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="路径"></g>
+                <g mask="url(#mask-2)" fill="#FFFFFF" fill-rule="nonzero" id="路径">
+                    <g transform="translate(-1.273099, -1.119132)">
+                        <polygon points="17.5117592 0 0 0 0 15.043312 17.5117592 15.043312"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>复制链接_copy-link</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Ostrich-Invite-Quest-Invite-Link" transform="translate(-852.000000, -226.000000)" stroke="#666666">
+            <g id="复制链接_copy-link" transform="translate(853.000000, 227.000000)">
+                <path d="M2.8,2.074464 L2.8,1.05 C2.8,0.4701025 3.270085,0 3.85,0 L12.95,0 C13.529915,0 14,0.4701025 14,1.05 L14,10.15 C14,10.729915 13.529915,11.2 12.95,11.2 L11.90609,11.2" id="路径"></path>
+                <rect id="矩形" stroke-linejoin="round" x="0" y="2.1" width="11.9" height="11.9" rx="1.5"></rect>
+                <path d="M5.05379,6.688535 L6.906165,4.76021 C7.414225,4.252115 8.249185,4.263315 8.77107,4.7852 C9.292955,5.307085 9.304155,6.142045 8.79606,6.650105 L8.127525,7.358085" id="路径" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M3.313135,8.66152 C3.13453,8.840125 2.76521,9.196775 2.76521,9.196775 C2.257115,9.704835 2.243325,10.610425 2.76521,11.13231 C3.287095,11.654195 4.12202,11.66536 4.630115,11.1573 L6.437585,9.51636" id="路径" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M5.13191,8.51494 C4.8895,8.27253 4.75727,7.96257 4.736095,7.64918 C4.711665,7.28791 4.83483,6.92209 5.10692,6.650035" id="路径" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M6.412455,7.651455 C6.93434,8.17334 6.94554,9.0083 6.437445,9.51636" id="路径" stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>

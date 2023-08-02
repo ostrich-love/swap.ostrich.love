@@ -1,0 +1,173 @@
+.bridge {
+  background: #F6F8FA url('../../assets/image/bridge/bg.png') center bottom/100% no-repeat;
+  position: relative;
+  z-index: 1;
+
+  &::after {
+    content: "";
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    // background-color: red;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+
+  &::before {
+    content: "";
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    //  background-color: red;
+    right: 0;
+    bottom: 0
+  }
+
+  .bridge-banner-area {
+    position: relative;
+    height: 240px;
+    background: url('../../assets/image/bridge/banner.png') right top/cover no-repeat;
+
+    .bridge-banner-content {
+      width: 100%;
+      max-width: 1480px;
+      padding: 0 20px;
+      height: 240px;
+      // background-color: red;
+      margin: 0 auto
+    }
+  }
+
+  .supply-btn {
+    width: 160px;
+    height: 42px;
+    border-radius: 21px;
+    line-height: 42px;
+    border: none;
+    display: block;
+
+    &:hover {
+      color: #2B1106
+    }
+  }
+
+  .project-list {
+    width: 100%;
+    max-width: 1480px;
+    padding: 60px 20px 200px 20px;
+    margin: 0 auto;
+  }
+
+  .bridge-item {
+    width: 440px;
+    height: 224px;
+    background: #FFFFFF;
+    box-shadow: 0px 5px 15px 2px rgba(31,4,4,0.09);
+    border-radius: 12px;
+    .logo-area {
+      position: relative;
+    }
+    .logo-box {
+
+      width: 80px;
+      height:80px;
+      // background-color: #fff;
+      position: absolute;
+      left: 0;
+      top: -50px;
+      border-radius: 12px;
+    }
+    .logo {
+      width: 100%;
+      // max-height:80px;
+      border-radius: 12px;
+    }
+    .desc {
+      height: 65px;
+    }
+    .open {
+      width: 88px;
+      height: 32px;
+      line-height: 32px;
+      background: #F68731;
+      border-radius: 8px;
+      color: #fff;
+      text-align: center;
+    }
+    .tip-item {
+      padding: 0 10px;
+      height: 24px;
+      display: inline-block;
+      background: #FCF6F2;
+      border-radius: 4px;
+      color: rgba(246, 135, 49, 1);
+      font-size: 13px;
+      line-height: 24px;
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .project-list {
+    justify-content: space-around !important;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .bridge-banner-area {
+    height: 54vw !important;
+    background: url('../../assets/image/bridge/bg_mini.png') right top/cover no-repeat !important;
+
+    .bridge-banner-content {
+      height: 54vw !important;
+
+      .pools {
+        font-size: 28px !important;
+      }
+
+      .bridge-slogan {
+        width: 90% !important;
+        font-size: 14px !important;
+      }
+
+      .supply-btn {
+        margin-top: 18px !important
+      }
+    }
+  }
+
+  .search-box {
+    padding: 30px 20px 0px 20px !important;
+    flex-direction: column;
+    align-items: flex-start !important;
+
+    .search-right {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100% !important;
+      margin-top: 18px !important;
+
+      .search-input {
+        width: 100% !important;
+        font-size: 10px !important;
+        height: 34px !important;
+        margin-bottom: 18px !important;
+      }
+
+      .sortby {
+        margin-left: 0 !important;
+      }
+
+      .sort-select {
+        width: 100%;
+        margin-top: 18px;
+        margin-bottom: 18px !important;
+      }
+
+      .my-select {
+        flex: 1 !important
+      }
+    }
+  }
+}

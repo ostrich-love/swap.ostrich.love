@@ -1,0 +1,30 @@
+.progress-area {
+    height: 4px;
+    background: #F0F2F5;
+    border-radius: 9px;
+    .progress-inner {
+        height: 4px;
+        background: rgba(246, 135, 49, 1);
+        border-radius: 0 9px 9px 0;
+    }
+    .fruit-box {
+        position: relative;
+        img{
+            position: absolute;
+            left: -17px;
+            top: -20px;
+        }
+    }
+    &.ido-progress {
+        height: 6px;
+        .point {
+            width:41px;
+            height:30px;
+            left: -30px;
+            top: -28px;
+        }
+        .progress-inner {
+            height: 6px;
+        }
+    }
+}

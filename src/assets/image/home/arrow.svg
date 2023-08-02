@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="48px" viewBox="0 0 15 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 16</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="harwell-launchpad-new" transform="translate(-953.000000, -1151.000000)">
+            <g id="Group-16" transform="translate(953.000000, 1151.000000)">
+                <path d="M12.0710678,29 L2.07106781,29 L2.07106781,27 L10.0710678,27 L10.0710678,19 L12.0710678,19 L12.0710678,29 Z" id="Combined-Shape" fill="#C7C7D3" transform="translate(7.071068, 24.000000) rotate(45.000000) translate(-7.071068, -24.000000) "></path>
+                <path d="M12.1421356,45.0710678 L2.14213562,45.0710678 L2.14213562,43.0710678 L10.1421356,43.0710678 L10.1421356,35.0710678 L12.1421356,35.0710678 L12.1421356,45.0710678 Z" id="Combined-Shape" fill="#E7E7F0" transform="translate(7.142136, 40.071068) rotate(45.000000) translate(-7.142136, -40.071068) "></path>
+                <path d="M12.1421356,12.0710678 L2.14213562,12.0710678 L2.14213562,10.0710678 L10.1421356,10.0710678 L10.1421356,2.07106781 L12.1421356,2.07106781 L12.1421356,12.0710678 Z" id="Combined-Shape" fill="#E7E7F0" transform="translate(7.142136, 7.071068) rotate(45.000000) translate(-7.142136, -7.071068) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

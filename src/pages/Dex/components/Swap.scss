@@ -1,0 +1,292 @@
+.swap-content {
+  width: 100%;
+  max-width: 1447px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  .swap-left-log {
+    width: 130px;
+    height: 150px;
+    position: absolute;
+    left: -56px;
+    top: -111px;
+  }
+  .swap-left {
+    position: relative;
+    width: 100%;
+    height: 531px;
+    border-radius: 24px;
+    padding: 30px;
+    flex: 1;
+    .range-item {
+      font-size: 14px;
+      padding: 5px 10px;
+      cursor: pointer;
+
+      &.active {
+        border-radius: 9px;
+        background: rgba(246, 135, 49, 1);
+        color: #FFF;
+      }
+    }
+    .swap-left-pro {
+      position: absolute;
+      width: 86px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      right: 0;
+      top: 0;
+      border-radius: 0 24px 0 15px;
+      background: #f1d88a;
+    }
+    .swap-left-header {
+      position: relative;
+      & > img {
+        width: 24px;
+        height: 24px;
+      }
+      .coin-left {
+        position: absolute;
+        z-index: 1;
+        border-radius: 50%;
+      }
+      .coin-right {
+        position: absolute;
+        left: 18px;
+        border-radius: 50%;
+      }
+      .switch-icon {
+        width: 17px;
+        height: 10px;
+      }
+    }
+    .swap-left-unit {
+      .dex-radio-card {
+        &.chart-operation {
+          margin-left: 11px;
+        }
+        .ant-radio-button-wrapper {
+          &.chart-btn {
+            padding: 0 10px!important;
+          }
+          .chart-icon {
+            width: 16px;
+          }
+        }
+      }
+    }
+    .react-echarts {
+      margin-top: 59px;
+    }
+  }
+  .swap-right {
+    width: 480px;
+    height: 100%;
+    // margin-left: 46px;
+    padding: 36px 30px 40px;
+    position: relative;
+    z-index: 10;
+    border-radius: 24px;
+    .min-pinecone {
+      position: absolute;
+      top: -20px;
+      right: 10px;
+    }
+    .sweeping-squirrel {
+      position: absolute;
+      right: -107px;
+      bottom: 0;
+      width: 165px;
+      height: 135px;
+    }
+    .swap-right-swap {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2E0F00;
+      .name{
+        // width: 130px !important;
+      }
+    }
+    .swap-right-from {
+      width: 100%;
+      height: 102px;
+      border-radius: 24px;
+      padding: 11px 16px 16px 20px;
+      box-sizing: border-box;
+      opacity: 0.8;
+      .help-btn {
+        width: 42px;
+        height: 23px;
+        line-height: 23px;
+        text-align: center;
+        background: #FFFFFF;
+        border-radius: 8px;
+        font-size: 12px;
+        color: #2B1106;
+      }
+      .switch-coin {
+        // width: 103px;
+        padding: 0 10px;
+        height: 38px;
+        background: #FFFFFF;
+        border-radius: 12px;
+        cursor: pointer;
+      }
+      .select-a-token {
+        width: 153px;
+        height: 38px;
+        background: rgba(246, 135, 49, 1);
+        box-shadow: 0px 4px 8px 0px rgba(43,17,6,0.21);
+        border-radius: 12px;
+      }
+    }
+
+    .token-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+    .router-icon {
+      cursor: pointer;
+      &:hover {
+        scale: 1.2;
+        transition: all 0.5s;
+      }
+    }
+    .switch-icon {
+      width: 12.85px;
+      height: 8px;
+    }
+    .circular-switch {
+      width: 46px;
+      height: 46px;
+      line-height: 46px;
+      text-align: center;
+      background: #F1F5FD;
+      border-radius: 23px;
+      cursor: pointer;
+    }
+    .speed-info {
+      width: 100%;
+      padding: 20px;
+      background: #FFEED9;
+      border-radius: 24px;
+      color: #2E0F00;
+      // opacity: 0.8;
+    }
+    .approve-btn {
+      width: 100%;
+      height: 64px;
+      line-height: 64px;
+      background: rgba(246, 135, 49, 1);
+      border-radius: 32px;
+      text-align: center;
+      font-size: 18px;
+      padding: 0;
+      color: #FFF !important;
+    }
+    .swap-right-from-submit {
+      width: 100%;
+      height: 64px;
+      line-height: 64px;
+      background: #EEF3FC;
+      border-radius: 24px;
+      opacity: 0.8;
+      margin-top: 24px;
+      font-size: 18px;
+      text-align: center;
+    }
+  }
+}
+  .ant-select-item-option-selected{
+    background-color:#ffeed966 !important;
+  }
+@media screen and (max-width: 1200px) {
+  .title-num {
+    flex-direction: column;
+    align-items: flex-start;
+    .price_change {
+      margin-left: 0 !important;
+    }
+  }
+
+  .k-and-line {
+    flex-direction: column-reverse;
+    align-items: flex-end !important;
+    gap: 10px
+  }
+}
+@media screen and (max-width: 768px) {
+  .swap-content {
+    flex-direction: column-reverse;
+    padding: 16px;
+    .swap-left-log,.sweeping-squirrel {
+      display: none;
+    }
+    .swap-right {
+      width: 100%;
+      margin-left: 0;
+      padding: 24px 16px 16px;
+      margin-bottom: 16px;
+      .min-pinecone {
+        width: 28px;
+        height: 30px;
+      }
+      .swap-right-swap {
+        font-size: 24px;
+        line-height: 28px;
+        flex-direction: column;
+        align-items: flex-start;
+        color: #2E0F00;
+        .register-usdc {
+          margin-left: 0 !important;
+        }
+      }
+      .swap-right-from {
+        padding: 12px;
+        .help-btn {
+
+        }
+      }
+    }
+    .swap-left {
+      padding: 16px;
+      margin-bottom: 14px;
+      .swap-left-unit {
+        flex-direction: column;
+        align-items: flex-start;
+        .title-num {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .k-and-line {
+          width: 100%;
+        }
+        .dex-radio-card {
+          .ant-radio-button-wrapper {
+            height: 100%;
+            padding: 0 19px!important;
+          }
+        }
+      }
+      .react-echarts {
+        margin-top: 14px;
+      }
+    }
+  }
+}
+
+
+.coin-left {
+  // position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  width: 25px;
+}
+.coin-right {
+  position: relative;
+  width: 25px;
+  left: -5px;
+  border-radius: 50%;
+}

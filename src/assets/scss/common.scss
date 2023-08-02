@@ -1,0 +1,429 @@
+@import './color.scss';
+@import './flex.scss';
+@import './antd.scss';
+
+@font-face {
+  font-family: "Quicksand-Light";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Quicksand-Light"), url("../fonts/Quicksand-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Quicksand-Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Quicksand-Bold"), url("../fonts/Quicksand-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Quicksand-Medium";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Quicksand-Medium"), url("../fonts/Quicksand-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Quicksand-Regular";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Quicksand-Regular"), url("../fonts/Quicksand-Regular.ttf") format("truetype");
+}
+
+body {
+  font-family: 'Quicksand-Medium';
+}
+
+@for $i from 1 through 400 {
+  .gap-#{$i} {
+    gap:($i) + px;
+  }
+  .m-#{$i} {
+    margin: ($i) + px;
+  }
+
+  .m-t-#{$i} {
+    margin-top: ($i) + px;
+  }
+
+  .m-b-#{$i} {
+    margin-bottom: ($i) + px;
+  }
+
+  .m-l-#{$i} {
+    margin-left: ($i) + px;
+  }
+
+  .m-r-#{$i} {
+    margin-right: ($i) + px;
+  }
+
+  .p-#{$i} {
+    padding: ($i) + px;
+  }
+
+  .p-t-#{$i} {
+    padding-top: ($i) + px;
+  }
+
+  .p-b-#{$i} {
+    padding-bottom: ($i) + px;
+  }
+
+  .p-l-#{$i} {
+    padding-left: ($i) + px;
+  }
+
+  .p-r-#{$i} {
+    padding-right: ($i) + px;
+  }
+
+  .fz-#{$i} {
+    font-size: ($i/16) + rem;
+  }
+
+  .lh-#{$i} {
+    line-height: ($i) + px;
+  }
+}
+
+@for $i from 1 through 100 {
+  .lh-#{$i} {
+    line-height: ($i) + px;
+  }
+}
+
+@for $i from 1 through 100 {
+  .bdr-#{$i} {
+    border-radius: ($i) + px;
+    overflow: hidden;
+  }
+}
+
+.show-p {
+  display: block !important;
+
+  &.flex {
+    display: flex !important;
+  }
+}
+
+.show-m {
+  display: none !important;
+
+  &.flex {
+    display: none !important;
+  }
+}
+.show {
+  display: block;
+  &.flex {
+    display: inline-flex;
+  }
+}
+.hide {
+  display: none;
+}
+// .ffd {
+//   font-family: "consola", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+// }
+@media screen and (max-width: 768px) {
+  .show-p {
+    display: none !important;
+
+    &.flex {
+      display: none !important;
+    }
+  }
+
+  .show-m {
+    display: block !important;
+
+    &.flex {
+      display: flex !important;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .show-p {
+    display: none !important;
+
+    &.flex {
+      display: none !important;
+    }
+  }
+
+  .show-m {
+    display: block !important;
+
+    &.flex {
+      display: flex !important;
+    }
+  }
+}
+
+.ta {
+  text-align: center;
+}
+
+.tr {
+  text-align: right;
+
+  .ant-input-number-input {
+    text-align: right;
+  }
+}
+
+.tl {
+  text-align: left;
+}
+
+.fwb {
+  font-weight: bold;
+}
+
+.fw500 {
+  font-weight: 500;
+}
+
+.fw600 {
+  font-weight: 600;
+}
+
+.bdr {
+  border-radius: 8px;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.w50 {
+  width: 50%;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.m-auto {
+  margin: 0 auto;
+}
+
+.m-r-auto {
+  margin-right: auto;
+}
+
+.m-l-auto {
+  margin-left: auto;
+}
+
+.disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.oneline-only {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.twoline-only {
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.islink {
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.scroll ::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 1px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+
+.scroll ::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.scroll ::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+  height: 56px;
+  font-size: 18px;
+  line-height: 56px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tangle-border {
+  border: 1px solid transparent;
+  position: relative;
+
+  &:hover {
+    border: 1px solid #313134;
+
+    .str {
+      display: block;
+    }
+  }
+
+  .str {
+    display: none;
+    width: 5px;
+    height: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: absolute;
+
+    &.left {
+      bottom: -1px;
+      left: -1px;
+      border-right: none;
+      border-top: none;
+    }
+
+    &.top {
+      top: -1px;
+      left: -1px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    &.right {
+      top: -1px;
+      right: -1px;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    &.bottom {
+      bottom: -1px;
+      right: -1px;
+      border-left: none;
+      border-top: none;
+    }
+  }
+}
+
+table {
+
+  td {
+    border-bottom: none !important;
+    border: none !important;
+    &:first-child {
+      border-left: none !important;
+    }
+
+    &:last-child {
+      border-right: none !important;
+    }
+  }
+
+  th {
+    border-top: none !important;
+    border: none !important;
+
+    &:first-child {
+      border-left: none !important;
+    }
+
+    &:last-child {
+      border-right: none !important;
+    }
+  }
+}
+
+.hover {
+  &:hover {
+    opacity: 0.8;
+  }
+
+  ;
+}
+
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  background-color: rgba(0,0,0,0.3);
+  padding: 16px;
+}
+
+.pr {
+  position: relative;
+}
+
+.rotate180 {
+  transform: rotate(180deg);
+}
+
+.com_input {
+  border: none;
+  background:  transparent;
+  outline:none;
+}
+.underline {
+  text-decoration: underline;
+}
+.middle-content {
+  width: 100%;
+  max-width: 1480px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-input {
+  width: 100%;
+  height: 42px;
+  background: #F0F2F5;
+  border-radius: 12px;
+  border: 1px solid #E9E9E9;
+
+  input {
+    border: none;
+    background-color: #F0F2F5;
+    padding: 0 13px;
+    outline: none;
+  }
+}
+.circle-icon {
+  transform: rotate(0deg);
+  &:hover {
+    transform: rotate(360deg);
+  }
+  transition:transform 1s ease;
+}
+.ostrich-info {
+  width: 100%;
+  padding: 20px;
+  background: #FFEED9;
+  border-radius: 24px;
+  opacity: 0.8;
+}
+.italic {
+  font-style: italic;
+}

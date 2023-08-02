@@ -1,0 +1,17 @@
+{
+    "ETH": "0x0000000000000000000000000000000000000000",
+    "Orich": "0xb6ec7996f793feb1156c631e143b0ec21103a971",
+    "BALD": "0x27d2decb4bfc9c76f0309b8e88dec3a601fe25a8",
+    "WETH": "0x4200000000000000000000000000000000000006",
+    "OstrichNFT": "0x6987c53b895637c75047d2edd3ec999366478e6e",
+    "NFTAirdrop": "0xec0f99179496a45c0b7506d5e9feb9e77610445e",
+    "OstrichOracle": "0x63eca8dc49de34be555218d5de180b4f113140fa",
+    "PresaleForTest": "0xc9a2ade7838da31ac0d02da1316f854f754a221c",
+    "Presale": "0x42f9329ce0e4f26480688c0bdb086b66bb042cfd",
+    "SwapFactory": "0x4afce9070550a9daa3bb6d3afa14cd3e6b7ad40e",
+    "SwapRouter": "0x804e3e73514e6fda20f90aaa8a06302ea4b0b712",
+    "BALD-WETH": "0x62a6f165f0bb6e75e7610dcec2c4d44ec8ad20c8",
+    "SwapAggregator": "0xaf490ec55ea0bedd76da9936251ae3b8648890a6",
+    "BOrichPool": "0x0b6cff09a6715c815acc36982c1497d65c3d08cb",
+    "bOrich": "0x4b18b56781f2847cd20a70a3df1eaa5dcc6473f0"
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 24</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="50" height="50" rx="25"></rect>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Market-链接钱包-Solana" transform="translate(-916.000000, -283.000000)">
+            <g id="编组-24" transform="translate(916.000000, 283.000000)">
+                <g id="位图备份-4">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="蒙版" fill="#2AC98B" xlink:href="#path-1"></use>
+                </g>
+                <g id="logo-black.e910a1d2" transform="translate(9.000000, 7.000000)" fill="#FFFFFF">
+                    <polygon id="路径" points="0 10.110021 0 26.8770147 4.85476524 29.6757183 4.85476524 17.6814996 9.69218641 20.475473 9.69218641 32.461808 14.5485284 35.2605116 14.5485284 18.4919411"></polygon>
+                    <path d="M11.0276804,8.57585844 L15.8919061,5.72512263 L21.9355291,9.26173791 L17.0744569,12.0998598 L11.0276804,8.57585844 Z M15.898213,0 L1.23458304,8.57901191 L17.0476524,17.8502102 L17.0476524,36 L21.8440785,33.2060266 L21.8440785,14.8449544 L26.6909601,12.0068325 L26.6909601,30.3521374 L31.5583392,27.4872109 L31.5583392,9.16240364 L15.898213,0 Z" id="形状"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

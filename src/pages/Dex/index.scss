@@ -1,0 +1,52 @@
+.dex {
+  .dex-header {
+    // border-top: 1px solid rgba($color: #232120, $alpha: 0.1);
+  }
+  .dex-content {
+    position: relative;
+    background: url('../../assets/image/launchpad/swap_header_bg.png')  no-repeat;
+    background-size: cover;
+    z-index: 100;
+    padding-top: 24px;
+    padding-bottom: 60px;
+  }
+  .reward-area {
+
+  padding: 18px 0;
+  background: #2E0F00;
+  position: relative;
+  .check-btn {
+    height: 36px;
+background: #F68731;
+border-radius: 32px;
+line-height: 36px;
+display: inline-block;
+padding: 0 10px;
+&:hover {
+  color: #2E0F00
+}
+  }
+  .imgs{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dex {
+    .reward-area {
+      flex-direction: column !important;
+      .check-btn {
+        margin-left: 0 !important;
+        margin-top: 10px !important
+      }
+    }
+    .dex-content {
+      padding: 0;
+      padding-top: 24px;
+    }
+  }
+}

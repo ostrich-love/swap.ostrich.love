@@ -1,0 +1,22 @@
+html, body {
+  margin: 0;
+  font-family: Quicksand-Medium, Quicksand !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+* {
+  box-sizing: border-box;
+}
+.warning-tips {
+  background-color: rgb(240, 178, 10);
+  color: #000;
+  font-size: 16px;
+  width: 100%;
+}
+.warning-tips .inner {
+    width: 100%;
+    max-width: 1480px;
+    padding: 20px;
+    margin: 0 auto;
+}

@@ -1,0 +1,580 @@
+.farm-main{
+  width: 100%;
+  height:100%;
+  background:url('../../assets/image/newTrade/newFarmBg.png');
+  background-size: cover;
+  .heads{
+    width: 100%;
+    height: 240px;
+    background:url('../../assets/image/newTrade/colorBackgroundPc.png');
+    background-size: cover;
+    background-repeat:no-repeat;
+    padding-left: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .title{
+      // width: 102px;
+      line-height:55px;
+      font-size: 40px;
+      font-family: AvenirNext-DemiBold, AvenirNext;
+      font-weight: 600;
+      color: #FFFFFF;
+      text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+    }
+    .tip{
+      width:100%;
+      height: 27px;
+      font-size: 20px;
+      font-family: AvenirNext-DemiBold, AvenirNext;
+      font-weight: 500;
+      color: #FFFFFF;
+      line-height: 27px;
+      text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+    }
+    .buttom{
+      width: 160px;
+      line-height: 42px;
+      background: #FFFFFF;
+      border-radius: 21px;
+      text-align: center;
+      font-size: 14px;
+      font-family: AvenirNext-Bold, AvenirNext;
+      font-weight: bold;
+      color: #2B1106;
+      margin-top: 36px;
+      cursor: pointer;
+    }
+  }
+  .the-body{
+  .head-card{
+    width: 100%;
+    max-width: 1446px;
+    padding-top: 34px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    .card{
+      width: 466px;
+      height: 130px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 32px 24px;
+      .title{
+        width:max-content;
+        line-height: 18px;
+        font-size: 16px;
+        font-family: AvenirNext-Medium, AvenirNext;
+        font-weight: 500;
+        color: #2B1106;
+      }
+      .value{
+        width: max-content;
+        line-height: 28px;
+        font-size: 32px;
+        font-family: AvenirNext-Bold, AvenirNext;
+        font-weight: bold;
+        color: #2B1106;
+        margin-top: 20px;
+      }
+    }
+    
+    .bg{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background:url(../../assets/image/newTrade/cardBg.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      .content-bg{
+        .title{
+          color: #FFFFFF;
+        }
+        .value{
+          display: flex;
+          color: #FFFFFF;
+          .number{
+            margin-left: 12px;
+          }
+        }
+      }
+      .buttom{
+        width: 99px;
+        line-height: 36px;
+        background: #F68731;
+        border-radius: 12px;
+        text-align: center;
+        font-size: 14px;
+        font-family: AvenirNext-Bold, AvenirNext;
+        font-weight: bold;
+        color: #FFFFFF;
+        cursor: pointer;
+      }
+    }
+  }
+  .tip{
+    width: 1446px;
+    margin: auto;
+    line-height: 19px;
+    font-size: 14px;
+    font-family: AvenirNext-Regular, AvenirNext;
+    font-weight: 400;
+    color:#00000040;
+    margin-top: 16px;
+    img{
+      margin-bottom: 4px;
+    }
+  }
+  .trading{
+    width: 1446px;
+    margin: auto;
+    margin-top: 62px;
+    margin-bottom:46px;
+    .title{
+      width:max-content;
+      line-height: 33px;
+      font-size: 24px;
+      font-family: AvenirNext-Bold, AvenirNext;
+      font-weight: bold;
+      color: #2B1106;
+      margin-bottom: 5px;
+    }
+    .tips{
+      width:max-content;
+      font-size: 14px;
+      font-family: AvenirNext-Regular, AvenirNext;
+      font-weight: 400;
+      color: #2B1106;
+      line-height: 19px;
+    }
+  }
+  .content{
+    width: 100%;
+    max-width: 1446px;
+    margin: 0 auto;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fill, 420px);
+    .farm-card{
+      width: 420px;
+      height: 454px;
+      background: #FFFFFF;
+      box-shadow: 0px 0px 0px 4px #F7ECE4;
+      border-radius: 24px;
+      margin-bottom: 90px;
+      .card-content{
+        width: 100%;
+        height:367px;  
+        padding: 0 30px;    
+        .title{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 20px 0;
+          .logo{
+            width: 230px;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .information{
+              .orich{
+                width: max-content;
+                height: 20px;
+                line-height: 20px;
+                font-size: 20px;
+                font-family: AvenirNext-Bold, AvenirNext;
+                font-weight: bold;
+                color: #2B1106;
+              }
+              .multi{
+                width: max-content;
+                height: 20px;
+                line-height: 20px;
+                font-size: 15px;
+                font-family: AvenirNext-Regular, AvenirNext;
+                color: #2B1106;
+                margin-top: 12px;
+                span{
+                  font-weight: bold;
+                }
+              }
+            }
+          }
+          .APR{
+            width: 66px;
+            height: 66px;
+            background: #F7ECE4;
+            border-radius: 12px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .name{
+              font-size: 12px;
+              font-family: AvenirNext-Regular, AvenirNext;
+              font-weight: 400;
+              color: #F68731;
+            }
+            .percentage{
+              line-height: 22px;
+              font-size: 16px;
+              font-family: AvenirNext-DemiBold, AvenirNext;
+              font-weight: 600;
+              color: #F68731;
+            }
+          }
+        }
+        .InformationBlock{
+          width: 100%;
+          height: 110px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .row{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .left{
+              width: max-content;
+              line-height: 22px;
+              font-size: 14px;
+              font-family: AvenirNext-Medium, AvenirNext;
+              font-weight: 500;
+              color: #7b7572;
+            }
+            .right{
+              width:max-content;
+              line-height: 22px;
+              font-size: 16px;
+              font-family: AvenirNext-DemiBold, AvenirNext;
+              font-weight: 600;
+              color: #2B1106;
+            }
+          }
+        }   
+        .line{
+            width: 360px;
+            height: 1px;
+            opacity: 0.08;
+            border: 1px solid #2B1106;
+            margin: 28px auto;
+        }
+        .cumulative{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 14px;
+          font-family: AvenirNext-Medium, AvenirNext;
+          font-weight: 500;
+          color: #2B1106;
+          height: 19px;
+          line-height: 19px;
+          .left{
+            width: max-content;
+          }
+          .right{
+            width: max-content;
+          }
+        }
+        .lastline{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 8px;
+          .left{
+            width:max-content;
+            height: 32px;
+            font-size: 24px;
+            font-family: AvenirNext-Bold, AvenirNext;
+            font-weight: bold;
+            color: #2B1106;
+            line-height: 32px;
+          }
+          .right{
+            width:max-content;
+            height: 20px;
+            line-height: 20px;
+            font-size: 16px;
+            font-family: AvenirNext-DemiBold, AvenirNext;
+            font-weight: 600;
+            color: #F68731;
+          }
+        }
+      }
+      .farm-foot{
+        width: 100%;
+        height: 87px;
+        background: #F7ECE4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        border-bottom-right-radius: 24px;
+        border-bottom-left-radius: 24px;
+        .title{
+          width: 100%;
+          line-height: 19px;
+          font-size: 14px;
+          font-family: AvenirNext-Medium, AvenirNext;
+          font-weight: 500;
+          color: #2B1106;
+        }
+        .value{
+          width: 100%;
+          line-height: 20px;
+          font-size: 24px;
+          font-family: AvenirNext-Bold, AvenirNext;
+          font-weight: bold;
+          color: #F68731;
+          margin-top: 8px;
+        }
+      }
+     
+      .selectCard{
+        background: #F68731;
+        .title{
+          color:#FFFFFF;
+        }
+        .value{
+          color:#FFFFFF;
+        }
+      }
+    }
+    .selectBox{
+      box-shadow: 0px 0px 0px 4px #F68731;
+    }
+  }
+}
+}
+
+@media only screen and (max-width:1466px) {
+  .farm-main{
+    // padding: 0px 20px;
+    .head-card{
+      width: auto;
+      .card{
+        width: 440px;
+      }
+    }
+  }
+}
+@media only screen and (max-width:1200px) {
+  .farm-main{
+    .heads{
+      background:url('../../assets/image/newTrade/mobilebg.png');
+      background-size: cover;
+      background-position-x: center;
+      padding-left: 20px;
+      .title{
+        width:max-content;
+        line-height: 38px;
+        font-size: 28px;
+        font-weight: 600;
+        color: #2E0F00;
+        text-shadow:none;
+      }
+      .tip{
+        width: 190px;
+        height: 38px;
+        font-size: 14px;
+        font-family: AvenirNext-Regular, AvenirNext;
+        font-weight: 400;
+        color: #2E0F00;
+        line-height: 19px;
+        margin-top: 12px;
+      }
+      .buttom{
+        width: 132px;
+        line-height: 32px;
+        background: #2E0F00;
+        border-radius: 16px;
+        font-size: 12px;
+        font-family: Quicksand-Bold, Quicksand;
+        font-weight: bold;
+        color: #FFFFFF;
+        margin-top:16px;
+        cursor: pointer;
+      }
+    }
+    .the-body{
+      padding: 0 20px;
+      .head-card{
+        flex-direction: column;
+        padding-top:16px;
+        .card{
+          width: 100%;
+          min-width: 340px;
+          height: 98px;
+          margin-bottom: 16px;
+          padding: 20px 24px;
+          .title{
+            width:max-content;
+            height: 18px;
+            line-height: 18px;
+            font-size: 14px;
+            font-family: AvenirNext-Medium, AvenirNext;
+            font-weight: 500;
+            color: #2B1106;
+          }
+          .value{
+            width:max-content;
+            height: 28px;
+            line-height: 28px;
+            font-size: 26px;
+            font-family: AvenirNext-DemiBold, AvenirNext;
+            font-weight: 600;
+            color: #2B1106;
+            margin-top: 12px;
+          }
+          .buttom{
+            width: 63px;
+            line-height: 32px;
+            background: #F68731;
+            border-radius: 8px;
+
+            font-size: 13px;
+            font-family: AvenirNext-Bold, AvenirNext;
+            font-weight: bold;
+            color: #FFFFFF;
+            cursor: pointer;
+          }
+        }
+        .bg{
+          background:url('../../assets/image/newTrade/mobileCardBg.png');
+          align-items: end;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position-x: center;
+          background-position-y: center;
+        }
+      }
+      .tip{
+        width: 320px;
+        line-height: 19px;
+        font-size: 14px;
+        font-family: AvenirNext-Regular, AvenirNext;
+        font-weight: 400;
+        color:#00000061;        
+        margin-top:0px;
+      }
+      .trading{
+        width: 100%;
+        max-width: 1446px;
+        margin: 0 auto;
+        margin-top: 36px;
+        margin-bottom: 18px;
+        .title{
+          width:max-content;
+          height: 33px;
+          line-height: 33px;
+          font-size: 24px;
+          font-family: AvenirNext-Bold, AvenirNext;
+          font-weight: bold;
+          color: #2B1106;
+        }
+        .tips{
+          width: 346px;
+          line-height: 19px;
+          font-size: 14px;
+          font-family: AvenirNext-Regular, AvenirNext;
+          font-weight: 400;
+          color: #2B1106;
+        }
+      }
+      .content{
+        .farm-card{
+          width: 345px;
+          height: 373px;
+          margin-bottom: 24px;
+          .card-content{
+            height: 302px;
+            padding: 0 22px;
+            .title {
+              padding:10px 0;
+              .logo{
+                .information{
+                  .orich{
+                    width: max-content;
+                    height: 16px;
+                    line-height: 16px;
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #2B1106;
+                  }
+                  .multi{
+                    width:max-content;
+                    height: 16px;
+                    line-height: 16px;
+                    font-size: 12px;
+                    font-weight: 400;
+                    color: #2B1106;
+                  }
+                }
+                img{
+                  width: 60px;
+                }
+                width: 190px;
+              }
+              .APR{
+                width:54px;
+                height: 54px;
+                .name{
+                  width: 100%;
+                  height: 14px;
+                  line-height: 14px;
+                  font-size: 10px;
+                  font-family: AvenirNext-Regular, AvenirNext;
+                  font-weight: 400;
+                  color: #F68731;
+                }
+                .percentage{
+                  width: 100%;
+                  height: 18px;
+                  line-height: 18px;
+                  font-size: 13px;
+                  font-family: AvenirNext-DemiBold, AvenirNext;
+                  font-weight: 600;
+                  color: #F68731;
+                }
+              }
+            }
+            .line{
+              width: 100%;
+              max-width: 296px;
+              margin: 24px auto;
+            }
+            .InformationBlock{
+              height:84px;
+            }
+            .cumulative{
+              .left{
+                font-size: 12px;
+              };
+              .right{
+                font-size: 12px;
+              }
+            }
+            .lastline{
+              margin-top: 4px;
+              .left{
+                font-size: 20px;
+              }
+              .right{
+                font-size: 13px;
+                font-weight: 600;
+                color: #F68731;
+              }
+            } 
+          }
+          .farm-foot{
+            height: 71px;
+          }
+        }
+        
+      }
+    }
+  }
+}
+

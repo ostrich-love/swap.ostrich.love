@@ -1,0 +1,50 @@
+.farmpool {
+    width: 100%;
+    max-width: 1200px;
+    font-family: Avenir Next;
+    padding-bottom: 0px !important;
+    &.block-farm {
+        margin-top: 100px;
+        .title{
+            width: 100%;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 48px;
+            text-align: center;
+          }
+          .tip{
+            width: 100%;
+            font-size: 18px;
+            line-height: 26px;
+            margin-top: 24px;
+            margin-bottom: 66px;
+            text-align: center;
+          }
+    }
+    .title {
+        font-size: 42px;
+        font-weight: 700;
+        line-height: 48px;
+    }
+
+    @media only screen and (max-width:1200px) {
+        .farm-items {
+            flex-direction: column !important;
+            margin-top:10px;
+        }
+        .percentage {
+            text-align: center;
+        }
+        .user {text-align: center;
+        }
+      }
+    .list-item {
+        .percentage {
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .user {
+            font-size: 16px;
+        }
+    }
+}

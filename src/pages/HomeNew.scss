@@ -1,0 +1,473 @@
+.home-new {
+  width: 100%;
+  height: 100%;
+  @mixin flexRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  @mixin flexColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  @mixin cardStyle{
+    width: 345px;
+    height: 454px;
+    border-radius: 24px;
+    background-size: cover;
+  }
+  .block-one {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width:100%;
+      height: 1016px;
+      background: url(../assets/image/homenew/bg1.png), lightgray 50% / cover no-repeat;
+      position: relative;
+      font-family: Avenir Next;
+      .title{
+        width: 1200px;
+        line-height: 64px;
+        color: #2E0F00;
+        text-align: center;
+        font-size: 48px;
+        font-weight: 700;
+        margin-top: 141px;
+      }
+      .tip{
+        width: 530px;
+        line-height: 24px;
+        color: #2E0F00;
+        text-align: center;
+        font-size: 16px;
+        margin:24px 0;
+      }
+      .buttom{
+        width: 200px;
+        line-height: 64px;
+        background: #1B1A1A;
+        border-radius: 100px;
+        font-size: 18px;
+        font-weight: 700;
+        text-align: center;
+        color: #FFF;
+        user-select: none;
+        cursor: pointer;
+        &.ido-btn {
+          background-color: #F68731;
+        }
+      }
+      .line-of-demarcation{
+        position: absolute;
+        bottom:-1px;
+        width:100%;
+        height: 169px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.00) 0%, #FFF 100%);
+      }
+      @media only screen and (max-width:1200px) {
+        .title{
+          width: 295px;
+          font-size: 28px;
+          font-style: normal;
+          line-height: 35px;
+          margin-top: 101px;
+        }
+        .tip{
+          width: 274px;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 20px;
+          margin-top: 10px;
+          margin-bottom: 13px;
+        }
+        .buttom{
+          width: 170px;
+          line-height: 44px;
+          background: #1B1A1A;
+          font-size: 14px;
+        }
+    }
+    }
+    @media only screen and (max-width:1200px) {
+      .block-one {
+        background: url(../assets/image/homenew/mobile-bg.png);
+        background-repeat: no-repeat;
+        background-size: cover;   
+        height: 741px;   
+        background-position: 0px 45%;
+      }
+    }
+    .block-two{
+      width: 100%;
+      height:2500px;
+      background: url(../assets/image/homenew/Rectangle.png), 100% 100% no-repeat;
+      padding-top: 102px;
+      padding-bottom: 179px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .flex-Row {
+        @include flexRow;
+        color: #2E0F00;
+        font-family: Avenir Next;
+        .title{
+          width: 630px;
+          font-size: 42px;
+          font-weight: 700;
+          line-height: 48px;
+        }
+        .tip{
+          width: 535px;
+          font-size: 18px;
+          line-height: 26px;
+          margin-top: 24px;
+          margin-bottom: 66px;
+        }
+        .felxStart{
+          display: flex;
+          align-items: center;
+          justify-content:start;
+          .list-item{
+            margin-right: 60px;
+            .percentage{
+              font-size: 36px;
+              font-weight: 700;
+              line-height: 36px;
+            }
+            .user{
+              font-size: 16px;
+              line-height: 24px;
+              margin-top: 8px;
+            }
+          }
+        }
+      }
+      .setwidth{
+        width: 1200px;
+      }
+      .card{
+        width: 1276px;
+        margin-top:110px;
+        .layout-flex{
+          @include flexRow;
+          align-items:end;
+          color: #2E0F00;
+          font-family: Avenir Next;
+          .left{
+            width: 831.845px;
+            height: 562px;
+            border-radius: 24px;
+            background: url(../assets/image/homenew/Group74.png), 100% 100% repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            padding: 39px;
+            .title{
+              width: 253px;
+              font-size: 32px;
+              font-weight: 700;
+              line-height: 42px;
+            }
+            .tip{
+              width: 454px;
+              font-size: 18px;
+              font-weight: 500;
+              line-height: 24px;
+            }
+
+          }
+          .right{
+            width: 419px;
+            height: 526px;
+            border-radius: 24px;
+            background: url(../assets/image/homenew/Group75.png), 100% 100% repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            padding: 36px;
+            .title{
+              font-size: 32px;
+              font-weight: 700;
+              line-height: 42px;
+            }
+            .tip{
+              width: 346px;
+              font-size: 18px;
+              font-weight: 500;
+              line-height: 24px;
+            }
+          }
+        }
+        .position-img{
+          position: relative;
+          .left-two{
+            left: 447px;
+            top: 6px;
+            position: absolute;
+            width: 831.845px;
+            height: 489px;
+            border-radius: 24px;
+            background: url(../assets/image/homenew/Group76.png), 100% 100% no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            padding: 39px;
+            .title{
+              width: 348px;
+              font-size: 32px;
+              font-weight: 700;
+              line-height: 42px;
+            }
+            .tip{
+              width: 376px;
+              font-size: 18px;
+              font-weight: 500;
+              line-height: 24px;
+            }
+          }
+          .right-two{
+            position: absolute;
+            top: -64px;
+            width: 419px;
+            height: 560px;
+            border-radius: 24px;
+            background: url(../assets/image/homenew/Group77.png), 100% 100% no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            padding: 39px;
+            .title{
+              font-size: 32px;
+              font-weight: 700;
+              line-height: 42px;
+            }
+            .tip{
+              width: 346px;
+              font-size: 18px;
+              font-weight: 500;
+              line-height: 24px;
+            }
+          }
+        }
+      }
+    }
+    .mobile-block-two{
+      width: 100%;
+      height:100%;
+      background: url(../assets/image/homenew/mobile-Rectangle.png), 100% 100% no-repeat;
+      margin-bottom: 38px;
+      @mixin publicCard{
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        padding: 24px;
+        color: #2E0F00;
+        font-family: Avenir Next;
+        font-style: normal;
+        .title{
+          width: 271px;
+          text-align: center;
+          font-size: 20px;
+          font-weight: 700;
+          line-height: 28px;
+        }
+        .tip{
+          width: 271px;
+          text-align: center;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 20px;
+          margin-top: 16px;
+        }
+      }
+      .flexColumn{
+        @include flexColumn;
+        color: #2E0F00;
+        font-family: Avenir Next;
+        font-style: normal;
+        .title{
+          width: 305px;
+          text-align: center;
+          font-size: 25px;
+          font-weight: 700;
+          line-height: 33px;
+          margin-top: 42px;
+          margin-bottom: 22px;
+        }
+        .tip{
+          width:271px;
+          text-align: center;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 20px;
+        }
+        .list-item{
+          margin-top: 36px;
+          .percentage{
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 26px;
+          }
+          .user{
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 24px;
+          }
+        }
+        img{
+          margin-top: 60px;
+        }
+      }
+      .card{
+        width:100%;
+        height: 100%;
+        margin-top:70px;
+        @include flexColumn;
+        justify-content: start;
+        .one{
+          background: url(../assets/image/homenew/mobile-ostrich-one.png);
+          @include cardStyle;
+          @include publicCard; 
+        }
+        .tow{
+          background: url(../assets/image/homenew/mobile-ostrich-two.png);
+          @include cardStyle;
+          height: 371px;
+          @include publicCard;
+        }
+        .three{
+          background: url(../assets/image/homenew/mobile-ostrich-four.png);
+          @include cardStyle;
+          @include publicCard;
+        }
+        .four{
+          background: url(../assets/image/homenew/mobile-ostrich-three.png);
+          @include cardStyle;
+          @include publicCard;
+        }
+      }
+    }
+    .block-three{
+      background-color:#000000;
+      .bg-img{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width:100%;
+        height:100%;
+        padding-top: 90px;
+        padding-bottom: 110px;
+        background: url(../assets/image/homenew/bg3.png),no-repeat;
+        color: #FFF;
+        font-family: Avenir Next;
+        .title{
+          width: 859px;
+          line-height: 64px;
+          text-align: center;
+          font-size: 56px;
+          font-weight: 700; 
+        }
+        .tip{
+          width: 555px;
+          text-align: center;
+          font-size: 18px;
+          line-height: 28px;
+          margin-top: 50px;
+          margin-bottom: 40px;
+        }
+        .buttom{
+          width: 200px;
+          line-height: 64px;
+          border-radius: 100px;
+          background: #F68731;
+
+          text-align: center;
+          font-size: 18px;
+          font-weight: 700;
+          user-select: none;
+          cursor: pointer;
+        }
+        .wallet-List{
+          width: 1289px;
+          height: 416px;
+          background: url(../assets/image/homenew/colorBackground.png);
+          box-shadow: 0px 0px 80px 0px rgba(246, 135, 49, 0.20);
+          border-radius: 32px;
+          margin-top: 60px;
+          margin-bottom: 110px;
+          .flex-space{
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            .list-item{
+              color: #FFF;
+              font-family: Avenir Next;
+              .percentage{
+                font-size: 36px;
+                font-weight: 700;
+                line-height: 36px;
+              }
+              .user{
+                font-size: 16px;
+                line-height: 24px;
+                margin-top:12px;
+              }
+            }
+          }
+        }
+    }
+    }
+    .mobile-block-three{
+      background-color:#000000;
+      .bg-img{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 745px;
+        padding-top:30px;
+        background: url(../assets/image/homenew/mobile-bg-three.png),no-repeat;
+        background-size:cover;
+        // opacity: 0.4000000059604645;
+        // background: url(../assets/image/homenew/mobile-bg-three.png), #0c0101 50% / cover no-repeat;
+        color: #FFF;
+        font-family: Avenir Next;
+        .title{
+          width: 290px;
+          text-align: center;
+          font-size: 28px;
+          font-weight: 700;
+          line-height: 35px;
+        }
+        .tip{
+          width: 310px;
+          text-align: center;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 20px;
+          margin-top: 26px;
+          margin-bottom:30px;
+        }
+        .list-item{
+          text-align: center;
+          margin-top: 36px;
+          .percentage{
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 36px;
+          }
+          .user{
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 24px;
+            margin-top: 8px;
+          }
+        }
+    }
+    }
+}

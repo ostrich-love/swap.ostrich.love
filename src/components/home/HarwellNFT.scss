@@ -1,0 +1,40 @@
+.orich-nft {
+    .content-wrapper {
+        height: 1010px;
+        .left {
+            display: flex;
+            flex-flow: column;
+            padding-top: 116px;
+            .text-1 {
+                width: 530px;
+                height: 164px;
+                font-size: 66px;
+                font-weight: bold;
+                color: #2B1106;
+                line-height: 82px;
+            }
+
+            .text-2 {
+                width: 456px;
+                margin-top: 24px;
+                height: 84px;
+                font-size: 24px;
+                font-weight: 400;
+                color: #2B1106;
+                line-height: 42px;
+            }
+
+            .btn {
+                margin-top: 54px;
+                width: 280px;
+                height: 72px;
+                background: rgba(246, 135, 49, 1);
+                border-radius: 24px;
+                font-size: 22px;
+                font-weight: bold;
+                color: #2B1106;
+                line-height: 28px;
+            }
+        }
+    }
+}

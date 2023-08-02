@@ -1,0 +1,24 @@
+<svg width="500px" height="500px" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>eth</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="500" height="500"></rect>
+    </defs>
+    <g id="eth" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="位图备份-6">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="蒙版" fill="#EBEFF0" xlink:href="#path-1"></use>
+            <g id="ethereum-eth-logo" mask="url(#mask-2)">
+                <g transform="translate(145.833333, 83.333333)">
+                    <polygon id="Fill-1" fill="#444444" points="103.934358 0.333167989 101.66212 8.04976852 101.66212 231.953538 103.934358 234.220817 207.864997 172.785218"></polygon>
+                    <polygon id="Fill-2" fill="#9E9E9E" points="103.934358 0.333167989 0 172.785218 103.934358 234.220817"></polygon>
+                    <polygon id="Fill-3" fill="#3C3C3B" points="103.934358 253.897156 102.65377 255.458829 102.65377 335.217841 103.934358 338.955853 207.929481 192.495453"></polygon>
+                    <polygon id="Fill-4" fill="#9E9E9E" points="103.934358 338.955853 103.934358 253.897156 0 192.495453"></polygon>
+                    <polygon id="Fill-5" fill="#1A1A1A" points="103.934358 234.220817 207.864997 172.785218 103.934358 125.544395"></polygon>
+                    <polygon id="Fill-6" fill="#4A4A4A" points="0 172.785218 103.934358 234.220817 103.934358 125.544395"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

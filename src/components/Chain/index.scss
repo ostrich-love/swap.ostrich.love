@@ -1,0 +1,37 @@
+.ant-dropdown-menu-item-disabled {
+    opacity: 0.4;
+}
+.chain-logo {
+  width: 20px;
+  height:20px;
+  border-radius: 50%;
+}
+.chain-list {
+    height: 44px;
+    // background: #2E3689;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: Avenir Next;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 12px;
+    cursor: pointer;
+    // background: rgba(31, 31, 31, 1);
+    border-radius: 23px;
+    border: 1px solid rgba(46, 15, 0, .1);
+    .drop-dot {
+      height: 24px;
+    }
+    .dot {
+      transform: rotate(90deg);
+      font-size: 20px;
+    }
+  }
+  .my-menu{
+    margin-top: 10px !important;
+  }
+  .TransparentStyle{
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.1)  !important;
+  }
