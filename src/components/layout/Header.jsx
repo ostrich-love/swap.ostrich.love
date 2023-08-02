@@ -24,9 +24,9 @@ const nav = [
     icon: require('../../assets/image/nav/Home.svg').default
   },
   {
-    name: 'LaunchPool',
+    name: 'Swap',
     link: '/',
-    icon: require('../../assets/image/nav/Farm.svg').default
+    icon: require('../../assets/image/nav/Swap.svg').default
   },
 ]
 //显示透明的菜单栏
