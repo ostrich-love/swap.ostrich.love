@@ -169,10 +169,10 @@ const AddLiquidity = (props) => {
       console.log(pairs)
       let { reserve0: reserve_x, reserve1: reserve_y } = await getReserves(pairs)
       console.log(reserve_x)
-      let reserveIn = findAddressByName(inputToken) < findAddressByName(outToken) ? reserve_x : reserve_y
-      let reserveOut = findAddressByName(inputToken) > findAddressByName(outToken) ? reserve_x : reserve_y
+      let reserveIn = findAddressByName(inputToken == 'ETH'?'WETH':inputToken) < findAddressByName(outToken== 'ETH'?'WETH':outToken) ? reserve_x : reserve_y
+      let reserveOut = findAddressByName(inputToken == 'ETH'?'WETH':inputToken) > findAddressByName(outToken== 'ETH'?'WETH':outToken) ? reserve_x : reserve_y
       setPrice(new BigNumber(reserveOut).dividedBy(new BigNumber(reserveIn)).toString())
-      if (findAddressByName(inputToken) < findAddressByName(outToken)) {
+      if (findAddressByName(inputToken== 'ETH'?'WETH':inputToken) < findAddressByName(outToken== 'ETH'?'WETH':outToken)) {
         setPrice(toFixed(reserve_y / reserve_x, 4))
         setReserveX(reserve_x)
       } else {
@@ -419,10 +419,10 @@ function Liquidity(props) {
     setRemoveLoading(true)
     reduceLiq(
       findAddressByName(inputToken),
-      findAddressByName(outToken),
-      (toFixed((new BigNumber(value)).toString(), baseLength)).toString(),
-      (toFixed((new BigNumber(assetReceive).multipliedBy(new BigNumber(1).minus(new BigNumber(slip).dividedBy(100)))).toString(), baseLength)).toString(),
-      (toFixed((new BigNumber(baseReceive).multipliedBy(new BigNumber(1).minus(new BigNumber(slip).dividedBy(100)))).toString(), baseLength)).toString(),
+      findAddressByName(outToken=='ETH'?'WETH':outToken),
+      (toFixed((new BigNumber(value)).toString(), 0)).toString(),
+      (toFixed((new BigNumber(assetReceive).multipliedBy(new BigNumber(1).minus(new BigNumber(slip).dividedBy(100)))).toString(), 0)).toString(),
+      (toFixed((new BigNumber(baseReceive).multipliedBy(new BigNumber(1).minus(new BigNumber(slip).dividedBy(100)))).toString(), 0)).toString(),
       false
   ).then(res => {
     OpenNotification('success', 'Transaction Succeed')

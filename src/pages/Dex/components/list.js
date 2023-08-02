@@ -34,7 +34,7 @@ import { findAddressByName } from '../../../lib/util'
       title: 'WETH',
       desc: 'ETH token',
       icon: require('../../../assets/image/token/ETH.svg').default,
-      hide: true
+      hide: false
     },
     {
       title: 'ARB',

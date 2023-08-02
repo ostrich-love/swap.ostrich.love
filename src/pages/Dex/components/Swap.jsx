@@ -142,7 +142,7 @@ const toApprove = ()=>{
  useEffect(async() => {
   try {
     if(type == 'input' && buyer) {
-      let amountOut = await getAmountOut([findAddressByName(inputToken) , findAddressByName(outToken)], toWei(buyer))
+      let amountOut = await getAmountOut([findAddressByName(inputToken == 'ETH'?'WETH':inputToken) , findAddressByName(outToken== 'ETH'?'WETH':outToken)], toWei(buyer))
        setPrice(amountOut/buyer)
        setSeller(toFixed(fromUnit(amountOut),4))
     } else if(type == 'input' && !buyer ) {
@@ -157,7 +157,7 @@ const toApprove = ()=>{
  useEffect(async() => {
   try {
     if(type == 'output' && seller) {
-      let amountIn = await getAmountIn([findAddressByName(inputToken) , findAddressByName(outToken)], toWei(seller))
+      let amountIn = await getAmountIn([findAddressByName(inputToken == 'ETH'?'WETH':inputToken) , findAddressByName(outToken== 'ETH'?'WETH':outToken)], toWei(seller))
        setPrice(seller/amountIn)
        setBuyer(toFixed(fromUnit(amountIn),4))
   
@@ -174,8 +174,8 @@ const toApprove = ()=>{
   let pairAddress = findAddressByName(inputToken+'-'+outToken)||findAddressByName(outToken+'-'+inputToken)
   if(pairAddress) {
     let {reserve0, reserve1} = await getReserves(pairAddress)
-    let reserve_x=findAddressByName(inputToken) < findAddressByName(outToken) ?reserve0:reserve1
-    let reserve_y=findAddressByName(inputToken) < findAddressByName(outToken) ?reserve1:reserve0
+    let reserve_x=findAddressByName(inputToken == 'ETH'?'WETH':inputToken) < findAddressByName(outToken== 'ETH'?'WETH':outToken) ?reserve0:reserve1
+    let reserve_y=findAddressByName(inputToken== 'ETH'?'WETH':inputToken) < findAddressByName(outToken== 'ETH'?'WETH':outToken) ?reserve1:reserve0
     setReserveX(reserve_x)
     setReserveY(reserve_y)
   } else {
