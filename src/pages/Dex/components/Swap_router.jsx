@@ -51,8 +51,8 @@ function Swap(props) {
   const [selectType, setSelectType] = useState('input');
   const [buyer, setBuyer] = useState('');
   const [seller, setSeller] = useState('');
-  const [inputToken, setInputToken] = useState('BALD')
-  const [outToken, setOutToken] = useState('ETH')
+  const [inputToken, setInputToken] = useState('ETH')
+  const [outToken, setOutToken] = useState('BALD')
   const [inputBalance, setinputBalance] = useState(0)
   const [outBalance, setOutBalance] = useState(0)
   const [refresh, setRefresh] = useState(0)
@@ -456,9 +456,9 @@ useEffect(() => {
         {/* 支付币种 */}
 
         <div className='flex flex-between flex-center m-t-16 m-b-16'>
-          <div className='flex flex-center m-l-20'>
+          <div className='flex flex-center m-l-0'>
             {
-              routers.length && buyer ?  <span className='fz-14 c2b'>1 {inputToken} = {toFixed(price, decimal)} {outToken}</span>:''
+              routers.length && buyer ?  <span className='fz-12 c2b'>1 {inputToken} = {price} {outToken}</span>:''
             }
             
             {/* <img className='switch-icon m-l-8' src={Switch} alt="" /> */}

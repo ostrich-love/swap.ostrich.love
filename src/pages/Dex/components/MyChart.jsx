@@ -41,7 +41,7 @@ function Swap(props) {
   ]
   const tokenSelect = [
     {
-      label: 'BALD/WETH', value: 'BALD/WETH'
+      label: 'BALD/ETH', value: 'BALD/WETH'
     }
     // {
     //   label: 'APT/USDC', value: 'APT/USDC'
