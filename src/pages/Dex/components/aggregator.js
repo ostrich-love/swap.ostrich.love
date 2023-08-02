@@ -55,6 +55,11 @@ export const getAllReserves = async (aggregated) => {
         chain_id: getNetwork().networkId
     })
     console.log(ostrich_pools)
+    ostrich_pools.push({
+        pair: findAddressByName('BALD-ETH'),
+        token1: findAddressByName('ETH'),
+        token0: findAddressByName('BALD')
+    })
     ostrich_pools.map(item=>{
         item.t = 0
         return item

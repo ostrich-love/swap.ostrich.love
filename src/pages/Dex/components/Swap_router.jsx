@@ -51,8 +51,8 @@ function Swap(props) {
   const [selectType, setSelectType] = useState('input');
   const [buyer, setBuyer] = useState('');
   const [seller, setSeller] = useState('');
-  const [inputToken, setInputToken] = useState('USDC')
-  const [outToken, setOutToken] = useState('Orich')
+  const [inputToken, setInputToken] = useState('BALD')
+  const [outToken, setOutToken] = useState('ETH')
   const [inputBalance, setinputBalance] = useState(0)
   const [outBalance, setOutBalance] = useState(0)
   const [refresh, setRefresh] = useState(0)

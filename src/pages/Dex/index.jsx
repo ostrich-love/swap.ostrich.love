@@ -3,7 +3,7 @@ import { useState } from "react";
 import swapTab from '../../assets/image/launchpad/swap-tab.png'
 import close from '../../assets/image/swap/close.svg'
 import Liquidity from "./components/Liquidity";
-import Swap from "./components/Swap";
+import Swap from "./components/Swap_router";
 import {NavLink, useLocation } from 'react-router-dom';
 import './index.scss'
 import { createBrowserHistory } from 'history';
