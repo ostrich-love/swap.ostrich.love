@@ -1,9 +1,10 @@
 import axios from "axios"
 import { message } from 'antd'
+import { baseUrl } from ".";
 // import { createBrowserHistory } from 'history';
 // const history = createBrowserHistory();
 const instance = axios.create({
-    baseURL: process.env.NODE_ENV === 'development' ? '/' : process.env.REACT_APP_API,
+    baseURL: process.env.NODE_ENV === 'development' ? '/' : baseUrl,
     timeout: 30000,
 })
 // http request 拦截器

@@ -28,6 +28,12 @@ const nav = [
     link: '/',
     icon: require('../../assets/image/nav/Swap.svg').default
   },
+  // {
+  //   name: 'Base IDO',
+  //   isoutlink: true,
+  //   link: 'https://ido.ostrich.love',
+  //   icon: require('../../assets/image/nav/Launch.svg').default
+  // }
 ]
 //显示透明的菜单栏
 const pathnameList = ['/airdrop', '/invite', '/quest']
