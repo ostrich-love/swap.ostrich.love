@@ -164,7 +164,8 @@ const AddLiquidity = (props) => {
   useEffect(async () => {
     try {
 
-      let pairs = await getPair(findAddressByName(inputToken), findAddressByName(outToken)).call()
+      // let pairs = await getPair(findAddressByName(inputToken), findAddressByName(outToken)).call()
+      let pairs = findAddressByName(inputToken+'-'+outToken) || findAddressByName(outToken+'-'+inputToken)
       console.log(pairs)
       let { reserve0: reserve_x, reserve1: reserve_y } = await getReserves(pairs)
       console.log(reserve_x)
