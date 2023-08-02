@@ -215,8 +215,8 @@ function Connect (props) {
                         {/* <NavLink className="nav-item" to="/launch">LaunchPad</NavLink>
                         <NavLink className="nav-item" to="/getquota">Get Quota</NavLink> */}
                         <NavLink className="nav-item" to="/swap">{t('Swap')}</NavLink>
-                        <NavLink className="nav-item" to="/farm">{t('Farm')}</NavLink>
-                        <NavLink className="nav-item" to="/launch">{t('Launch')}</NavLink>
+                        {/* <NavLink className="nav-item" to="/farm">{t('Farm')}</NavLink>
+                        <NavLink className="nav-item" to="/launch">{t('Launch')}</NavLink> */}
                         {
                           props.account && <div className="nav-item pointer" onClick={toLogout}>
                             <LogoutOutlined className="pointer m-r-10" title="logout"/>
@@ -224,10 +224,10 @@ function Connect (props) {
                         }
                         
                     </div>
-                    <div className="reward-area p-12 w100 flex flex-between flex-center gap-20 m-t-21">
+                    {/* <div className="reward-area p-12 w100 flex flex-between flex-center gap-20 m-t-21">
                        <span className="cy fz-14">You have <span className='fwb underline italic'>45.6 Orich</span>  trading rewards to claim</span>
                        <NavLink className="cf check-btn ta" to="/swap_rewards">Details</NavLink>
-                    </div>
+                    </div> */}
 
                     <img src={BgTop} alt="" className='bg bg-top' />
                     {/* <img src={BgBottom} className='bg bg-bottom' alt="" /> */}

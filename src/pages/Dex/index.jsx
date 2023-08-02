@@ -13,8 +13,8 @@ function Dex() {
   let { pathname } = useLocation()
   let { t, i18n } = useTranslation()
   console.log(pathname)
-  const [tabValue, setTabValue] = useState(pathname.replace('/', '')||'swap')
-  const [show,setShow]=useState(true)
+  const [tabValue, setTabValue] = useState(pathname.replace('/', '') =='liquidity'?'liquidity':'swap')
+  const [show,setShow]=useState(false)
   
   return (
     <div className="dex">

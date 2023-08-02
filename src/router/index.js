@@ -22,6 +22,10 @@ export default [
       component: <Dex />
     },
     {
+      path: '/base',
+      component: <Dex />
+    },
+    {
       path: '/liquidity',
       component: <Dex />
     }
