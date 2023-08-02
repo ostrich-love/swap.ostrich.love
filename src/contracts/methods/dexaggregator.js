@@ -58,7 +58,7 @@ export function swap(
       const accounts = await web3.eth.getAccounts();
       const address = accounts[0];
       let value = 0
-      if (pools[0].address === ZERO_ADDRESS) {
+      if (tokenIn === ZERO_ADDRESS) {
         value = amountIn;
       }
 
