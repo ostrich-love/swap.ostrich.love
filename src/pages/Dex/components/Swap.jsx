@@ -272,14 +272,14 @@ console.log(seller*1, fromUnit(reserveY)*1)
     <div className="swap-content flex flex-middle gap-20">
       {/* <img className='swap-left-log' src={LeftLogo} alt="" /> */}
       {
-        isShowChart && <></>
+        isShowChart && 
         
-        // <MyChart tokenChange={
-        //   (tokenName) => {
-        //     setInputToken(tokenName.split('/')[0])
-        //     setOutToken(tokenName.split('/')[1])
-        //   }
-        // }/>
+        <MyChart tokenChange={
+          (tokenName) => {
+            setInputToken(tokenName.split('/')[0])
+            setOutToken(tokenName.split('/')[1])
+          }
+        }/>
       }
       <div className="swap-right bgf pb">
         <img className='min-pinecone' src={Pinecone} alt="" />

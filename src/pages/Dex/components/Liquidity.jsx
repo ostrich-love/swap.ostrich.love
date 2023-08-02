@@ -419,11 +419,11 @@ function Liquidity(props) {
     setRemoveLoading(true)
     reduceLiq(
       findAddressByName(inputToken),
-      findAddressByName(outToken=='ETH'?'WETH':outToken),
+      findAddressByName(outToken),
       (toFixed((new BigNumber(value)).toString(), 0)).toString(),
       (toFixed((new BigNumber(assetReceive).multipliedBy(new BigNumber(1).minus(new BigNumber(slip).dividedBy(100)))).toString(), 0)).toString(),
       (toFixed((new BigNumber(baseReceive).multipliedBy(new BigNumber(1).minus(new BigNumber(slip).dividedBy(100)))).toString(), 0)).toString(),
-      false
+      outToken == 'ETH'
   ).then(res => {
     OpenNotification('success', 'Transaction Succeed')
     setRemoveLoading(false)
@@ -447,7 +447,7 @@ function Liquidity(props) {
   }, [coinType])
 
   useEffect(async () => {
-    setLoading(true)
+     refresh == 0 && setLoading(true)
     if (props.account) {
       //  let all = await allPairs().call()
       //  console.log(all)

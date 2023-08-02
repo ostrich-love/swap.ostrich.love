@@ -41,7 +41,7 @@ function Swap(props) {
   ]
   const tokenSelect = [
     {
-      label: 'BALD/ETH', value: 'BALD/ETH'
+      label: 'BALD/WETH', value: 'BALD/WETH'
     }
     // {
     //   label: 'APT/USDC', value: 'APT/USDC'
@@ -53,7 +53,7 @@ function Swap(props) {
 
   const [options, setOptions] = useState({})
   const [loading, setLoading] = useState(false)
-  const [tokenPair, setTokenPair] = useState('BALD/ETH')
+  const [tokenPair, setTokenPair] = useState('BALD/WETH')
   const [priceData, setPriceData] = useState([])
   const [price, setPrice] = useState('')
 
@@ -201,7 +201,7 @@ function Swap(props) {
           <span>Pro</span>
           <img className='m-l-4' src={question} alt="" />
         </div> */}
-      <Select defaultValue="BALD/ETH" onChange={tokenChange} 
+      <Select defaultValue="BALD/WETH" onChange={tokenChange} 
       className='my-select token-select flex flex-middle flex-center' 
       style={{ width: 120 }} 
       suffixIcon={
@@ -232,7 +232,7 @@ function Swap(props) {
                   loading ? <Skeleton.Button active size={'small'} /> :
                     <span className='fz-24 fwb'>{price}</span>
                 }
-                <span className='fz-16 fwb m-l-8'>USD</span>
+                <span className='fz-16 fwb m-l-8'>ETH</span>
                 {/* <span className='fz-16 fwb m-l-8'>{tokenPair.split('/')[1]}</span> */}
               </span>
               <span>
