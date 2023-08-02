@@ -27,7 +27,7 @@ function Settings(props) {
   }, [slippage])
 
   useEffect(()=>{
-    props.aggregatedChange(aggregated)
+    props.aggregatedChange && props.aggregatedChange(aggregated)
     localStorage.setItem('aggregated', aggregated)
   }, [aggregated])
   return (

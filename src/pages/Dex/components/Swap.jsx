@@ -5,11 +5,11 @@ import refreshIcon from '../../../assets/image/launchpad/refresh.svg';
 import bottomIcon from '../../../assets/image/launchpad/bottom-icon.svg';
 import circularIcon from '../../../assets/image/launchpad/circular-icon.svg';
 import wallet from '../../../assets/image/launchpad/wallet.svg';
-import Column from '../../../assets/image/launchpad/column-icon.svg'
 import question from '../../../assets/image/common/question.svg';
+import Column from '../../../assets/image/launchpad/column-icon.svg'
 import MyChart from './MyChart'
 import { Button, Skeleton, Tooltip } from 'antd'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Settings from './Settings'
 import SelectToken from './SelectToken'
 import { findAddressByName, fromUnit, OpenNotification, showLogin, testInput, toFixed, toUnit, toWei, UNIT_DECIMAL } from '../../../lib/util'
@@ -19,15 +19,12 @@ import { getBalance } from '../../../contracts/methods';
 import { useWallet } from '@manahippo/aptos-wallet-adapter'
 import { useSubmitTransiction } from '../../../methods/submit'
 import Loading from '../../../components/common/Loading'
-import { allowance, approve ,swap} from '../../../contracts/methods/dexaggregator';
-import { getAmountIn, getAmountOut} from '../../../contracts/methods/swap';
+import { allowance, approve, getAmountIn, getAmountOut, swap } from '../../../contracts/methods/swap';
 import { getReserves } from '../../../contracts/methods/liquidity';
-import { queryUserInfo, reqeust } from '../../../contracts/methods/faucet';
+// import { queryUserInfo, reqeust } from '../../../contracts/methods/faucet';
 
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
-import { calcRouterPriceByInput, calcRouterPriceByOutput, findRouter, formatRouter, formatRouterIcon, getAllReserves } from './aggregator';
-import useInterval from '@use-it/interval';
 const decimal = 6
 
 function Swap(props) { 
@@ -51,16 +48,15 @@ function Swap(props) {
   const [selectType, setSelectType] = useState('input');
   const [buyer, setBuyer] = useState('');
   const [seller, setSeller] = useState('');
-  const [inputToken, setInputToken] = useState('USDC')
-  const [outToken, setOutToken] = useState('Orich')
+  const [inputToken, setInputToken] = useState('ETH')
+  const [outToken, setOutToken] = useState('BALD')
   const [inputBalance, setinputBalance] = useState(0)
   const [outBalance, setOutBalance] = useState(0)
   const [refresh, setRefresh] = useState(0)
 
   const [price, setPrice] = useState(0)
   const [loading, setLoading] = useState(false)
-  const [slip, setSlip] = useState(localStorage.getItem('slip')||'10')
-  const [aggregated, setAggregated] = useState(localStorage.getItem('aggregated')||0)
+  const [slip, setSlip] = useState(localStorage.getItem('slip')||'0.5')
   const [type, setType] = useState('input')
   const [loadingInputBalance, setLoadingInputBalance] = useState(false)
   const [loadingOutputBalance, setLoadingOutputBalance] = useState(false)
@@ -75,10 +71,8 @@ function Swap(props) {
   const [claimTimes, setClaimTimes] = useState(0)
   const [claimDate, setClaimDate] = useState(0)
   const [needApprove, setNeedApprove] = useState(true)
-  const [approveRefresh, setApproveRefresh] = useState(0)
-  const [reserveList, setReserveList] = useState([])
-  const [isgettingReserve, setIsGettingReserve] = useState(false)
   const [isShowChart, setShowChart] = useState(false) // 是否显示k线图
+  const [approveRefresh, setApproveRefresh] = useState(0)
 
   let { t, i18n } = useTranslation()
   
@@ -90,34 +84,24 @@ function Swap(props) {
  const slipChange = (num) => {
   setSlip(num)
  }
- const aggregatedChange = (bool) => {
-  setAggregated(bool)
- }
  const confirmSelectToken = (name, type) => {
   type == 'input' ? setInputToken(name):setOutToken(name)
  }
 
-const toSwap = useCallback(async() => {
+const toSwap = async() => {
   setLoading(true)
   console.log(buyer)
   console.log(seller)
-  // let method = type == 'input' ? 'swapExactTokenForToken':'swapTokenForExactToken'
+  let method = type == 'input' ? 'swapExactTokenForToken':'swapTokenForExactToken'
   let inputNum = type =='input' ? toWei(toFixed(buyer*(1), UNIT_DECIMAL)):toWei(toFixed(buyer*(1+slip/100), UNIT_DECIMAL))
   let outputNum = type == 'input' ? toWei(toFixed(seller*(1-slip/100), UNIT_DECIMAL)):toWei(toFixed(seller, UNIT_DECIMAL))
-  console.log(routers_with_price)
-  let pools = []
-  routers_with_price[0].router.map(item => {
-    pools.push({
-      a: item.pair,
-      t: item.t
-    })
-  })
+  
   swap(
-    pools,
-    findAddressByName(inputToken),
     inputNum,
-    0,
+    outputNum,
+    [findAddressByName(inputToken) , findAddressByName(outToken)],
     10,
+    method,
     () => {
           setLoading(false)
           setBuyer('')
@@ -128,34 +112,22 @@ const toSwap = useCallback(async() => {
     setLoading(false)
     setRefresh(refresh+1)
   })
-}, [routers_with_price]) 
+  // submitTransiction(payload, () => {
+  //     setLoading(false)
+  //     setBuyer('')
+  //     setSeller('')
+  //     setRefresh(refresh+1)
+  // }, () => {
+  //   setLoading(false)
+  //   setRefresh(refresh+1)
+  // })
+}
 const toApprove = ()=>{
   setLoading(true)
-  approve(findAddressByName(inputToken), findAddressByName('DexAggregator')).then(res => {
+  approve(findAddressByName(inputToken), findAddressByName('SwapAggregator')).then(res => {
     setApproveRefresh(approveRefresh+1)
   }).finally(err => {
     setLoading(false)
-  })
-}
-const toClaim = () => {
-  if(claimLoading) {
-    return
-  }
-  if(!props.account) {
-    showLogin()
-    return
-  }
-  if(new Date().getTime()/1000 - claimDate < 24*60*60) { // 一天之内
-    OpenNotification('warning', 'Claim failed', `please claim in ${24-Math.floor((new Date().getTime()/1000 - claimDate)/60/60)} hour(s)`)
-    return
-  }
-
-  setClaimLoading(true)
-  reqeust().then(res => {
-    setRefresh(refresh+1)
-    setClaimLoading(false)
-  }).finally(err=>{
-    setClaimLoading(false)
   })
 }
 //  互换
@@ -167,102 +139,51 @@ const toClaim = () => {
   type == 'input' ? setSeller(buyer):setBuyer(seller)
   setType(type == 'input'?'output':'input')
  }
- const getReservesFun = async() => {
-  if(isgettingReserve) {
-    return
-  }
-  setIsGettingReserve(true)
-  let result = await getAllReserves(aggregated)
-  setReserveList(result)
-  setIsGettingReserve(false)
- }
-//  useEffect(async() => {
-//   try {
-//     if(type == 'input' && buyer) {
-//       let amountOut = await getAmountOut([findAddressByName(inputToken) , findAddressByName(outToken)], toWei(buyer))
-//        setPrice(amountOut/buyer)
-//        setSeller(toFixed(fromUnit(amountOut),4))
-//     } else if(type == 'input' && !buyer ) {
-//       setSeller('')
-//     }
-//   } catch {
-//     setSeller('')
-//   }
-//  }, [buyer, type, inputToken, outToken])
-useEffect(() => {
-  if(type == 'input' && buyer) {
-     let routerswithprice = []
-     routers.map(item => {
-       routerswithprice.push(calcRouterPriceByInput(findAddressByName(inputToken), findAddressByName(outToken), item, toWei(toFixed(buyer*(1), UNIT_DECIMAL))))
-     })
-     routerswithprice = [...routerswithprice.sort((a, b) => {return Number(b.amountOut) - Number(a.amountOut)})]
-     console.log(routerswithprice)
-     setRoutersWithPrice(routerswithprice)
-     setPrice(routerswithprice[0].amountOut/routerswithprice[0].amountIn)
-     setSeller(fromUnit(routerswithprice[0].amountOut))
-     console.log(routerswithprice)
-    setReserveX(findAddressByName(inputToken)<findAddressByName(outToken)?routerswithprice[0].router[0].reserve_x:routerswithprice[0].router[0].reserve_y)
-    console.log(findAddressByName(inputToken)<findAddressByName(outToken)?routerswithprice[0].router[0].reserve_x:routerswithprice[0].router[0].reserve_y)
-  } else if(type == 'input' && !buyer ) {
+ useEffect(async() => {
+  try {
+    if(type == 'input' && buyer) {
+      let amountOut = await getAmountOut([findAddressByName(inputToken) , findAddressByName(outToken)], toWei(buyer))
+       setPrice(amountOut/buyer)
+       setSeller(toFixed(fromUnit(amountOut),4))
+    } else if(type == 'input' && !buyer ) {
+      setSeller('')
+    }
+  } catch {
     setSeller('')
   }
- }, [buyer, type, routers])
- useEffect(() => {
-  if(type == 'output' && seller) {
-    let routerswithprice = []
-     routers.map(item => {
-      routerswithprice.push(calcRouterPriceByOutput(findAddressByName(inputToken), findAddressByName(outToken), item, toUnit(seller)))
-     })
-     routerswithprice = [...routerswithprice.sort((a, b) =>  {return Number(a.amountIn) - Number(b.amountIn)})]
-     let routerhasin = []
-     let routernoin = []
-     routerswithprice.map(item => {
-       if(item.amountIn) {
-        routerhasin.push(item)
-       } else {
-        routernoin.push(item)
-       }
-     })
-     routerswithprice = [...routerhasin, ...routernoin]
-     setRoutersWithPrice(routerswithprice)
-     setPrice(routerswithprice[0].amountOut/routerswithprice[0].amountIn)
-    setBuyer(fromUnit(routerswithprice[0].amountIn))
-    setReserveX(findAddressByName(inputToken)<findAddressByName(outToken)?routerswithprice[0].router[0].reserve_x:routerswithprice[0].router[0].reserve_y)
+  
+ }, [buyer, type, inputToken, outToken])
 
-  }else if(type == 'output' && !seller) {
+ useEffect(async() => {
+  try {
+    if(type == 'output' && seller) {
+      let amountIn = await getAmountIn([findAddressByName(inputToken) , findAddressByName(outToken)], toWei(seller))
+       setPrice(seller/amountIn)
+       setBuyer(toFixed(fromUnit(amountIn),4))
+  
+    }else if(type == 'output' && !seller) {
+      setBuyer('')
+    }
+  } catch {
     setBuyer('')
   }
- }, [seller, type, routers])
-//  useEffect(async() => {
-//   try {
-//     if(type == 'output' && seller) {
-//       let amountIn = await getAmountIn([findAddressByName(inputToken) , findAddressByName(outToken)], toWei(seller))
-//        setPrice(seller/amountIn)
-//        setBuyer(toFixed(fromUnit(amountIn),4))
   
-//     }else if(type == 'output' && !seller) {
-//       setBuyer('')
-//     }
-//   } catch {
-//     setBuyer('')
-//   }
-  
-//  }, [seller, type, inputToken, outToken])
+ }, [seller, type, inputToken, outToken])
 
-//  useEffect(async ()=>{
-//   let pairAddress = findAddressByName(inputToken+'-'+outToken)||findAddressByName(outToken+'-'+inputToken)
-//   if(pairAddress) {
-//     let {reserve0, reserve1} = await getReserves(pairAddress)
-//     let reserve_x=findAddressByName(inputToken) < findAddressByName(outToken) ?reserve0:reserve1
-//     let reserve_y=findAddressByName(inputToken) < findAddressByName(outToken) ?reserve1:reserve0
-//     setReserveX(reserve_x)
-//     setReserveY(reserve_y)
-//   } else {
-//     setReserveX(0)
-//     setReserveY(0)
-//   }
+ useEffect(async ()=>{
+  let pairAddress = findAddressByName(inputToken+'-'+outToken)||findAddressByName(outToken+'-'+inputToken)
+  if(pairAddress) {
+    let {reserve0, reserve1} = await getReserves(pairAddress)
+    let reserve_x=findAddressByName(inputToken) < findAddressByName(outToken) ?reserve0:reserve1
+    let reserve_y=findAddressByName(inputToken) < findAddressByName(outToken) ?reserve1:reserve0
+    setReserveX(reserve_x)
+    setReserveY(reserve_y)
+  } else {
+    setReserveX(0)
+    setReserveY(0)
+  }
 
-//  }, [inputToken, outToken, refresh])
+ }, [inputToken, outToken, refresh])
 
  useEffect(() => {
   // 不能swap 的情况有：
@@ -271,7 +192,8 @@ useEffect(() => {
   // 3, 余额不足
   // 4, seller > reservey  流动性不足
   // 5，未输入金额
-  if(!routers.length) { // 交易对不存在
+console.log(seller*1, fromUnit(reserveY)*1)
+  if(!reserveX) { // 交易对不存在
     setCanSwap(false)
     setErrMsg('Liquidity does not exist')
   } 
@@ -282,7 +204,7 @@ useEffect(() => {
   else if(buyer*1 > fromUnit(inputBalance)*1) { // 余额不足
      setCanSwap(false)
      setErrMsg(`Insufficient Input token balance`)
-  } else if(routers_with_price.length && !routers_with_price[0].amountIn) { // 流动性不足
+  } else if(seller*1 > fromUnit(reserveY)*1) { // 流动性不足
     setCanSwap(false)
     setErrMsg(`Insufficient liquidity for this trade.`)
  }
@@ -294,7 +216,7 @@ useEffect(() => {
     setErrMsg('')
   }
 
- }, [props.account, inputBalance, buyer, routers_with_price, routers])
+ }, [props.account, inputBalance, buyer, reserveX, reserveY])
 
  // 获取balance
  useEffect( async () => {
@@ -311,7 +233,8 @@ useEffect(() => {
 
  useEffect(async() => {
   if(props.account) {
-    let allow = await allowance(findAddressByName(inputToken), findAddressByName('DexAggregator'))
+    let allow = await allowance(findAddressByName(inputToken), findAddressByName('SwapAggregator'))
+    console.log(allow)
     setNeedApprove(Number(fromUnit(allow))<Number(buyer))
   }
 
@@ -328,54 +251,36 @@ useEffect(() => {
   }
  }, [outToken, props.account, refresh])
 
- useEffect(getReservesFun, [refresh, aggregated])
- useInterval(getReservesFun, [30000])
+//  useEffect(async () => {
+//   let result = await getAllReserves()
+//   let router_list = findRouter(result, inputToken, outToken)
+//   setRouters(router_list)
+//   if(router_list.length == 0) {
+//     setPrice(0)
+//     setBuyer('')
+//     setSeller('')
+//   }
+
+//  }, [inputToken, outToken, refresh])
 
  useEffect(()=> {
   setSlip(localStorage.getItem('slip'))
-  setAggregated(localStorage.getItem('aggregated')||false)
  }, [])
 
- useEffect(async () => {
-  if(!props.account) {
-    setClaimTimes(0)
-    setClaimDate(0)
-    return
-  }
-  let userStore = await queryUserInfo(props.account)
-  console.log(userStore)
-  if(userStore) {
-    setClaimTimes(userStore.requestCount)
-    setClaimDate(userStore.lastRequestTime)
-  } else {
-    setClaimTimes(0)
-    setClaimDate(0)
-  }
- }, [props.account, refresh])
 
- useEffect(async () => {
-  let router_list = findRouter(reserveList, findAddressByName(inputToken), findAddressByName(outToken))
-  console.log(router_list)
-  setRouters(router_list)
-  if(router_list.length == 0) {
-    setPrice(0)
-    setBuyer('')
-    setSeller('')
-  }
-
- }, [inputToken, outToken, refresh, reserveList])
   return (
-    <div className="swap-content flex flex-middle gap-46">
+    <div className="swap-content flex flex-middle gap-20">
       {/* <img className='swap-left-log' src={LeftLogo} alt="" /> */}
       {
-        isShowChart && <MyChart tokenChange={
-          (tokenName) => {
-            setInputToken(tokenName.split('/')[0])
-            setOutToken(tokenName.split('/')[1])
-          }
-        }/>
+        isShowChart && <></>
+        
+        // <MyChart tokenChange={
+        //   (tokenName) => {
+        //     setInputToken(tokenName.split('/')[0])
+        //     setOutToken(tokenName.split('/')[1])
+        //   }
+        // }/>
       }
-      
       <div className="swap-right bgf pb">
         <img className='min-pinecone' src={Pinecone} alt="" />
         {/* <img className='sweeping-squirrel' src={sweeping} alt="" /> */}
@@ -384,12 +289,6 @@ useEffect(() => {
           <span className='swap-right-swap flex flex-center'>
           <span className='name pointer islink' onClick={()=>setShowChart(!isShowChart)}>
             <img src={Column} alt="" />
-          </span>
-          <span className='flex flex-center'>
-          <span className='m-l-15 fz-14 c2b underline pointer flex flex-center register-usdc' onClick={toClaim}>{t('Claim test USDC')}</span>
-          {
-            claimLoading ?<Loading className='m-l-5' zoom={0.4}/>:<span className='fz-12 normal m-l-3 '>({10-claimTimes} {t('times remaining')})</span> 
-          }
           </span>
             </span>
           <div className='swap-setting-btns'>
@@ -408,9 +307,9 @@ useEffect(() => {
                 DOUBLE_BTN.map((el, i) => {
                   return (
                     <div className='help-btn pointer' onClick={()=>{
-                      if(!routers.length) {
-                        return
-                      }
+                      // if(!routers.length) {
+                      //   return
+                      // }
                       setBuyer(toFixed(fromUnit(inputBalance)*el.value/100, decimal))
                       // setSeller(toFixed(getAmountOut(fromUnit(inputBalance)*el.value/100, reservex, reservey), decimal))
                       setType('input')
@@ -434,7 +333,7 @@ useEffect(() => {
               type="text"
               placeholder='0'
               value={buyer}
-              disabled={!routers.length}
+              // disabled={!routers.length}
               onChange={(e) => {
                 if (testInput(e.target.value)) {
                   return
@@ -488,7 +387,7 @@ useEffect(() => {
               type="text"
               placeholder='0'
               value={seller}
-              disabled={!routers.length}
+              // disabled={!routers.length}
               onChange={(e) => {
                 if (testInput(e.target.value)) {
                   return
@@ -563,10 +462,10 @@ useEffect(() => {
             <span className='c232 fz-14 fwb'>{toFixed(buyer*0.003, decimal)} {inputToken}</span>
           </div>
           <p className='tr lh-18 c232 fz-12 m-b-1'>0.3%</p>
-          <div className='flex flex-between m-b-1 lh-18'>
+          {/* <div className='flex flex-between m-b-1 lh-18'>
             <div className='flex flex-center'>
-              <span>{t('Router')}</span>
-              <Tooltip title={t("Routing through these tokens resulted in the best price for your trade.")}>
+              <span>Router</span>
+              <Tooltip title="Routing through these tokens resulted in the best price for your trade.">
                 <img className='m-l-8' src={question} alt="" />
               </Tooltip>
             </div>
@@ -574,7 +473,7 @@ useEffect(() => {
                {routers_with_price[0] && formatRouter(inputToken, outToken, routers_with_price[0]?.router)}
             </span>
           </div>
-          <p className='tr lh-18 c232 fz-12 m-b-1'> {routers_with_price[0] && formatRouterIcon(routers_with_price[0]?.router)}</p>
+          <p className='tr lh-18 c232 fz-12 m-b-1'> {routers_with_price[0] && formatRouterIcon(routers_with_price[0]?.router)}</p> */}
           
         </div>:''
         }
@@ -588,10 +487,7 @@ useEffect(() => {
           )
         }
         {
-            reserveList.length == 0 ?(
-              <div className='w100 ta c05 m-t-15' >
-                <Skeleton.Button active size={'small'} /> {t('Fetching best price')}</div>  
-            ):(needApprove ?
+            needApprove ?
             <Button className={'approve-btn pointer  m-t-15 '+((!canSwap && errMsg != 'Connect Wallet') ? 'disabled': '')} 
              onClick={toApprove} loading={loading}>
               {t("Approve")} {inputToken}
@@ -600,30 +496,30 @@ useEffect(() => {
              disabled={(!canSwap && errMsg != ('Connect Wallet'))}
              onClick={canSwap ?toSwap:showLogin} loading={loading}>
               {canSwap ?  t('Swap'): t(errMsg)}
-          </Button>)
-        }
+          </Button>
+          }
         {
-          // <div className='speed-info m-t-15 m-b-30'>
-          //   <div className="fz-16 fwb">{t('Currency Reserves')}</div>
-          // <div className='flex flex-between m-t-20 m-b-16 lh-18'>
-          //   <span className='c2b fz-14'>
-          //      <img src={getTokenByName(inputToken).icon} alt="token icon" className='token-icon m-r-5'/>
-          //      {inputToken}
-          //   </span>
-          //   <div className='flex flex-center'>
-          //     <span className='c232 fz-14 fwb'>{toFixed(fromUnit(reserveX), decimal)}</span>
-          //   </div>
-          // </div>
-          // <div className='flex flex-between m-b-10 lh-18'>
-          //   <span className='c2b fz-14'>
-          //      <img src={getTokenByName(outToken).icon} alt="token icon" className='token-icon m-r-5'/>
-          //      {outToken}
-          //   </span>
-          //   <div className='flex flex-center'>
-          //     <span className='c232 fz-14 fwb'>{toFixed(fromUnit(reserveY), decimal)}</span>
-          //   </div>
-          // </div>
-          // </div>
+          <div className='speed-info m-t-15 m-b-30'>
+            <div className="fz-16 fwb">{t('Currency Reserves')}</div>
+          <div className='flex flex-between m-t-20 m-b-16 lh-18'>
+            <span className='c2b fz-14'>
+               <img src={getTokenByName(inputToken).icon} alt="token icon" className='token-icon m-r-5'/>
+               {inputToken}
+            </span>
+            <div className='flex flex-center'>
+              <span className='c232 fz-14 fwb'>{toFixed(fromUnit(reserveX), decimal)}</span>
+            </div>
+          </div>
+          <div className='flex flex-between m-b-10 lh-18'>
+            <span className='c2b fz-14'>
+               <img src={getTokenByName(outToken).icon} alt="token icon" className='token-icon m-r-5'/>
+               {outToken}
+            </span>
+            <div className='flex flex-center'>
+              <span className='c232 fz-14 fwb'>{toFixed(fromUnit(reserveY), decimal)}</span>
+            </div>
+          </div>
+          </div>
         }
         {/* <div className="ta w100">
           <NavLink to="/swap_rewards" className="c232 fz-14 fwb underline">{t('Trading mining rewards')}</NavLink>
@@ -640,8 +536,6 @@ useEffect(() => {
               closeFn={setShowSetting}
               slipChange={slipChange}
               slip={slip}
-              aggregated={aggregated}
-              aggregatedChange={aggregatedChange}
               ></Settings>
         }
         {

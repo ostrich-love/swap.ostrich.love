@@ -10,7 +10,8 @@ import { findAddressByName } from '../../../lib/util'
     {
       title: 'Orich',
       desc: 'Orich token',
-      icon: require('../../../assets/image/token/OSTR.png')
+      icon: require('../../../assets/image/token/OSTR.png'),
+      hide: true
     },
     {
       title: 'BUSD',
@@ -33,17 +34,19 @@ import { findAddressByName } from '../../../lib/util'
       title: 'WETH',
       desc: 'ETH token',
       icon: require('../../../assets/image/token/ETH.svg').default,
-      hide: false
+      hide: true
     },
     {
       title: 'ARB',
       desc: 'ARB token',
-      icon: require('../../../assets/image/token/ARB.jpg')
+      icon: require('../../../assets/image/token/ARB.jpg'),
+      hide: true
     },
     {
       title: 'AVAX',
       desc: 'AVAX token',
-      icon: require('../../../assets/image/token/AVAX.svg').default
+      icon: require('../../../assets/image/token/AVAX.svg').default,
+      hide: true
     },
     {
       title: 'MATIC',
@@ -54,32 +57,43 @@ import { findAddressByName } from '../../../lib/util'
     {
       title: 'USDT',
       desc: 'USDT token',
-      icon: require('../../../assets/image/token/USDT.svg').default
+      icon: require('../../../assets/image/token/USDT.svg').default,
+      hide: true
     },
     {
       title: 'USDC',
       desc: 'USDC token',
-      icon: require('../../../assets/image/token/USDC.svg').default
+      icon: require('../../../assets/image/token/USDC.svg').default,
+      hide: true
     },
     {
       title: 'BTC',
       desc: 'BTC token',
-      icon: require('../../../assets/image/token/BTC.svg').default
+      icon: require('../../../assets/image/token/BTC.svg').default,
+      hide: true
     },
     {
       title: 'SHIB',
       desc: 'SHIB token',
-      icon: require('../../../assets/image/token/SHIB.png')
+      icon: require('../../../assets/image/token/SHIB.png'),
+      hide: true
     },
     {
       title: 'LINK',
       desc: 'LINK token',
-      icon: require('../../../assets/image/token/LINK.png')
+      icon: require('../../../assets/image/token/LINK.png'),
+      hide: true
     },
     {
       title: 'TEST',
       desc: 'TEST token',
-      icon: require('../../../assets/image/token/TEST.png')
+      icon: require('../../../assets/image/token/TEST.png'),
+      hide: true
+    },
+    {
+      title: 'BALD',
+      desc: 'BALD token',
+      icon: require('../../../assets/image/token/bald.jpg')
     }
   ]
 

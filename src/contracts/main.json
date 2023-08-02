@@ -11,6 +11,7 @@
     "SwapFactory": "0x4afce9070550a9daa3bb6d3afa14cd3e6b7ad40e",
     "SwapRouter": "0x804e3e73514e6fda20f90aaa8a06302ea4b0b712",
     "BALD-WETH": "0x62a6f165f0bb6e75e7610dcec2c4d44ec8ad20c8",
+    "BALD-ETH": "0x62a6f165f0bb6e75e7610dcec2c4d44ec8ad20c8",
     "SwapAggregator": "0xaf490ec55ea0bedd76da9936251ae3b8648890a6",
     "BOrichPool": "0x0b6cff09a6715c815acc36982c1497d65c3d08cb",
     "bOrich": "0x4b18b56781f2847cd20a70a3df1eaa5dcc6473f0"

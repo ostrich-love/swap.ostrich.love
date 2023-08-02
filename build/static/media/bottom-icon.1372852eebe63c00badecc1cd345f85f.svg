@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="6px" viewBox="0 0 11 6" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>xiala (1)</title>
+    <defs>
+        <polygon id="path-1" points="0 0 10.2871245 0 10.2871245 6 0 6"></polygon>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="launchpad-swap" transform="translate(-1616.000000, -355.000000)">
+            <g id="xiala-(1)" transform="translate(1616.000000, 355.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-2"></g>
+                <path d="M5.77829264,5.73773154 L10.0632538,1.33500175 C10.5627454,0.821794509 10.1718644,0 9.42893473,0 L0.858955279,0 C0.114854069,0 -0.276026945,0.821794509 0.224579066,1.33500175 L4.50959737,5.73773154 C4.84901621,6.08742282 5.43881665,6.08742282 5.77829264,5.73773154 Z" id="Fill-1" fill="#2B1106" mask="url(#mask-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>
