@@ -58,7 +58,8 @@ export const toWei = (amount) => {
 
 
 export const fromUnit = (wei) => {
-  let weiwei = Number(wei) || 0
+  
+  let weiwei = toFixed(Number(wei), 0) || 0
   return (web3.utils.fromWei((numberToStr(weiwei) || 0).toString(), "ether"));
 };
 
