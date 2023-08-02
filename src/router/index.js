@@ -1,8 +1,8 @@
 /* eslint-disable import/no-anonymous-default-export */
 
 
-// import Dex from '../pages/Dex/index'
-import Farm from '../pages/Farm/index.jsx'
+import Dex from '../pages/Dex/index'
+// import Farm from '../pages/Farm/index.jsx'
 // import Bridge from '../pages/Bridge/index.jsx'
 // import Home from '../pages/HomeNew.jsx'
 // import Airdrop from '../pages/airdrop/index.tsx';
@@ -15,11 +15,15 @@ import Farm from '../pages/Farm/index.jsx'
 export default [
     {
         path: '/',
-        component: <Farm/>
+        component: <Dex/>
     },
     {
-      path: '/farm',
-      component: <Farm />
+      path: '/swap',
+      component: <Dex />
+    },
+    {
+      path: '/liquidity',
+      component: <Dex />
     }
     
 ]
