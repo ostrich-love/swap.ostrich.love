@@ -20,6 +20,8 @@
         "SyncswapPoolWrapper": "0x5e5165a13e5197c3d279b5d38e9169598f2a98e9",
         "DexAggregator": "0xbf251acd3758c3422c48658f935d5def8f7fbaed",
         "TOSHI-WETH": "0x4e9ceb0f63ed026ed41bddfcc6aef8dfbdd0fd5d",
-        "TOSHI-ETH": "0x4e9ceb0f63ed026ed41bddfcc6aef8dfbdd0fd5d"
-    
+        "TOSHI-ETH": "0x4e9ceb0f63ed026ed41bddfcc6aef8dfbdd0fd5d",
+    "Bitcoin-WETH": "0x61073afb3c36b17b76e0f928072bb7347e11b5a9",
+    "Bitcoin-ETH": "0x61073afb3c36b17b76e0f928072bb7347e11b5a9",
+    "Bitcoin": "0xb5414433fbcc8b68f346fb3996ca7b0c50fc4859"
 }

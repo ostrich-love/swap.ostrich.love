@@ -66,6 +66,11 @@ export const getAllReserves = async (aggregated) => {
         token0: findAddressByName('ETH'),
         token1: findAddressByName('TOSHI')
     })
+    ostrich_pools.push({
+        pair: findAddressByName('Bitcoin-ETH'),
+        token0: findAddressByName('ETH'),
+        token1: findAddressByName('Bitcoin')
+    })
     ostrich_pools.map(item=>{
         item.t = 0
         return item

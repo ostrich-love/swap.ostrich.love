@@ -101,7 +101,7 @@ import { findAddressByName } from '../../../lib/util'
       icon: require('../../../assets/image/token/TOSHI.jpg')
     },
     {
-      title: 'BITCOIN',
+      title: 'Bitcoin',
       desc: 'BITCOIN token',
       icon: require('../../../assets/image/token/BITCOIN.png')
     }
