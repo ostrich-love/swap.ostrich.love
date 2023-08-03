@@ -183,6 +183,9 @@ function Swap(props) {
       EightPrice = ConstList[0]
     }
     timeValue == 1 && setPriceData([EightPrice, ConstList[ConstList.length - 1]])
+    console.log(xaxis)
+    console.log(yaxis)
+    console.log('==>==>==>==>==>==>')
     setOptions(ChartType === 'line' ?
       showLine(xaxis, yaxis, echarts, timeValue, ConstList[ConstList.length - 1]?.open * 1 > EightPrice?.open * 1 ? 'green' : ConstList[ConstList.length - 1]?.open * 1 < EightPrice?.open * 1 ? 'blue' : 'grey', ConstList) :
       showK(xaxis, yaxis, timeValue, ConstList))

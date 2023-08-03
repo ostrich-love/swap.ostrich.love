@@ -341,7 +341,11 @@ export function calcVolume (list, showAll) {
        item.volume_24 = volume_24
        return item
     })
+    let isCut = false
+    if(list[list.length-1].time - list[0].time > 2*h24) {
+      isCut = true
+    }
    return fork_list.filter((item, index) => {
-    return showAll || index*1 > (fork_list.length/2)
+    return (showAll || !isCut || index*1 > (fork_list.length/2))
  })
 }

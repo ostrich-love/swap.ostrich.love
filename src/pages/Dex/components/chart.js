@@ -1,5 +1,6 @@
-import { toFixed } from "accounting";
-import { formatHour, formatDate, formatTime, numFormat } from "../../../lib/util";
+// import { toFixed } from "accounting";
+import { formatHour, formatDate, formatTime, numFormat,toFixed } from "../../../lib/util";
+let UNIT = 10000000000
 export const showLine = function (
   xaxis,
   yaxis,
@@ -8,10 +9,6 @@ export const showLine = function (
   isGreen,
   ConstList
 ) {
-  console.log(yaxis)
-  console.log(yaxis[yaxis.length -1]*1, yaxis[0]*1)
-  console.log(yaxis[yaxis.length -1]*1 >= yaxis[0]*1)
-  console.log(isGreen)
   let min = ([...yaxis].sort(function(a, b) {return a*1-b*1})[0]- ([...yaxis].sort(function(b, a) {return a*1-b*1})[0] - [...yaxis].sort(function(a, b) {return a*1-b*1})[0])/3)
   return {
     textStyle: {
@@ -35,14 +32,13 @@ export const showLine = function (
       },
       extraCssText: "z-index: 2",
       formatter: function (params) {
-        console.log(params)
         let time = `<span>${formatTime(params[0].axisValue/1000)}</span>`;
         let price = `<div style="font-size: 14px;">
                 <span style="display:inline-block;width:8px;height:8px;border-radius: 50%;background:${
                   (isGreen == 'green' ? "#f68731" :isGreen == 'blue'? "#00ffff": '#999')
                 }"></span> 
                 Price: <span style="color: #000;font-size: 12px;">${
-                  params[0].data
+                  toFixed(params[0].data/UNIT,4)
                 }</span>
               </div>`;
         let volume = `<div style="font-size: 14px;">
@@ -125,7 +121,7 @@ export const showLine = function (
         },
         axisLabel: {
           formatter: function(value){
-            return  value < 0 ?'':value.toFixed(4)
+            return  value < 0 ?'':toFixed(value/UNIT, 4)
           }
         },
         splitLine: {
@@ -166,7 +162,7 @@ export const showLine = function (
     ],
     series: [
       {
-        data: yaxis,
+        data: yaxis.map(item => item*UNIT),
         type: "line",
         symbol: "none",
         name: 'price',
@@ -248,14 +244,14 @@ export const showK = function (xaxis, yaxis, type, ConstList) {
                   : params[0].data[1] === last_close
                   ? "#999"
                   : "#00ffff"
-              }">${params[0].data[1]}</span>
+              }">${toFixed(params[0].data[1]/UNIT,4)}</span>
               <span style="margin-left: 20px"> C: </span><span style="color: ${
                 params[0].data[2] > last_close
                   ? "#f68731"
                   : params[0].data[2] === last_close
                   ? "#999"
                   : "#00ffff"
-              }">${params[0].data[2]}</span>
+              }">${toFixed(params[0].data[2]/UNIT,4)}</span>
               </div>`;
         let hl = `<div>
               <span>H: </span><span style="color: ${
@@ -264,27 +260,27 @@ export const showK = function (xaxis, yaxis, type, ConstList) {
                   : params[0].data[4] === last_close
                   ? "#999"
                   : "#00ffff"
-              }">${params[0].data[4]}</span>
+              }">${toFixed(params[0].data[4]/UNIT,4)}</span>
               <span style="margin-left: 20px"> L: </span><span style="color: ${
                 params[0].data[3]*1 > last_close*1
                   ? "#f68731"
                   : params[0].data[3]*1 === last_close*1
                   ? "#999"
                   : "#00ffff"
-              }">${params[0].data[3]}</span>
+              }">${toFixed(params[0].data[3]/UNIT,4)}</span>
               </div>`;
         let rate = `<div>
               <span style="color: ${
                 params[0].data[2]*1 >= params[0].data[1]*1 ? "#f68731" : "#00ffff"
-              }">${params[0].data[2]*1 >= params[0].data[1]*1 ? "+" : ""}${(
+              }">${params[0].data[2]*1 >= params[0].data[1]*1 ? "+" : ""}${toFixed((
           params[0].data[2] - params[0].data[1]
-        ).toFixed(4)}</span>
+        )/UNIT, 4)}</span>
               <span style="margin-left: 20px;color: ${
                 params[0].data[2]*1 >= params[0].data[1]*1 ? "#f68731" : "#00ffff"
-              }">${params[0].data[2]*1 >= params[0].data[1]*1 ? "+" : ""}${(
+              }">${params[0].data[2]*1 >= params[0].data[1]*1 ? "+" : ""}${toFixed((
           ((params[0].data[2] - params[0].data[1]) * 100) /
           params[0].data[1]
-        ).toFixed(4)}%</span>
+        )/UNIT, 4)}%</span>
               </div>`;
           let volume = `<div style="font-size: 14px;">
           <span style="display:inline-block;width:8px;height:8px;border-radius: 50%;background:${
@@ -366,7 +362,7 @@ export const showK = function (xaxis, yaxis, type, ConstList) {
       min: min,
       axisLabel: {
         formatter: function(value){
-          return  value < 0 ? '':value.toFixed(4)
+          return  value < 0 ? '': toFixed(value/UNIT, 4)
         }
       },
       axisLine: {
@@ -397,7 +393,7 @@ export const showK = function (xaxis, yaxis, type, ConstList) {
     }],
     series: [
       {
-        data: yaxis,
+        data: yaxis.map(item => item.map(inner => inner*UNIT)),
         type: "candlestick",
         symbol: "none",
         itemStyle: {
