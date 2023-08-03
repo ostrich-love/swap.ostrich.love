@@ -51,14 +51,20 @@ export const getAllReserves_default = async () => {
 export const getAllReserves = async (aggregated) => {
     console.log(aggregated)
     let list = getSwapTokenList()
-    let {data: ostrich_pools} = await get('/api/evm/swap/pairs', {
-        chain_id: getNetwork().networkId
-    })
+    // let {data: ostrich_pools} = await get('/api/evm/swap/pairs', {
+    //     chain_id: getNetwork().networkId
+    // })
+    let ostrich_pools = []
     console.log(ostrich_pools)
     ostrich_pools.push({
         pair: findAddressByName('BALD-ETH'),
         token1: findAddressByName('ETH'),
         token0: findAddressByName('BALD')
+    })
+    ostrich_pools.push({
+        pair: findAddressByName('TOSHI-ETH'),
+        token1: findAddressByName('ETH'),
+        token0: findAddressByName('TOSHI')
     })
     ostrich_pools.map(item=>{
         item.t = 0
