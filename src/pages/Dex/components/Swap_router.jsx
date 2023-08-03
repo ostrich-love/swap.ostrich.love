@@ -52,7 +52,7 @@ function Swap(props) {
   const [buyer, setBuyer] = useState('');
   const [seller, setSeller] = useState('');
   const [inputToken, setInputToken] = useState('ETH')
-  const [outToken, setOutToken] = useState('TOSHI')
+  const [outToken, setOutToken] = useState('Bitcoin')
   const [inputBalance, setinputBalance] = useState(0)
   const [outBalance, setOutBalance] = useState(0)
   const [refresh, setRefresh] = useState(0)
