@@ -39,11 +39,11 @@ function Swap(props) {
     { label: '25%', value: '1' },
     { label: '12%', value: '1' }
   ]
-  const tokenSelect = [
+  const tokenSelect = [{
+    label: 'TOSHI/ETH', value: 'TOSHI/WETH'
+  },
     {
       label: 'BALD/ETH', value: 'BALD/WETH'
-    },{
-      label: 'TOSHI/ETH', value: 'TOSHI/WETH'
     }
     // {
     //   label: 'APT/USDC', value: 'APT/USDC'
@@ -55,7 +55,7 @@ function Swap(props) {
 
   const [options, setOptions] = useState({})
   const [loading, setLoading] = useState(false)
-  const [tokenPair, setTokenPair] = useState('BALD/WETH')
+  const [tokenPair, setTokenPair] = useState('TOSHI/WETH')
   const [priceData, setPriceData] = useState([])
   const [price, setPrice] = useState('')
 
@@ -203,7 +203,7 @@ function Swap(props) {
           <span>Pro</span>
           <img className='m-l-4' src={question} alt="" />
         </div> */}
-      <Select defaultValue="BALD/WETH" onChange={tokenChange} 
+      <Select defaultValue="TOSHI/WETH" onChange={tokenChange} 
       className='my-select token-select flex flex-middle flex-center' 
       style={{ width: 120 }} 
       suffixIcon={
