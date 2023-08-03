@@ -94,6 +94,11 @@ import { findAddressByName } from '../../../lib/util'
       title: 'BALD',
       desc: 'BALD token',
       icon: require('../../../assets/image/token/bald.jpg')
+    },
+    {
+      title: 'TOSHI',
+      desc: 'TOSHI token',
+      icon: require('../../../assets/image/token/TOSHI.jpg')
     }
   ]
 

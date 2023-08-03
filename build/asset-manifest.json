@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.ae31f357.css",
-    "main.js": "/static/js/main.ad101627.js",
+    "main.js": "/static/js/main.d6624282.js",
     "static/js/787.c4dfbd68.chunk.js": "/static/js/787.c4dfbd68.chunk.js",
     "static/media/swap_header_bg.png": "/static/media/swap_header_bg.610e72a06b9e348aabcb.png",
     "static/media/bottom.png": "/static/media/bottom.6e44eb9b35f8248fde31.png",
@@ -9,6 +9,7 @@
     "static/media/masking-out.png": "/static/media/masking-out.d2bb2673286b356c579a.png",
     "static/media/squirrel-right.png": "/static/media/squirrel-right.3b1766369d2b658285b2.png",
     "static/media/squirrel-left.png": "/static/media/squirrel-left.00a108dfbd5792efab9e.png",
+    "static/media/TOSHI.jpg": "/static/media/TOSHI.d5e9f94b314f00c42024.jpg",
     "static/media/Quicksand-Light.ttf": "/static/media/Quicksand-Light.97f16a015eac304fb5bd.ttf",
     "static/media/ARB.jpg": "/static/media/ARB.642ebcbd919529d9a1ec.jpg",
     "static/media/Quicksand-Bold.ttf": "/static/media/Quicksand-Bold.058e5295e7becda05c86.ttf",
@@ -83,11 +84,11 @@
     "static/media/off-icon.svg": "/static/media/off-icon.6c03b2f3fde0f19ebafa2cf615f883a4.svg",
     "static/media/on-icon.svg": "/static/media/on-icon.c7e9647e6b876e6064d4c25a9714c391.svg",
     "main.ae31f357.css.map": "/static/css/main.ae31f357.css.map",
-    "main.ad101627.js.map": "/static/js/main.ad101627.js.map",
+    "main.d6624282.js.map": "/static/js/main.d6624282.js.map",
     "787.c4dfbd68.chunk.js.map": "/static/js/787.c4dfbd68.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ae31f357.css",
-    "static/js/main.ad101627.js"
+    "static/js/main.d6624282.js"
   ]
 }
