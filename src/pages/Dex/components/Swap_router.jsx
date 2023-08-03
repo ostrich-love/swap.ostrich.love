@@ -370,8 +370,8 @@ useEffect(() => {
       {
         isShowChart && <MyChart tokenChange={
           (tokenName) => {
-            setInputToken(tokenName.split('/')[0])
-            setOutToken(tokenName.split('/')[1])
+            setInputToken(tokenName.split('/')[0] == 'WETH'?'ETH':tokenName.split('/')[0])
+            setOutToken(tokenName.split('/')[1] == 'WETH'?'ETH':tokenName.split('/')[1])
           }
         }/>
       }
