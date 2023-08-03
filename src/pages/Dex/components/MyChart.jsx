@@ -42,6 +42,8 @@ function Swap(props) {
   const tokenSelect = [
     {
       label: 'BALD/ETH', value: 'BALD/WETH'
+    },{
+      label: 'TOSHI/ETH', value: 'TOSHI/WETH'
     }
     // {
     //   label: 'APT/USDC', value: 'APT/USDC'
@@ -179,7 +181,7 @@ function Swap(props) {
     }
     timeValue == 1 && setPriceData([EightPrice, ConstList[ConstList.length - 1]])
     setOptions(ChartType === 'line' ?
-      showLine(xaxis, yaxis, echarts, timeValue, ConstList[ConstList.length - 1].open * 1 > EightPrice.open * 1 ? 'green' : ConstList[ConstList.length - 1].open * 1 < EightPrice.open * 1 ? 'blue' : 'grey', ConstList) :
+      showLine(xaxis, yaxis, echarts, timeValue, ConstList[ConstList.length - 1]?.open * 1 > EightPrice?.open * 1 ? 'green' : ConstList[ConstList.length - 1]?.open * 1 < EightPrice?.open * 1 ? 'blue' : 'grey', ConstList) :
       showK(xaxis, yaxis, timeValue, ConstList))
     // getOption(close, time)
     setLoading(false)

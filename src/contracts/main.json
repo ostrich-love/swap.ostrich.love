@@ -19,7 +19,7 @@
         "UniswapV2PoolWrapper": "0x03564762bce749a83bee6f3c202e74f89d34b25d",
         "SyncswapPoolWrapper": "0x5e5165a13e5197c3d279b5d38e9169598f2a98e9",
         "DexAggregator": "0xbf251acd3758c3422c48658f935d5def8f7fbaed",
-        "WETH-TOSHI": "0x4e9ceb0f63ed026ed41bddfcc6aef8dfbdd0fd5d",
-        "ETH-TOSHI": "0x4e9ceb0f63ed026ed41bddfcc6aef8dfbdd0fd5d"
+        "TOSHI-WETH": "0x4e9ceb0f63ed026ed41bddfcc6aef8dfbdd0fd5d",
+        "TOSHI-ETH": "0x4e9ceb0f63ed026ed41bddfcc6aef8dfbdd0fd5d"
     
 }
