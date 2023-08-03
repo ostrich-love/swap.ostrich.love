@@ -66,7 +66,6 @@ export const getAllReserves = async (aggregated) => {
     })
     let syncswap_pools_p = []
     let syncswap_pools = []
-    console.log(syncswap_pools_p)
     // if(aggregated*1) {
         if(false) {
         list.map((item, index) => {
