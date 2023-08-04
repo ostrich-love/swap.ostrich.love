@@ -91,7 +91,7 @@ export const findNameByAddress = (address) => {
       name = i
     }
   }
-  return name
+  return name == 'WETH' ?'ETH':name
 }
 const numberToStr = (num = 0) => {
   let splits = num.toString().toLowerCase().split("e+");

@@ -423,7 +423,7 @@ function Liquidity(props) {
       (toFixed((new BigNumber(value)).toString(), 0)).toString(),
       (toFixed((new BigNumber(assetReceive).multipliedBy(new BigNumber(1).minus(new BigNumber(slip).dividedBy(100)))).toString(), 0)).toString(),
       (toFixed((new BigNumber(baseReceive).multipliedBy(new BigNumber(1).minus(new BigNumber(slip).dividedBy(100)))).toString(), 0)).toString(),
-      outToken == 'ETH'
+      outToken == 'ETH' || inputToken == 'ETH'
   ).then(res => {
     OpenNotification('success', 'Transaction Succeed')
     setRemoveLoading(false)
@@ -482,9 +482,12 @@ function Liquidity(props) {
           reserve_x: item.token0 < item.token1 ?reserves[index].reserve0:reserves[index].reserve1,
           reserve_y: item.token0 < item.token1 ?reserves[index].reserve1:reserves[index].reserve0,
           supply: supplies[index],
-          allow:approves[index]
+          allow:approves[index],
+          token0: item.token0,
+          token1: item.token1
         })
       })
+      console.log(lp)
       setLiquidityList(lp)
       setLoading(false)
     } else {
@@ -535,8 +538,8 @@ function Liquidity(props) {
                             }}>
                             <div className='flex flex-between flex-center' >
                               <div className='flex flex-center pr'>
-                                <img className='coin-left' src={getTokenByName(el.name.split('-')[0]).icon} alt="" />
-                                <img className='coin-right' src={getTokenByName(el.name.split('-')[1]).icon} alt="" />
+                                <img className='coin-left' src={getTokenByName(findNameByAddress(el.token0)).icon} alt="" />
+                                <img className='coin-right' src={getTokenByName(findNameByAddress(el.token1)).icon} alt="" />
                                 <span className='m-l-55 fwb'>{el.name}</span>
                               </div>
                               <div className='flex flex-center'>
@@ -549,15 +552,15 @@ function Liquidity(props) {
                                 <div className='token-detail bgf m-t-20'>
                                   <div className='flex flex-between'>
                                     <div className='flex flex-center'>
-                                      <img className='m-r-10 icon' src={getTokenByName(el.name.split('-')[0]).icon} alt="" />
-                                      <span>{t('Pooled')} {el.name.split('-')[0]}</span>
+                                      <img className='m-r-10 icon' src={getTokenByName(findNameByAddress(el.token0)).icon} alt="" />
+                                      <span>{t('Pooled')} {findNameByAddress(el.token0)}</span>
                                     </div>
                                     <span>{el.supply ? toFixed(fromUnit(el.reserve_x * (el.value / el.supply)), decimal) : '--'}</span>
                                   </div>
                                   <div className='flex flex-between m-t-5'>
                                     <div className='flex flex-center'>
-                                      <img className='m-r-10 icon' src={getTokenByName(el.name.split('-')[1]).icon} alt="" />
-                                      <span>{t('Pooled')} {el.name.split('-')[1]}</span>
+                                      <img className='m-r-10 icon' src={getTokenByName(findNameByAddress(el.token1)).icon} alt="" />
+                                      <span>{t('Pooled')} {findNameByAddress(el.token1)}</span>
                                     </div>
                                     <span>{el.supply ? toFixed(fromUnit(el.reserve_y * (el.value / el.supply)), decimal) : "--"}</span>
                                   </div>
@@ -572,7 +575,7 @@ function Liquidity(props) {
                                     <div className='add-btn flex-1'>
                                       <Button className='add-btn-in flex flex-middle flex-center pointer' onClick={(e) => {
                                         e.stopPropagation();
-                                        setShowAdd(true); setAddInput(el.name.split('-')[0]); setAddOutput(el.name.split('-')[1])
+                                        setShowAdd(true); setAddInput(findNameByAddress(el.token0)); setAddOutput(findNameByAddress(el.token1))
                                       }}>
                                         <span>{t('Add')}</span>
                                       </Button>
@@ -599,7 +602,7 @@ function Liquidity(props) {
                                       {
                                         fromUnit(el.allow)*1 < fromUnit(el.value)*1 * (removePercent / 100) ?
                                         <Button className='w100 color confirm-remove m-t-10' loading={removeloading} disabled={removePercent <= 0} onClick={(e) => { e.stopPropagation(); toApprove(el.name)}}>{t('Approve')} {el.name}</Button>:
-                                      <Button className='w100 color confirm-remove m-t-10' loading={removeloading} disabled={removePercent <= 0} onClick={(e) => { e.stopPropagation(); toRemove(el.name.split('-')[0], el.name.split('-')[1], (el.value) * (removePercent / 100), el.reserve_x, el.reserve_y, el.supply)}}>{t('Confirm Remove')}</Button>
+                                      <Button className='w100 color confirm-remove m-t-10' loading={removeloading} disabled={removePercent <= 0} onClick={(e) => { e.stopPropagation(); toRemove(findNameByAddress(el.token0), findNameByAddress(el.token1), (el.value) * (removePercent / 100), el.reserve_x, el.reserve_y, el.supply)}}>{t('Confirm Remove')}</Button>
                                       }
                                       
                                     </div>

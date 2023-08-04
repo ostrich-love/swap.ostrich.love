@@ -162,10 +162,10 @@ export function reduceLiq (
         const address = accounts[0];
         let hanlder = isETH ? (
           new web3.eth.Contract(SwapRouter, findAddressByName('SwapRouter')).methods.removeLiquidityETH(
-            tokenA,
+            tokenA==ZERO_ADDRESS?tokenB:tokenA,
             liquidity,
-            amountAMin,
-            amountBMin,
+            tokenA==ZERO_ADDRESS?amountBMin:amountAMin,
+            tokenA==ZERO_ADDRESS?amountAMin:amountBMin,
             store.getState().account,
             web3.utils.numberToHex(Math.floor(new Date().getTime() / 1000) + 15 * 60)
           )
