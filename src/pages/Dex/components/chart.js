@@ -280,7 +280,7 @@ export const showK = function (xaxis, yaxis, type, ConstList) {
               }">${params[0].data[2]*1 >= params[0].data[1]*1 ? "+" : ""}${toFixed((
           ((params[0].data[2] - params[0].data[1]) * 100) /
           params[0].data[1]
-        )/UNIT, 4)}%</span>
+        ), 4)}%</span>
               </div>`;
           let volume = `<div style="font-size: 14px;">
           <span style="display:inline-block;width:8px;height:8px;border-radius: 50%;background:${
