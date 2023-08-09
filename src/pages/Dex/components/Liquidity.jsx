@@ -26,13 +26,14 @@ import { getAssociatedTokenAddress } from '@solana/spl-token';
 import { useWallet } from '@manahippo/aptos-wallet-adapter';
 import Loading from '../../../components/common/Loading';
 import { useLocation } from 'react-router-dom';
-import { addLiq, allPairs, getLpAmounts, getPair, getReserves, reduceLiq } from '../../../contracts/methods/liquidity';
+import { addLiq, allPairs, getLpAmounts, getPair,createPair, getReserves,getSymbol, reduceLiq } from '../../../contracts/methods/liquidity';
 import BigNumber from 'bignumber.js';
 import { find } from 'highcharts';
 import { useTranslation } from 'react-i18next';
 import { allowance, approve } from '../../../contracts/methods/swap';
 import { get } from '../../../api';
 import { getNetwork } from '../../../contracts';
+import { localName } from '../../../global';
 
 const baseLength = '1000000000000000000'.length - 1;
 const option = [
@@ -100,27 +101,17 @@ const AddLiquidity = (props) => {
 
     }
   }, [inputToken, outToken]) 
-  const toAdd = async () => {
+  const toAdd = useCallback(async () => {
     setLoading(true)
     console.log(buyer)
     console.log(seller)
     try {
+      !pairCreated && await createPair(findAddressByName(inputToken), findAddressByName(outToken))
       addLiq(
         findAddressByName(inputToken),
         findAddressByName(outToken),
         toWei(toFixed(buyer*(1), UNIT_DECIMAL)),
         toWei(toFixed(seller*(1), UNIT_DECIMAL)),
-
-        // toWei(toFixed(new BigNumber(buyer).multipliedBy(
-        //   new BigNumber(1).minus(
-        //     new BigNumber(slip).dividedBy(100)
-        //   )
-        // ).toString(), UNIT_DECIMAL)),
-        // toWei(toFixed(new BigNumber(seller).multipliedBy(
-        //   new BigNumber(1).minus(
-        //     new BigNumber(slip).dividedBy(100)
-        //   )
-        // ).toString(), UNIT_DECIMAL)),
         0, 0,
         outToken == 'ETH'
       ).then(res => {
@@ -137,7 +128,7 @@ const AddLiquidity = (props) => {
       setLoading(false)
       console.log(err)
     }
-  }
+  }, [inputToken, outToken, pairCreated, seller, buyer])
   // 获取balance
   useEffect(async () => {
     if (props.account) {
@@ -186,8 +177,8 @@ const AddLiquidity = (props) => {
       console.log(err)
       setPairCreated(false)
       setHaspair(false)
-      setSeller('')
-      setBuyer('')
+      // setSeller('')
+      // setBuyer('')
       setPrice(1)
       setReserveX(1)
     }
@@ -234,10 +225,9 @@ const AddLiquidity = (props) => {
         </div>
         <div className='m-t-14 flex flex-between flex-center'>
           <input
-            className={'c2b fz-24 fwb lh-28 flex-1 flex w100 com_input '+ (pairCreated?'':'disabled')}
+            className={'c2b fz-24 fwb lh-28 flex-1 flex w100 com_input '}
             type="text"
             placeholder='0'
-            disabled={!pairCreated}
             value={buyer}
             onChange={(e) => {
               if (testInput(e.target.value)) {
@@ -249,7 +239,9 @@ const AddLiquidity = (props) => {
           <div className='flex flex-center   p-l-5 p-r-5' onClick={() => toSelect('input')}>
             {/* <span className='c2b fz-14 m-r-16'>~$1,445</span> */}
             <div className='switch-coin flex flex-center flex-middle' >
-              <img src={getTokenByName(inputToken).icon} alt="token icon" className='token-icon' />
+            {
+                  getTokenByName(inputToken).icon ?<img src={getTokenByName(inputToken).icon} alt="token-icon" className='token-icon'/>: <div className='token-icon'>{inputToken.substr(0, 2)}</div>  
+                }
               <span className='c2b fz-18 m-l-7 m-r-12'>{inputToken}</span>
               <img src={bottomIcon} alt="" />
             </div>
@@ -284,10 +276,9 @@ const AddLiquidity = (props) => {
         </div>
         <div className='m-t-14 flex flex-between flex-center'>
           <input
-            className={'c2b fz-24 fwb lh-28 flex-1 flex w100 com_input '+ (pairCreated?'':'disabled')}
+            className={'c2b fz-24 fwb lh-28 flex-1 flex w100 com_input '}
             type="text"
             placeholder='0'
-            disabled={!pairCreated}
             value={seller}
             onChange={(e) => {
               if (testInput(e.target.value)) {
@@ -299,7 +290,9 @@ const AddLiquidity = (props) => {
           <div className='flex flex-center' onClick={() => toSelect('output')}>
             {/* <span className='c2b fz-14 m-r-16'>~$1,445</span> */}
             <div className='switch-coin flex flex-center flex-middle'>
-              <img src={getTokenByName(outToken).icon} alt="token-icon" className='token-icon' />
+            {
+                  getTokenByName(outToken).icon ?<img src={getTokenByName(outToken).icon} alt="token-icon" className='token-icon'/>: <div className='token-icon'>{outToken.substr(0, 2)}</div>  
+                }
               <span className='c2b fz-18 m-l-7 m-r-12'>{outToken}</span>
               <img src={bottomIcon} alt="" />
             </div>
@@ -323,15 +316,15 @@ const AddLiquidity = (props) => {
           }
         </div>
       </div>
-      {pairCreated && <p className='flex flex-between m-t-24 m-b-1 p-l-20 p-r-16'>
+      {<p className='flex flex-between m-t-24 m-b-1 p-l-20 p-r-16'>
         <span className='fz-14'>{t('Price')}</span>
         {
           hasPair ? <span>1 {inputToken} = {price} {outToken}</span> :
-            <span>1 {inputToken} = {seller / buyer} {outToken}</span>
+          <span>1 {inputToken} = {isNaN(seller / buyer)?'--':(seller / buyer)} {outToken}</span>
         }
 
       </p>}
-      {pairCreated && <p className='flex flex-between p-l-20 p-r-16'>
+      {<p className='flex flex-between p-l-20 p-r-16'>
         <span className='fz-14'>{t('Share of Pool')}</span>
         <span>{buyer ? toFixed(buyer * 100 / (fromUnit(reservex) * 1 + buyer * 1), 2) : '--'}%</span>
       </p>}
@@ -343,7 +336,7 @@ const AddLiquidity = (props) => {
             </div>
           )
         }
-      {pairCreated ? <span className="flex gap-20">
+      { <span className="flex gap-20">
         {
           props.account ? (
             fromUnit(inputBalance)*1 < buyer*1 ?
@@ -363,17 +356,19 @@ const AddLiquidity = (props) => {
                   }}>{t('Approve')} {outToken}</Button>}
               </>
             ) : (
-              <Button loading={loading} className='unlock-wallet fz-18 fwb' onClick={() => {
+              <div className='flex flex-column w100'>
+              {!pairCreated && <div className='w100 cy ta fz-14 '>{t('Liquidity not exist, you can create first')}</div>}
+              <Button loading={loading} disabled={seller*buyer == 0} className={'unlock-wallet fz-18 fwb m-t-5 ' + (seller*buyer == 0 ?'disabled':'')} onClick={() => {
                 toAdd()
-              }}>{t('Add Liquidity')}</Button>
+              }}>{t(pairCreated ?'Add Liquidity':'Create Liquidity')}</Button>
+              </div>
             ))
           ) :
             <Button className='unlock-wallet fz-18 fwb pointer' onClick={() => {
               showLogin()
             }}>{t('Connect Wallet')}</Button>
         }
-      </span>:
-      <Button loading={loading} disabled className='unlock-wallet fz-18 fwb disabled m-t-15'>{t('Liquidity not exist')}</Button>
+      </span>
       }
 
       {
@@ -459,10 +454,20 @@ function Liquidity(props) {
       let p_supply = []
       let p_reserve = []
       let p_approve = []
+      let not_in_list_token = []
+      let get_symbol_p = []
 
       lptoken_list.map(item => {
         console.log(item)
         console.log((item))
+        if(!findNameByAddress(item.token0)) {
+          not_in_list_token.push(item.token0)
+          get_symbol_p.push(getSymbol(item.token0))
+        }
+        if(!findNameByAddress(item.token1)) {
+          not_in_list_token.push(item.token1)
+          get_symbol_p.push(getSymbol(item.token1))
+        }
         p_balance.push(getBalance(props.account, (item.pair)))
         p_supply.push(getLpAmounts((item.pair)))
         p_reserve.push(getReserves((item.pair)))
@@ -472,12 +477,26 @@ function Liquidity(props) {
       let supplies = await Promise.all(p_supply)
       let reserves = await Promise.all(p_reserve)
       let approves = await Promise.all(p_approve)
+      let symbols = await Promise.all(get_symbol_p)
+      console.log(symbols)
+      console.log(supplies)
+      console.log(reserves)
+      console.log(approves)
+      let extraList = localStorage.getItem(localName) ?JSON.parse(localStorage.getItem(localName)):[]
+      not_in_list_token.map((inner, idx) => {
+        !extraList.some(item => item.address.toLowerCase() == inner.toLowerCase()) && extraList.push({
+          title: symbols[idx],
+          address: inner,
+          desc: symbols[idx]+ ' Token'
+        })
+      })
+      localStorage.setItem(localName, JSON.stringify(extraList)) 
       console.log(supplies)
       console.log(reserves)
       console.log(approves)
       lptoken_list.map((item, index) => {
         (balances[index])>0 && lp.push({
-          name: findNameByAddress(item.pair),
+          name: findNameByAddress(item.token0)+'-'+findNameByAddress(item.token1),
           value:(balances[index]),
           reserve_x: item.token0 < item.token1 ?reserves[index].reserve0:reserves[index].reserve1,
           reserve_y: item.token0 < item.token1 ?reserves[index].reserve1:reserves[index].reserve0,
@@ -538,8 +557,12 @@ function Liquidity(props) {
                             }}>
                             <div className='flex flex-between flex-center' >
                               <div className='flex flex-center pr'>
-                                <img className='coin-left' src={getTokenByName(findNameByAddress(el.token0)).icon} alt="" />
-                                <img className='coin-right' src={getTokenByName(findNameByAddress(el.token1)).icon} alt="" />
+                              {
+                                  getTokenByName(el.name.split('-')[0]).icon ? <img className='coin-left' src={getTokenByName(el.name.split('-')[0]).icon} alt="" />: <div className="coin-left fz-10">{el.name.split('-')[0].substr(0,2)}</div>
+                                }
+                                {
+                                  getTokenByName(el.name.split('-')[1]).icon ? <img className='coin-right' src={getTokenByName(el.name.split('-')[1]).icon} alt="" />: <div className="coin-right fz-10">{el.name.split('-')[1].substr(0,2)}</div>
+                                }
                                 <span className='m-l-55 fwb'>{el.name}</span>
                               </div>
                               <div className='flex flex-center'>
@@ -552,14 +575,18 @@ function Liquidity(props) {
                                 <div className='token-detail bgf m-t-20'>
                                   <div className='flex flex-between'>
                                     <div className='flex flex-center'>
-                                      <img className='m-r-10 icon' src={getTokenByName(findNameByAddress(el.token0)).icon} alt="" />
+                                    {
+                                  getTokenByName(el.name.split('-')[0]).icon ? <img className='m-r-10 icon' src={getTokenByName(el.name.split('-')[0]).icon} alt="" />: <div className='m-r-10 icon fz-10'>{el.name.split('-')[0].substr(0,2)}</div>
+                                }
                                       <span>{t('Pooled')} {findNameByAddress(el.token0)}</span>
                                     </div>
                                     <span>{el.supply ? toFixed(fromUnit(el.reserve_x * (el.value / el.supply)), decimal) : '--'}</span>
                                   </div>
                                   <div className='flex flex-between m-t-5'>
                                     <div className='flex flex-center'>
-                                      <img className='m-r-10 icon' src={getTokenByName(findNameByAddress(el.token1)).icon} alt="" />
+                                    {
+                                  getTokenByName(el.name.split('-')[1]).icon ? <img className='m-r-10 icon' src={getTokenByName(el.name.split('-')[1]).icon} alt="" />: <div className='m-r-10 icon fz-10'>{el.name.split('-')[1].substr(0,2)}</div>
+                                }
                                       <span>{t('Pooled')} {findNameByAddress(el.token1)}</span>
                                     </div>
                                     <span>{el.supply ? toFixed(fromUnit(el.reserve_y * (el.value / el.supply)), decimal) : "--"}</span>
@@ -582,7 +609,7 @@ function Liquidity(props) {
                                     </div>
                                     {
                                       !showRemove ?
-                                        <Button className='remove-btn flex-1 pointer' loading={removeloading} onClick={(e) => { e.stopPropagation(); setShowRemove(true) }}>{t('Remove')}</Button>
+                                        <Button className='remove-btn flex-1 pointer' loading={removeloading} onClick={(e) => { e.stopPropagation(); setShowRemove(true) }}><span className='cf'>{t('Remove')}</span></Button>
                                         :
                                         <Button className='remove-cancel-btn flex-1 pointer' loading={removeloading} onClick={(e) => { e.stopPropagation(); setShowRemove(false) }}>{t('Cancel')}</Button>
                                     }

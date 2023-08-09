@@ -446,7 +446,9 @@ useEffect(() => {
             <div className='flex flex-center  p-l-5 p-r-5' onClick={()=>toSelect('input')}>
               {/* <span className='c2b fz-14 m-r-16 lh-18'>~$1,445</span> */}
               <div className='switch-coin flex flex-center flex-middle'>
-                <img src={getTokenByName(inputToken).icon} alt="token icon" className='token-icon'/>
+              {
+                  getTokenByName(inputToken).icon ?<img src={getTokenByName(inputToken).icon} alt="token-icon" className='token-icon'/>: <div className='token-icon'>{inputToken.substr(0, 2)}</div>  
+                }
                 <span className='c2b fz-18 m-l-7 m-r-12'>{inputToken}</span>
                 <img src={bottomIcon} alt="" />
               </div>
@@ -500,7 +502,9 @@ useEffect(() => {
             <div className='flex flex-center' onClick={()=>toSelect('output')}>
               {/* <span className='c2b fz-14 m-r-16'>~$1,445</span> */}
                <div className='switch-coin flex flex-center flex-middle' >
-                <img src={getTokenByName(outToken).icon} alt="token-icon" className='token-icon'/>
+               {
+                  getTokenByName(outToken).icon ?<img src={getTokenByName(outToken).icon} alt="token-icon" className='token-icon'/>: <div className='token-icon'>{outToken.substr(0, 2)}</div>  
+                }
                 <span className='c2b fz-18 m-l-7 m-r-12'>{outToken}</span>
                 <img src={bottomIcon} alt="" />
               </div>
@@ -592,7 +596,7 @@ useEffect(() => {
               <div className='w100 ta c05 m-t-15' >
                 <Skeleton.Button active size={'small'} /> {t('Fetching best price')}</div>  
             ):(needApprove ?
-            <Button className={'approve-btn pointer  m-t-15 '+((!canSwap && errMsg != 'Connect Wallet') ? 'disabled': '')} 
+            <Button className={'approve-btn pointer  m-t-15 '+((!canSwap && errMsg != 'Connect Wallet') ? '': '')} 
              onClick={toApprove} loading={loading}>
               {t("Approve")} {inputToken}
           </Button>:

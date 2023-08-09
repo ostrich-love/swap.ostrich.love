@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 import { Button, Modal, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import {toRegister} from '../../../methods/client.ts'
-import { getBalance } from '../../../contracts/methods';
+import { getBalance, web3 } from '../../../contracts/methods';
 import {connect as reducxConnect} from 'react-redux'
 import { findAddressByName, fromUnit, OpenNotification } from '../../../lib/util';
 import list, { getTokenByName, getSwapTokenList } from './list'
@@ -21,6 +21,8 @@ import { reqTokensConstant } from '../../../api/dex';
 import { getNetwork } from '../../../contracts';
 
 import { useTranslation } from 'react-i18next';
+import { getSymbol } from '../../../contracts/methods/liquidity';
+import { localName } from '../../../global';
 function SelectToken(props) {
   const { closeFn } = props;
   let {signAndSubmitTransaction} = useWallet()
@@ -29,13 +31,15 @@ function SelectToken(props) {
   const [filter, setFilter] = useState('')
   let { t, i18n } = useTranslation()
   const [tokenConst, setTokenConst] = useState([])
+  const [extraItem, setExtraItem] = useState({})
   const toSelectToken = (name) => {
     setCheckValue(name)
     props.selectToken(name)
     closeFn()
   }
-  useEffect(() => {
-    let showlist = [...getSwapTokenList().filter(item => !item.hide)]
+  useEffect(async () => {
+    let extraList = localStorage.getItem(localName)?JSON.parse(localStorage.getItem(localName)):[]
+    let showlist = [...getSwapTokenList().filter(item => !item.hide), ...extraList]
      if(props.account) {
       showlist.map(item => {
         item.loading = true
@@ -64,7 +68,31 @@ function SelectToken(props) {
       })
       setTokenList(showlist)
      }
-  }, [props.account])
+  }, [props.account, filter, localStorage.getItem(localName)])
+
+
+  useEffect(async()=>{
+    setExtraItem({})
+    if(!tokenList.some(item => findAddressByName(item.title).toLowerCase() == filter.toLowerCase() || item.title.toLowerCase() == filter.toLowerCase()) && web3.utils.isAddress(filter)) {
+      let symbol = await getSymbol(filter)
+      console.log('symbol')
+      console.log(symbol)
+      let bal = props.account ? fromUnit(await getBalance(props.account, filter)):0
+      setExtraItem({
+        title: symbol,
+        icon: null,
+        desc: symbol + ' Token',
+        balance: bal
+      })
+      let extraList = localStorage.getItem(localName) ?JSON.parse(localStorage.getItem(localName)):[]
+      !extraList.some(item => item.address.toLowerCase() == filter.toLowerCase()) && extraList.push({
+        title: symbol,
+        address: filter,
+        desc: symbol+ ' Token'
+      })
+      localStorage.setItem(localName, JSON.stringify(extraList))
+    }
+  }, [tokenList, filter, props.account])
 
   useEffect(async ()=>{
     let tokens_const = (await reqTokensConstant({
@@ -132,7 +160,10 @@ function SelectToken(props) {
                 toSelectToken(el.title)
               }}>
                 <div className='flex flex-center'>
-                  <img className='m-r-8 token-icon' src={el.icon} alt="" />
+                  {
+                    el.icon ? <img className='m-r-8 token-icon' src={el.icon} alt="" />: <div className="token-icon m-r-8 ta lh-32 fwb">{el.title.substr(0,2)}</div>
+                  }
+                  
                   <div className='flex flex-column'>
                     <span className='c2b fz-16 fwb lh-20'>{el.title}</span>
                     <span className='c2b fz-16 lh-20'>{el.desc}</span>
@@ -150,6 +181,38 @@ function SelectToken(props) {
                 </div>
               </div>
             ))
+          }
+          {
+            extraItem.title && <div className={classNames('select-token-item flex flex-between flex-center extra ', {
+              'check': checkValue === extraItem.title
+            })}
+            onClick={() => {
+              if(props.type == 'input' && extraItem.title == props.output || props.type == 'output' && extraItem.title == props.input) {
+                return
+              }
+              toSelectToken(extraItem.title)
+            }}>
+              <div className='flex flex-center'>
+                {
+                  extraItem.icon ? <img className='m-r-8 token-icon' src={extraItem.icon} alt="" />:<div className="token-icon m-r-8 ta lh-32 fwb">{extraItem.title.substr(0, 2)}</div>
+                }
+                
+                <div className='flex flex-column'>
+                  <span className='c2b fz-16 fwb lh-20'>{extraItem.title}</span>
+                  <span className='c2b fz-16 lh-20'>{extraItem.desc}</span>
+                </div>
+              </div>
+              <div>
+                {
+                  extraItem.loading ? <Spin indicator={<LoadingOutlined style={{ fontSize: 24, color: '#ccc'}} spin />}/>:<span className='c2b fz-16 lh-20 fwb'>{extraItem.balance||'0'}</span>
+                }
+                {
+                  
+                }
+                
+                {/* <img className='m-l-24' src={xingNo} alt="" /> */}
+              </div>
+            </div>
           }
         </div>
         {/* <div className='manage-tokens m-t-23'>Manage Tokens</div> */}

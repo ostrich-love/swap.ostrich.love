@@ -10,6 +10,7 @@ import ErrorIcon from '../assets/image/common/error-icon.svg'
 import WarningIcon from '../assets/image/common/warning-icon.svg'
 import InfoIcon from '../assets/image/common/info-icon.svg'
 import store, { setToLogin } from "../store";
+import { localName } from "../global";
 
 export const emailReg = /^[A-Za-z0-9\u4e00-\u9fa5_.-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
 // export const emailReg = /[\s\S]*/;
@@ -77,6 +78,14 @@ export const findAddressByName = (name) => {
       address = ADDRESS[i]
     }
   }
+  if(!address) {
+    let extraList = localStorage.getItem(localName) ? JSON.parse(localStorage.getItem(localName)):[]
+    extraList.map(item => {
+      if(item.title == name) {
+        address = item.address
+      }
+    })
+  }
   return address
 }
 
@@ -90,6 +99,14 @@ export const findNameByAddress = (address) => {
     if(address.toLowerCase() == ADDRESS[i].toLowerCase()) {
       name = i
     }
+  }
+  if(!name) {
+    let extraList = localStorage.getItem(localName) ? JSON.parse(localStorage.getItem(localName)):[]
+    extraList.map(item => {
+      if(item.address.toLowerCase() == address.toLowerCase()) {
+        name = item.title
+      }
+    })
   }
   return name == 'WETH' ?'ETH':name
 }

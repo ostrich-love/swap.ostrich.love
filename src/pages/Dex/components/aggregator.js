@@ -51,26 +51,34 @@ export const getAllReserves_default = async () => {
 export const getAllReserves = async (aggregated) => {
     console.log(aggregated)
     let list = getSwapTokenList()
-    // let {data: ostrich_pools} = await get('/api/evm/swap/pairs', {
-    //     chain_id: getNetwork().networkId
-    // })
-    let ostrich_pools = []
+    let {data: ostrich_pools} = await get('/api/evm/swap/pairs', {
+        chain_id: getNetwork().networkId
+    })
     console.log(ostrich_pools)
-    ostrich_pools.push({
-        pair: findAddressByName('BALD-ETH'),
-        token0: findAddressByName('BALD'),
-        token1: findAddressByName('ETH')
+    ostrich_pools.map(item => {
+        if(item.token0.toLowerCase() == findAddressByName('WETH').toLowerCase()) {
+            item.token0 = findAddressByName('ETH')
+        }
+        if(item.token1.toLowerCase() == findAddressByName('WETH').toLowerCase()) {
+            item.token1 = findAddressByName('ETH')
+        }
+        return item
     })
-    ostrich_pools.push({
-        pair: findAddressByName('TOSHI-ETH'),
-        token0: findAddressByName('ETH'),
-        token1: findAddressByName('TOSHI')
-    })
-    ostrich_pools.push({
-        pair: findAddressByName('Bitcoin-ETH'),
-        token0: findAddressByName('ETH'),
-        token1: findAddressByName('Bitcoin')
-    })
+    // ostrich_pools.push({
+    //     pair: findAddressByName('BALD-ETH'),
+    //     token0: findAddressByName('BALD'),
+    //     token1: findAddressByName('ETH')
+    // })
+    // ostrich_pools.push({
+    //     pair: findAddressByName('TOSHI-ETH'),
+    //     token0: findAddressByName('ETH'),
+    //     token1: findAddressByName('TOSHI')
+    // })
+    // ostrich_pools.push({
+    //     pair: findAddressByName('Bitcoin-ETH'),
+    //     token0: findAddressByName('ETH'),
+    //     token1: findAddressByName('Bitcoin')
+    // })
     ostrich_pools.map(item=>{
         item.t = 0
         return item

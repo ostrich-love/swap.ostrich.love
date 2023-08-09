@@ -39,12 +39,17 @@ export function getReserves (token) {
 export function getLpAmounts (address) {
   return new web3.eth.Contract(erc20ABI, address).methods.totalSupply().call()
 }
-
+export function getSymbol (address) {
+  return new web3.eth.Contract(erc20ABI, address).methods.symbol().call()
+}
 export function allPairs () {
   return new web3.eth.Contract(SwapFactory, findAddressByName('SwapFactory')).methods.allPairs(1)
 }
 export function getPair (a, b) {
   return new web3.eth.Contract(SwapFactory, findAddressByName('SwapFactory')).methods.getPair(a, b)
+}
+export function createPair (a, b) {
+  return new web3.eth.Contract(SwapFactory, findAddressByName('SwapFactory')).methods.createPair(a, b).call()
 }
 // 增加流动性
 export function addLiq ( 
@@ -104,8 +109,6 @@ export function addLiq (
               web3.utils.numberToHex(Math.floor(new Date().getTime() / 1000) + 15 * 60)
         )
        let msg = isETH ? {from: address, value:amountBDesired}:{from: address}
-       console.log('wozhixingdaozhele')
-       console.log(msg)
        hanlder.estimateGas(msg).then(async(resp)=>{
         // console.log(resp)
         let gas_price = await web3.eth.getGasPrice()*1.2/1000000000
