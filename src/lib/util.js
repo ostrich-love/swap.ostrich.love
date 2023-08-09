@@ -42,8 +42,8 @@ const howManyZero = (num) => {
 }
 export const toFixed = (amount, num) => {
   if(Number(amount) < 1) {
-    console.log(amount)
-    console.log(howManyZero(amount))
+    // console.log(amount)
+    // console.log(howManyZero(amount))
       num <= howManyZero(amount) && (num=howManyZero(amount)+num)
   }
   return new BigNumber(
@@ -51,10 +51,19 @@ export const toFixed = (amount, num) => {
   ).toString(10);
 };
 export const toUnit = (amount) => {
-  return toBN(web3.utils.toWei(amount.toString(), "ether").toString());
+  try {
+    return toBN(web3.utils.toWei(amount.toString(), "ether").toString());
+  } catch {
+    return 0
+  }
+ 
 };
 export const toWei = (amount) => {
-  return web3.utils.toWei(amount, "ether");
+  try {
+    return web3.utils.toWei(amount, "ether");
+  } catch {
+    return 0
+  }
 };
 
 

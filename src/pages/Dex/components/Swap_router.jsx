@@ -173,6 +173,7 @@ const toApprove = ()=>{
   }
   setIsGettingReserve(true)
   let result = await getAllReserves(aggregated)
+  console.log(result)
   setReserveList(result)
   setIsGettingReserve(false)
  }
@@ -368,7 +369,7 @@ useEffect(() => {
     <div className="swap-content flex flex-middle gap-46">
       {/* <img className='swap-left-log' src={LeftLogo} alt="" /> */}
       {
-        isShowChart && <MyChart tokenChange={
+        isShowChart && <MyChart {...props}  tokenChange={
           (tokenName) => {
             setInputToken(tokenName.split('/')[0] == 'WETH'?'ETH':tokenName.split('/')[0])
             setOutToken(tokenName.split('/')[1] == 'WETH'?'ETH':tokenName.split('/')[1])

@@ -82,7 +82,8 @@ function SelectToken(props) {
         title: symbol,
         icon: null,
         desc: symbol + ' Token',
-        balance: bal
+        balance: bal,
+        address: filter
       })
       let extraList = localStorage.getItem(localName) ?JSON.parse(localStorage.getItem(localName)):[]
       !extraList.some(item => item.address.toLowerCase() == filter.toLowerCase()) && extraList.push({
@@ -183,7 +184,7 @@ function SelectToken(props) {
             ))
           }
           {
-            extraItem.title && <div className={classNames('select-token-item flex flex-between flex-center extra ', {
+            !tokenList.some(item => findAddressByName(item.title)?.toLowerCase() == extraItem.address?.toLowerCase()) && extraItem.title && <div className={classNames('select-token-item flex flex-between flex-center extra ', {
               'check': checkValue === extraItem.title
             })}
             onClick={() => {

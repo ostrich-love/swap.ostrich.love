@@ -18,13 +18,15 @@ import * as echarts from 'echarts'
 import { reqKlineList, reqTrendlineList } from '../../../api/dex'
 import { showK, showLine } from './chart'
 import list, { getTokenByName } from './list'
-import { calcVolume, decimal, findAddressByName, formatTime, toFixed } from '../../../lib/util'
+import { calcVolume, decimal, findAddressByName, findNameByAddress, formatTime, toFixed } from '../../../lib/util'
 import { queryTokenPairReserve } from '../../../methods/swap'
 import Loading from '../../../components/common/Loading'
 import { getNetwork } from '../../../contracts'
-import { getReserves } from '../../../contracts/methods/liquidity'
+import { getPair, getReserves } from '../../../contracts/methods/liquidity'
+import { isArray } from 'highcharts'
+import { get } from '../../../api'
 
-function Swap(props) {
+function Charts(props) {
   const optionsData = [
     { label: '1D', value: '1d' },
     { label: '1W', value: '1w' },
@@ -39,28 +41,27 @@ function Swap(props) {
     { label: '25%', value: '1' },
     { label: '12%', value: '1' }
   ]
-  const tokenSelect = [
+  const tokenSelect_default = [
     {
       label: 'Bitcoin/ETH', value: 'Bitcoin/WETH'
-    },{
-    label: 'TOSHI/ETH', value: 'TOSHI/WETH'
-  },
+    }, {
+      label: 'TOSHI/ETH', value: 'TOSHI/WETH'
+    },
     {
       label: 'BALD/ETH', value: 'BALD/WETH'
     }
-    // {
-    //   label: 'APT/USDC', value: 'APT/USDC'
-    // },
   ]
   const [timeValue, setTimeValue] = useState('1d');
   const [ChartType, setChartType] = useState('line')
   let [timeType, setTimeType] = useState(1)
-
+  const [tokenSelect, setTokenSelect] = useState(tokenSelect_default)
   const [options, setOptions] = useState({})
   const [loading, setLoading] = useState(false)
   const [tokenPair, setTokenPair] = useState('Bitcoin/WETH')
   const [priceData, setPriceData] = useState([])
   const [price, setPrice] = useState('')
+  const [hasnodata, setHasNoData] = useState(false)
+
 
   const onChange = ({ target: { value } }) => {
     setTimeValue(value);
@@ -74,7 +75,9 @@ function Swap(props) {
 
   const getPrice = async (name) => {
     console.log(name)
-    let { reserve0, reserve1 } = await getReserves(findAddressByName(name))
+    let pair = await getPair(findAddressByName(name.split('-')[0]), findAddressByName(name.split('-')[1])).call()
+    console.log(pair)
+    let { reserve0, reserve1 } = await getReserves(pair)
     let reserve_x = findAddressByName(name.split('-')[0]) < findAddressByName(name.split('-')[1]) ? reserve0 : reserve1
     let reserve_y = findAddressByName(name.split('-')[0]) < findAddressByName(name.split('-')[1]) ? reserve1 : reserve0
     setPrice(toFixed(reserve_y / reserve_x, decimal))
@@ -138,8 +141,13 @@ function Swap(props) {
       from: startTime,
       chain_id: getNetwork().networkId
     })).data;
-    console.log(list)
-    list = [...calcVolume(list, timeValue*1==4)]
+    if ((list.length == 0 || !isArray(list))) {
+      setHasNoData(true)
+      setLoading(false)
+      return false
+    }
+    setHasNoData(false)
+    list = [...calcVolume(list, timeValue * 1 == 4)]
     // if(timeValue == 1) {
     //   setPriceData([list[0], list[list.length-1]])
     // }
@@ -203,23 +211,47 @@ function Swap(props) {
     }
   }, [timeType, ChartType, tokenPair])
 
+  useEffect(async () => {
+    let { data: ostrich_pools } = await get('/api/evm/swap/pairs', {
+      chain_id: getNetwork().networkId
+    })
+    console.log('0==========================0')
+    console.log(ostrich_pools)
+    let token_list = ostrich_pools.filter(item => findNameByAddress(item.token0) && findNameByAddress(item.token0)).map(item => {
+      console.log(findNameByAddress(item.token0))
+      item.label = findNameByAddress(item.token0)=='ETH'?(findNameByAddress(item.token1)+'/ETH'):(findNameByAddress(item.token0)+'/'+findNameByAddress(item.token1))
+      item.value = findNameByAddress(item.token0)=='ETH'?(findNameByAddress(item.token1)+'/WETH'):(findNameByAddress(item.token0)+'/'+findNameByAddress(item.token1))
+      return item
+    })
+    console.log(token_list)
+    setTokenSelect(token_list)
+  }, [props.chain])
+
+
+
   return (
     <div className="swap-left bgf">
       {/* <div className='swap-left-pro'>
           <span>Pro</span>
           <img className='m-l-4' src={question} alt="" />
         </div> */}
-      <Select defaultValue="Bitcoin/WETH" onChange={tokenChange} 
-      className='my-select token-select flex flex-middle flex-center' 
-      style={{ width: 120 }} 
-      suffixIcon={
-        <img src={bottomIcon}></img>
-      } >
+      <Select defaultValue="Bitcoin/WETH" onChange={tokenChange}
+        className='my-select token-select flex flex-middle flex-center'
+        style={{ width: 120 }}
+        suffixIcon={
+          <img src={bottomIcon}></img>
+        } >
         {
           tokenSelect.map(item => {
             return <Select.Option value={item.value}>
-              <img className='coin-left' src={getTokenByName(item.label.split('/')[0]).icon} alt="" />
-              <img className='coin-right' src={getTokenByName(item.label.split('/')[1]).icon} alt="" />
+              {
+                getTokenByName(item.label.split('/')[0]).icon ? <img src={getTokenByName(item.label.split('/')[0]).icon} alt="token-icon" className='coin-left' /> : <span className='coin-left'>{item.label.split('/')[0].substr(0, 2)}</span>
+              }
+              {
+                getTokenByName(item.label.split('/')[1]).icon ? <img src={getTokenByName(item.label.split('/')[1]).icon} alt="token-icon" className='coin-left' /> : <span className='coin-left'>{item.label.split('/')[1].substr(0, 2)}</span>
+              }
+              {/* <img className='coin-left' src={getTokenByName(item.label.split('/')[0]).icon} alt="" />
+              <img className='coin-right' src={getTokenByName(item.label.split('/')[1]).icon} alt="" /> */}
               <span className='c2b fz-14 fwb '>{item.label}</span>
             </Select.Option>
           })
@@ -240,7 +272,7 @@ function Swap(props) {
                   loading ? <Skeleton.Button active size={'small'} /> :
                     <span className='fz-24 fwb'>{price}</span>
                 }
-                <span className='fz-16 fwb m-l-8'>ETH</span>
+                <span className='fz-16 fwb m-l-8'>{tokenPair.split('/')[1] =='WETH'?'ETH':tokenPair.split('/')[1]}</span>
                 {/* <span className='fz-16 fwb m-l-8'>{tokenPair.split('/')[1]}</span> */}
               </span>
               <span>
@@ -316,7 +348,10 @@ function Swap(props) {
       {
         loading ? <div className="flex flex-center flex-middle" style={{ width: '100%', height: '263px' }}>
           <Loading />
-        </div>
+        </div>:
+hasnodata ? <div className="flex flex-center flex-middle c08" style={{ width: '100%', height: '263px' }}>
+      No Data
+</div>
           : <ReactECharts className='react-echarts' option={options} style={{ width: '100%', height: '263px' }} />
       }
       {/* <div className='c2b fz-14 lh-16 fwb m-t-36'>O=0.061608  H=0.061608  L=0.061608  C=0.061608</div> */}
@@ -325,4 +360,4 @@ function Swap(props) {
   )
 }
 
-export default Swap;
+export default Charts;

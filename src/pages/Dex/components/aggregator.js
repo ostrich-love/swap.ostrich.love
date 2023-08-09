@@ -126,7 +126,9 @@ export const getAllReserves = async (aggregated) => {
     return all_list
 }
 
-export const findRouter = (reserveList, tokenIn, tokenOut) => {
+export const findRouter = (reserveList, tokenIn_a, tokenOut_a) => {
+    let tokenIn = tokenIn_a.toLowerCase()
+    let tokenOut = tokenOut_a.toLowerCase()
     let router_1 = []
     // 先找直接的池子
     let directRouter = reserveList.filter((item) => {

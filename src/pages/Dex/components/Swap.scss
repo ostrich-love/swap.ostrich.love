@@ -284,10 +284,20 @@
   z-index: 1;
   border-radius: 50%;
   width: 25px;
+  height: 25px;
+  background-color: #f1d88a;
+  font-size: 12px;
+  display: inline-block;
+  text-align: center;
 }
 .coin-right {
   position: relative;
   width: 25px;
   left: -5px;
   border-radius: 50%;
+  height: 25px;
+  background-color: #f1d88a;
+  font-size: 12px;
+  display: inline-block;
+  text-align: center;
 }

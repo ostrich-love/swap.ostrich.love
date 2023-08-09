@@ -106,14 +106,14 @@ const AddLiquidity = (props) => {
     console.log(buyer)
     console.log(seller)
     try {
-      !pairCreated && await createPair(findAddressByName(inputToken), findAddressByName(outToken))
+      !pairCreated && await createPair(findAddressByName(inputToken=='ETH'?'WETH':inputToken), findAddressByName(outToken=='ETH'?'WETH':outToken))
       addLiq(
         findAddressByName(inputToken),
         findAddressByName(outToken),
         toWei(toFixed(buyer*(1), UNIT_DECIMAL)),
         toWei(toFixed(seller*(1), UNIT_DECIMAL)),
         0, 0,
-        outToken == 'ETH'
+        outToken == 'ETH' || inputToken == 'ETH'
       ).then(res => {
         OpenNotification('success', 'Transaction Succeed', 'Successful')
         setLoading(false)
@@ -155,8 +155,9 @@ const AddLiquidity = (props) => {
   useEffect(async () => {
     try {
 
-      // let pairs = await getPair(findAddressByName(inputToken), findAddressByName(outToken)).call()
-      let pairs = findAddressByName(inputToken+'-'+outToken) || findAddressByName(outToken+'-'+inputToken)
+      let pairs = await getPair(findAddressByName(inputToken == 'ETH'?'WETH':inputToken), findAddressByName(outToken== 'ETH'?'WETH':outToken)).call()
+      // console.log(pairs1)
+      // let pairs = findAddressByName(inputToken+'-'+outToken) || findAddressByName(outToken+'-'+inputToken)
       console.log(pairs)
       let { reserve0: reserve_x, reserve1: reserve_y } = await getReserves(pairs)
       console.log(reserve_x)
@@ -177,14 +178,18 @@ const AddLiquidity = (props) => {
       console.log(err)
       setPairCreated(false)
       setHaspair(false)
-      // setSeller('')
-      // setBuyer('')
+      
       setPrice(1)
       setReserveX(1)
     }
 
 
   }, [inputToken, outToken, refresh])
+
+  useEffect(()=> {
+    setSeller('')
+      setBuyer('')
+  }, [outToken, inputToken])
 
 
   useEffect(async () => {
@@ -396,9 +401,9 @@ function Liquidity(props) {
 
   let location = useLocation()
   let [coinType, setCoinType] = useState(location.search ? location.search.replace('?', '').split('=')[2]?.toUpperCase() : '')
-  const toApprove = (name)=>{
+  const toApprove = (address)=>{
     setRemoveLoading(true)
-    approve(findAddressByName(name), findAddressByName('SwapRouter')).then(res => {
+    approve(address, findAddressByName('SwapRouter')).then(res => {
       setRefresh(refresh+1)
     }).finally(err => {
       setRemoveLoading(false)
@@ -503,7 +508,8 @@ function Liquidity(props) {
           supply: supplies[index],
           allow:approves[index],
           token0: item.token0,
-          token1: item.token1
+          token1: item.token1,
+          pair: item.pair
         })
       })
       console.log(lp)
@@ -628,7 +634,7 @@ function Liquidity(props) {
                                       </div>
                                       {
                                         fromUnit(el.allow)*1 < fromUnit(el.value)*1 * (removePercent / 100) ?
-                                        <Button className='w100 color confirm-remove m-t-10' loading={removeloading} disabled={removePercent <= 0} onClick={(e) => { e.stopPropagation(); toApprove(el.name)}}>{t('Approve')} {el.name}</Button>:
+                                        <Button className='w100 color confirm-remove m-t-10' loading={removeloading} disabled={removePercent <= 0} onClick={(e) => { e.stopPropagation(); toApprove(el.pair)}}>{t('Approve')} {el.name}</Button>:
                                       <Button className='w100 color confirm-remove m-t-10' loading={removeloading} disabled={removePercent <= 0} onClick={(e) => { e.stopPropagation(); toRemove(findNameByAddress(el.token0), findNameByAddress(el.token1), (el.value) * (removePercent / 100), el.reserve_x, el.reserve_y, el.supply)}}>{t('Confirm Remove')}</Button>
                                       }
                                       

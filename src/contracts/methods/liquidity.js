@@ -46,7 +46,7 @@ export function allPairs () {
   return new web3.eth.Contract(SwapFactory, findAddressByName('SwapFactory')).methods.allPairs(1)
 }
 export function getPair (a, b) {
-  return new web3.eth.Contract(SwapFactory, findAddressByName('SwapFactory')).methods.getPair(a, b)
+  return new web3.eth.Contract(SwapFactory, findAddressByName('SwapFactory')).methods.getPair(a==ZERO_ADDRESS?findAddressByName('WETH'):a, b==ZERO_ADDRESS?findAddressByName('WETH'):b)
 }
 export function createPair (a, b) {
   return new web3.eth.Contract(SwapFactory, findAddressByName('SwapFactory')).methods.createPair(a, b).call()
@@ -79,10 +79,10 @@ export function addLiq (
         
         let hanlder = isETH ? (
             new web3.eth.Contract(SwapRouter, findAddressByName('SwapRouter')).methods.addLiquidityETH(
-              tokenA,
-              amountADesired,
-              amountAMin,
-              amountBMin,
+              tokenA==ZERO_ADDRESS?tokenB:tokenA,
+              tokenA==ZERO_ADDRESS?amountBDesired:amountADesired,
+              tokenA==ZERO_ADDRESS?amountBMin:amountAMin,
+              tokenA==ZERO_ADDRESS?amountAMin:amountBMin,
               store.getState().account,
               web3.utils.numberToHex(Math.floor(new Date().getTime() / 1000) + 15 * 60)
             )
@@ -108,7 +108,7 @@ export function addLiq (
               store.getState().account,
               web3.utils.numberToHex(Math.floor(new Date().getTime() / 1000) + 15 * 60)
         )
-       let msg = isETH ? {from: address, value:amountBDesired}:{from: address}
+       let msg = isETH ? {from: address, value:tokenA==ZERO_ADDRESS?amountADesired:amountBDesired}:{from: address}
        hanlder.estimateGas(msg).then(async(resp)=>{
         // console.log(resp)
         let gas_price = await web3.eth.getGasPrice()*1.2/1000000000
