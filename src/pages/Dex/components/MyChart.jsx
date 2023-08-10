@@ -217,7 +217,7 @@ function Charts(props) {
     })
     console.log('0==========================0')
     console.log(ostrich_pools)
-    let token_list = ostrich_pools.filter(item => findNameByAddress(item.token0) && findNameByAddress(item.token0)).map(item => {
+    let token_list = ostrich_pools.filter(item => findNameByAddress(item.token0) && findNameByAddress(item.token1)).map(item => {
       console.log(findNameByAddress(item.token0))
       item.label = findNameByAddress(item.token0)=='ETH'?(findNameByAddress(item.token1)+'/ETH'):(findNameByAddress(item.token0)+'/'+findNameByAddress(item.token1))
       item.value = findNameByAddress(item.token0)=='ETH'?(findNameByAddress(item.token1)+'/WETH'):(findNameByAddress(item.token0)+'/'+findNameByAddress(item.token1))
