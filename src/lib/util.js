@@ -375,3 +375,20 @@ export function calcVolume (list, showAll) {
     return (showAll || !isCut || index*1 > (fork_list.length/2))
  })
 }
+
+export const formatZeroToSub = (num) => {
+  let zero_num = howManyZero(num)
+  let num_str = num.toString().split('0')[num.toString().split('0').length-1]
+  return zero_num > 4 ? <span>0.0<sub>{zero_num}</sub>{num_str}</span>:num
+}
+export const formatZeroToSubDom = (num) => {
+  let zero_num = howManyZero(num)
+  let num_str = num.toString().split('0')[num.toString().split('0').length-1]
+  return zero_num > 4 ? `<span>0.0<sub>${zero_num}</sub>${num_str}</span>`:num
+}
+export const formatZeroToSubDot = (num) => {
+  let zero_num = howManyZero(num)
+  let num_str = num.toString().split('0')[num.toString().split('0').length-1]
+  console.log(num_str)
+  return zero_num > 4 ? `0.0(${zero_num})${num_str}`:num
+}

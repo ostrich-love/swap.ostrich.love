@@ -18,7 +18,7 @@ import * as echarts from 'echarts'
 import { reqKlineList, reqTrendlineList } from '../../../api/dex'
 import { showK, showLine } from './chart'
 import list, { getTokenByName } from './list'
-import { calcVolume, decimal, findAddressByName, findNameByAddress, formatTime, toFixed } from '../../../lib/util'
+import { calcVolume, decimal, findAddressByName, findNameByAddress, formatTime, formatZeroToSub, toFixed } from '../../../lib/util'
 import { queryTokenPairReserve } from '../../../methods/swap'
 import Loading from '../../../components/common/Loading'
 import { getNetwork } from '../../../contracts'
@@ -270,7 +270,7 @@ function Charts(props) {
               <span className='flex flex-center'>
                 {
                   loading ? <Skeleton.Button active size={'small'} /> :
-                    <span className='fz-24 fwb'>{price}</span>
+                    <span className='fz-24 fwb'>{formatZeroToSub(price)}</span>
                 }
                 <span className='fz-16 fwb m-l-8'>{tokenPair.split('/')[1] =='WETH'?'ETH':tokenPair.split('/')[1]}</span>
                 {/* <span className='fz-16 fwb m-l-8'>{tokenPair.split('/')[1]}</span> */}

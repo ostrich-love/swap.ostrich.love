@@ -1,5 +1,5 @@
 // import { toFixed } from "accounting";
-import { formatHour, formatDate, formatTime, numFormat,toFixed } from "../../../lib/util";
+import { formatHour, formatDate, formatTime, numFormat,toFixed, formatZeroToSub, formatZeroToSubDom, formatZeroToSubDot } from "../../../lib/util";
 let UNIT = 10000000000
 export const showLine = function (
   xaxis,
@@ -38,7 +38,7 @@ export const showLine = function (
                   (isGreen == 'green' ? "#f68731" :isGreen == 'blue'? "#00ffff": '#999')
                 }"></span> 
                 Price: <span style="color: #000;font-size: 12px;">${
-                  toFixed(params[0].data/UNIT,4)
+                  formatZeroToSubDom(toFixed(params[0].data/UNIT,4))
                 }</span>
               </div>`;
         let volume = `<div style="font-size: 14px;">
@@ -120,8 +120,9 @@ export const showLine = function (
           },
         },
         axisLabel: {
-          formatter: function(value){
-            return  value < 0 ?'':toFixed(value/UNIT, 4)
+          formatter: 
+          function(value){
+            return `${value < 0 ?'':formatZeroToSubDot(toFixed(value/UNIT, 4))}`
           }
         },
         splitLine: {
@@ -244,14 +245,14 @@ export const showK = function (xaxis, yaxis, type, ConstList) {
                   : params[0].data[1] === last_close
                   ? "#999"
                   : "#00ffff"
-              }">${toFixed(params[0].data[1]/UNIT,4)}</span>
+              }">${formatZeroToSubDom(toFixed(params[0].data[1]/UNIT,4))}</span>
               <span style="margin-left: 20px"> C: </span><span style="color: ${
                 params[0].data[2] > last_close
                   ? "#f68731"
                   : params[0].data[2] === last_close
                   ? "#999"
                   : "#00ffff"
-              }">${toFixed(params[0].data[2]/UNIT,4)}</span>
+              }">${formatZeroToSubDom(toFixed(params[0].data[2]/UNIT,4))}</span>
               </div>`;
         let hl = `<div>
               <span>H: </span><span style="color: ${
@@ -260,14 +261,14 @@ export const showK = function (xaxis, yaxis, type, ConstList) {
                   : params[0].data[4] === last_close
                   ? "#999"
                   : "#00ffff"
-              }">${toFixed(params[0].data[4]/UNIT,4)}</span>
+              }">${formatZeroToSubDom(toFixed(params[0].data[4]/UNIT,4))}</span>
               <span style="margin-left: 20px"> L: </span><span style="color: ${
                 params[0].data[3]*1 > last_close*1
                   ? "#f68731"
                   : params[0].data[3]*1 === last_close*1
                   ? "#999"
                   : "#00ffff"
-              }">${toFixed(params[0].data[3]/UNIT,4)}</span>
+              }">${formatZeroToSubDom(toFixed(params[0].data[3]/UNIT,4))}</span>
               </div>`;
         let rate = `<div>
               <span style="color: ${
@@ -362,7 +363,7 @@ export const showK = function (xaxis, yaxis, type, ConstList) {
       min: min,
       axisLabel: {
         formatter: function(value){
-          return  value < 0 ? '': toFixed(value/UNIT, 4)
+          return  `${value < 0 ?'':formatZeroToSubDot(toFixed(value/UNIT, 4))}`
         }
       },
       axisLine: {
