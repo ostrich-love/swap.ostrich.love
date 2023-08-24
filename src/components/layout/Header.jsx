@@ -29,9 +29,9 @@ const nav = [
     icon: require('../../assets/image/nav/Swap.svg').default
   },
   {
-    name: 'IDO on Base',
+    name: 'IDO on zkSync',
     isoutlink: true,
-    link: 'https://ido.ostrich.love/base',
+    link: 'https://ido.ostrich.love/zks',
     icon: require('../../assets/image/nav/Launch.svg').default
   }
 ]
