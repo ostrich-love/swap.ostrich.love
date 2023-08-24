@@ -29,6 +29,12 @@ const nav = [
     icon: require('../../assets/image/nav/Swap.svg').default
   },
   {
+    name: 'Farm',
+    isoutlink: true,
+    link: 'https://ostrich.love/farm',
+    icon: require('../../assets/image/nav/Farm.svg').default
+  },
+  {
     name: 'IDO on zkSync',
     isoutlink: true,
     link: 'https://ido.ostrich.love/zks',
