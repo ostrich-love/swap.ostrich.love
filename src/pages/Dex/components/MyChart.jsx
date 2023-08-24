@@ -43,13 +43,14 @@ function Charts(props) {
   ]
   const tokenSelect_default = [
     {
-      label: 'Bitcoin/ETH', value: 'Bitcoin/WETH'
-    }, {
-      label: 'TOSHI/ETH', value: 'TOSHI/WETH'
+      label: 'Orich/ETH', value: 'Orich/WETH'
     },
-    {
-      label: 'BALD/ETH', value: 'BALD/WETH'
-    }
+    //  {
+    //   label: 'TOSHI/ETH', value: 'TOSHI/WETH'
+    // },
+    // {
+    //   label: 'BALD/ETH', value: 'BALD/WETH'
+    // }
   ]
   const [timeValue, setTimeValue] = useState('1d');
   const [ChartType, setChartType] = useState('line')
@@ -57,7 +58,7 @@ function Charts(props) {
   const [tokenSelect, setTokenSelect] = useState(tokenSelect_default)
   const [options, setOptions] = useState({})
   const [loading, setLoading] = useState(false)
-  const [tokenPair, setTokenPair] = useState('Bitcoin/WETH')
+  const [tokenPair, setTokenPair] = useState('Orich/WETH')
   const [priceData, setPriceData] = useState([])
   const [price, setPrice] = useState('')
   const [hasnodata, setHasNoData] = useState(false)
@@ -235,7 +236,7 @@ function Charts(props) {
           <span>Pro</span>
           <img className='m-l-4' src={question} alt="" />
         </div> */}
-      <Select defaultValue="Bitcoin/WETH" onChange={tokenChange}
+      <Select defaultValue="Orich/WETH" onChange={tokenChange}
         className='my-select token-select flex flex-middle flex-center'
         style={{ width: 120 }}
         suffixIcon={

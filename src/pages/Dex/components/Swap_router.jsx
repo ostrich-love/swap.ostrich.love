@@ -52,14 +52,14 @@ function Swap(props) {
   const [buyer, setBuyer] = useState('');
   const [seller, setSeller] = useState('');
   const [inputToken, setInputToken] = useState('ETH')
-  const [outToken, setOutToken] = useState('Bitcoin')
+  const [outToken, setOutToken] = useState('Orich')
   const [inputBalance, setinputBalance] = useState(0)
   const [outBalance, setOutBalance] = useState(0)
   const [refresh, setRefresh] = useState(0)
 
   const [price, setPrice] = useState(0)
   const [loading, setLoading] = useState(false)
-  const [slip, setSlip] = useState(localStorage.getItem('slip')||'10')
+  const [slip, setSlip] = useState(localStorage.getItem('slip')||'20')
   const [aggregated, setAggregated] = useState(localStorage.getItem('aggregated')||0)
   const [type, setType] = useState('input')
   const [loadingInputBalance, setLoadingInputBalance] = useState(false)

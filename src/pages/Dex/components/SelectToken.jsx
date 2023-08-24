@@ -26,7 +26,7 @@ import { localName } from '../../../global';
 function SelectToken(props) {
   const { closeFn } = props;
   let {signAndSubmitTransaction} = useWallet()
-  const [checkValue, setCheckValue] = useState('USDC');
+  const [checkValue, setCheckValue] = useState('');
   const [tokenList, setTokenList] = useState([])
   const [filter, setFilter] = useState('')
   let { t, i18n } = useTranslation()

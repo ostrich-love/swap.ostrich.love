@@ -10,8 +10,7 @@ import { findAddressByName } from '../../../lib/util'
     {
       title: 'Orich',
       desc: 'Orich token',
-      icon: require('../../../assets/image/token/OSTR.png'),
-      hide: true
+      icon: require('../../../assets/image/token/OSTR.png')
     },
     {
       title: 'BUSD',
@@ -93,17 +92,20 @@ import { findAddressByName } from '../../../lib/util'
     {
       title: 'BALD',
       desc: 'BALD token',
-      icon: require('../../../assets/image/token/bald.jpg')
+      icon: require('../../../assets/image/token/bald.jpg'),
+      hide: true
     },
     {
       title: 'TOSHI',
       desc: 'TOSHI token',
-      icon: require('../../../assets/image/token/TOSHI.jpg')
+      icon: require('../../../assets/image/token/TOSHI.jpg'),
+      hide: true
     },
     {
       title: 'Bitcoin',
       desc: 'BITCOIN token',
-      icon: require('../../../assets/image/token/BITCOIN.png')
+      icon: require('../../../assets/image/token/BITCOIN.png'),
+      hide: true
     }
   ]
 

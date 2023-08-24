@@ -3,7 +3,7 @@ import { message } from 'antd'
 // import { createBrowserHistory } from 'history';
 // const history = createBrowserHistory();
 const instance = axios.create({
-    baseURL: 'https://api.ostrich.love/',
+    baseURL: 'https://api-beta.ostrich.love/',
     timeout: 30000,
 })
 // http request 拦截器
