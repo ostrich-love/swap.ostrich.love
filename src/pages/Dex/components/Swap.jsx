@@ -49,14 +49,14 @@ function Swap(props) {
   const [buyer, setBuyer] = useState('');
   const [seller, setSeller] = useState('');
   const [inputToken, setInputToken] = useState('ETH')
-  const [outToken, setOutToken] = useState('TOSHI')
+  const [outToken, setOutToken] = useState('Orich')
   const [inputBalance, setinputBalance] = useState(0)
   const [outBalance, setOutBalance] = useState(0)
   const [refresh, setRefresh] = useState(0)
 
   const [price, setPrice] = useState(0)
   const [loading, setLoading] = useState(false)
-  const [slip, setSlip] = useState(localStorage.getItem('slip')||'0.5')
+  const [slip, setSlip] = useState(localStorage.getItem('slip')||'2')
   const [type, setType] = useState('input')
   const [loadingInputBalance, setLoadingInputBalance] = useState(false)
   const [loadingOutputBalance, setLoadingOutputBalance] = useState(false)
@@ -499,7 +499,7 @@ console.log(seller*1, fromUnit(reserveY)*1)
           </Button>
           }
         {
-          <div className='speed-info m-t-15 m-b-30'>
+          false && <div className='speed-info m-t-15 m-b-30'>
             <div className="fz-16 fwb">{t('Currency Reserves')}</div>
           <div className='flex flex-between m-t-20 m-b-16 lh-18'>
             <span className='c2b fz-14'>

@@ -3,7 +3,7 @@ import { useState } from "react";
 import swapTab from '../../assets/image/launchpad/swap-tab.png'
 import close from '../../assets/image/swap/close.svg'
 import Liquidity from "./components/Liquidity";
-import Swap from "./components/Swap_router";
+import Swap from "./components/Swap";
 import {NavLink, useLocation } from 'react-router-dom';
 import './index.scss'
 import { createBrowserHistory } from 'history';
@@ -18,11 +18,11 @@ function Dex() {
   
   return (
     <div className="dex">
-      {show && <div className="w100 reward-area flex flex-center flex-middle">
+      {/* {show && <div className="w100 reward-area flex flex-center flex-middle">
            <span className="cy fz-16">You have <span className="fwb underline italic">45.6 Orich</span>  trading rewards to claim</span>
            <NavLink to="/swap_rewards" className="check-btn fz-14 c2b m-l-32 m-m-l-10">Check details</NavLink>
            <img src={close} alt="" onClick={()=>setShow(false)} className="imgs" />
-      </div>}
+      </div>} */}
       <div className="dex-content">
       <div className="dex-header flex flex-middle m-b-32">
         <Tabs
