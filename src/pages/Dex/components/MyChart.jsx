@@ -45,9 +45,9 @@ function Charts(props) {
     {
       label: 'Orich/ETH', value: 'Orich/WETH'
     },
-    //  {
-    //   label: 'TOSHI/ETH', value: 'TOSHI/WETH'
-    // },
+     {
+      label: 'Bitcoin/ETH', value: 'Bitcoin/WETH'
+    }
     // {
     //   label: 'BALD/ETH', value: 'BALD/WETH'
     // }
@@ -69,14 +69,15 @@ function Charts(props) {
   };
 
   const tokenChange = (e) => {
-    props.tokenChange(e)
+    props.tokenChange(tokenSelect_default.find(item => item.value == e).label)
     setTimeType(1)
     setTokenPair(e)
   }
 
   const getPrice = async (name) => {
     console.log(name)
-    let pair = await getPair(findAddressByName(name.split('-')[0]), findAddressByName(name.split('-')[1])).call()
+    // let pair = await getPair(findAddressByName(name.split('-')[0]), findAddressByName(name.split('-')[1])).call()
+    let pair = findAddressByName(name)
     console.log(pair)
     let { reserve0, reserve1 } = await getReserves(pair)
     let reserve_x = findAddressByName(name.split('-')[0]) < findAddressByName(name.split('-')[1]) ? reserve0 : reserve1
@@ -216,16 +217,16 @@ function Charts(props) {
     let { data: ostrich_pools } = await get('/api/evm/swap/pairs', {
       chain_id: getNetwork().networkId
     })
-    console.log('0==========================0')
-    console.log(ostrich_pools)
-    let token_list = ostrich_pools.filter(item => findNameByAddress(item.token0) && findNameByAddress(item.token1)).map(item => {
-      console.log(findNameByAddress(item.token0))
-      item.label = findNameByAddress(item.token0)=='ETH'?(findNameByAddress(item.token1)+'/ETH'):(findNameByAddress(item.token0)+'/'+findNameByAddress(item.token1))
-      item.value = findNameByAddress(item.token0)=='ETH'?(findNameByAddress(item.token1)+'/WETH'):(findNameByAddress(item.token0)+'/'+findNameByAddress(item.token1))
-      return item
-    })
-    console.log(token_list)
-    setTokenSelect(token_list)
+    // console.log('0==========================0')
+    // console.log(ostrich_pools)
+    // let token_list = ostrich_pools.filter(item => findNameByAddress(item.token0) && findNameByAddress(item.token1)).map(item => {
+    //   console.log(findNameByAddress(item.token0))
+    //   item.label = findNameByAddress(item.token0)=='ETH'?(findNameByAddress(item.token1)+'/ETH'):(findNameByAddress(item.token0)+'/'+findNameByAddress(item.token1))
+    //   item.value = findNameByAddress(item.token0)=='ETH'?(findNameByAddress(item.token1)+'/WETH'):(findNameByAddress(item.token0)+'/'+findNameByAddress(item.token1))
+    //   return item
+    // })
+    // console.log(token_list)
+    // setTokenSelect(token_list)
   }, [props.chain])
 
 

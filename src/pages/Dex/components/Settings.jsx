@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 import PineconeSwitch from '../../../components/common/PineconeSwitch';
 import { Tooltip } from 'antd';
+import { slip_name } from '../../../global';
 
 function Settings(props) {
   const { closeFn } = props;
@@ -23,7 +24,7 @@ function Settings(props) {
 
   useEffect(()=>{
     props.slipChange(slippage)
-    localStorage.setItem('slip', slippage)
+    localStorage.setItem(slip_name, slippage)
   }, [slippage])
 
   useEffect(()=>{

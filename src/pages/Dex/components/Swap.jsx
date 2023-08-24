@@ -25,6 +25,7 @@ import { getReserves } from '../../../contracts/methods/liquidity';
 
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
+import { slip_name } from '../../../global';
 const decimal = 6
 
 function Swap(props) { 
@@ -56,7 +57,7 @@ function Swap(props) {
 
   const [price, setPrice] = useState(0)
   const [loading, setLoading] = useState(false)
-  const [slip, setSlip] = useState(localStorage.getItem('slip')||'2')
+  const [slip, setSlip] = useState(localStorage.getItem(slip_name)||'20')
   const [type, setType] = useState('input')
   const [loadingInputBalance, setLoadingInputBalance] = useState(false)
   const [loadingOutputBalance, setLoadingOutputBalance] = useState(false)
@@ -172,8 +173,11 @@ const toApprove = ()=>{
 
  useEffect(async ()=>{
   let pairAddress = findAddressByName(inputToken+'-'+outToken)||findAddressByName(outToken+'-'+inputToken)
+  console.log(pairAddress)
   if(pairAddress) {
     let {reserve0, reserve1} = await getReserves(pairAddress)
+  console.log(reserve0, reserve1)
+
     let reserve_x=findAddressByName(inputToken == 'ETH'?'WETH':inputToken) < findAddressByName(outToken== 'ETH'?'WETH':outToken) ?reserve0:reserve1
     let reserve_y=findAddressByName(inputToken== 'ETH'?'WETH':inputToken) < findAddressByName(outToken== 'ETH'?'WETH':outToken) ?reserve1:reserve0
     setReserveX(reserve_x)
@@ -264,7 +268,7 @@ console.log(seller*1, fromUnit(reserveY)*1)
 //  }, [inputToken, outToken, refresh])
 
  useEffect(()=> {
-  setSlip(localStorage.getItem('slip'))
+  setSlip(localStorage.getItem(slip_name))
  }, [])
 
 
