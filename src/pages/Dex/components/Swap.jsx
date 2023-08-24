@@ -92,7 +92,7 @@ const toSwap = async() => {
   setLoading(true)
   console.log(buyer)
   console.log(seller)
-  let method = type == 'input' ? 'swapExactTokenForToken':'swapTokenForExactToken'
+  let method = type == 'input' ? 'swapExactTokenForTokenSupportingFeeOnTransferTokens':'swapExactTokenForTokenSupportingFeeOnTransferTokens'
   let inputNum = type =='input' ? toWei(toFixed(buyer*(1), UNIT_DECIMAL)):toWei(toFixed(buyer*(1+slip/100), UNIT_DECIMAL))
   let outputNum = type == 'input' ? toWei(toFixed(seller*(1-slip/100), UNIT_DECIMAL)):toWei(toFixed(seller, UNIT_DECIMAL))
   
