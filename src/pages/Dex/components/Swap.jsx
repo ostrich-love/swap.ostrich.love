@@ -57,7 +57,7 @@ function Swap(props) {
 
   const [price, setPrice] = useState(0)
   const [loading, setLoading] = useState(false)
-  const [slip, setSlip] = useState(localStorage.getItem(slip_name)||'20')
+  const [slip, setSlip] = useState(localStorage.getItem(slip_name)||'90')
   const [type, setType] = useState('input')
   const [loadingInputBalance, setLoadingInputBalance] = useState(false)
   const [loadingOutputBalance, setLoadingOutputBalance] = useState(false)

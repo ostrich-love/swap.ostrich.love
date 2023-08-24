@@ -94,14 +94,16 @@ export function swap(
           console.log(hash)
         })
         .on('receipt',(result) => {
-          OpenNotification('success', 'Successful', 'success')
+          OpenNotification('success', 'Transaction Successful', 'success')
           res()
           cb && cb()
           // addHistory(`Swap ${toFixed(fromUnit(amountIn), 4)} ${path[0]} for ${toFixed(fromUnit(result.events.SWAP.returnValues.amountOut), 4)} ${path[path.length-1]} `, result.transactionHash)
         }).on('error', function (error) {
+          OpenNotification('error', 'error', 'Transaction Failed')
           rej(error);
         })
         .catch((error) => {
+          OpenNotification('error', 'error', 'Transaction Failed')
           rej(error);
         });
 
