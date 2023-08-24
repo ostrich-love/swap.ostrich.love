@@ -99,13 +99,13 @@ import { findAddressByName } from '../../../lib/util'
       title: 'TOSHI',
       desc: 'TOSHI token',
       icon: require('../../../assets/image/token/TOSHI.jpg'),
-      hide: true
+      hide: false
     },
     {
       title: 'Bitcoin',
       desc: 'BITCOIN token',
       icon: require('../../../assets/image/token/BITCOIN.png'),
-      hide: true
+      hide: false
     }
   ]
 
