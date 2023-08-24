@@ -455,7 +455,7 @@ console.log(seller*1, fromUnit(reserveY)*1)
             ? '<0.01'
             : toFixed(toUnit(buyer)/(toUnit(buyer)*1+(reserveX)*1)*100, 2)}%</span>
           </div>
-          <p className='tr lh-18 c232 fz-12 pointer' onClick={() => setShowSetting(true)} >{t("Slippage tolerance")}: <span className='c00c'>{slip}%</span></p>
+          {/* <p className='tr lh-18 c232 fz-12 pointer' onClick={() => setShowSetting(true)} >{t("Slippage tolerance")}: <span className='c00c'>{slip}%</span></p> */}
           <div className='flex flex-between m-b-1 lh-18'>
             <div className='flex flex-center'>
               <span>{t("Liquidity Provider Fee")}</span>
