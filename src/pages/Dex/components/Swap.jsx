@@ -442,7 +442,7 @@ console.log(seller*1, fromUnit(reserveY)*1)
             </div>
             <span className='c232 fz-14 fwb'>{toFixed(seller*(1-slip/100), decimal)} {outToken}</span>
           </div>
-          <div className='flex flex-between m-b-1 lh-18'>
+          <div className='flex flex-between m-b-16 lh-18'>
             <div className='flex flex-center'>
               <span>{t("Price Impact")}</span>
               <Tooltip title={t("The difference between the market price and estimated price due to trade size.")}>
