@@ -1,4 +1,4 @@
-export const NET_TYPE = 'test'
+export const NET_TYPE = 'main'
 // export const NET_TYPE = 'main'
 export const refresh_interval = 10000
 

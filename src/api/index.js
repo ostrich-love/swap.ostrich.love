@@ -15,7 +15,7 @@ axios.interceptors.response.use(
   }
 )
 
-export const baseUrl = 'https://api-beta.ostrich.love'
+export const baseUrl = 'https://api.ostrich.love'
 
 export function get_without_tips(
   url,

@@ -101,5 +101,5 @@
   "devDependencies": {
     "node-polyfill-webpack-plugin": "^1.1.4"
   },
-  "proxy": "https://api-beta.ostrich.love/"
+  "proxy": "https://api.ostrich.love/"
 }
