@@ -1,11 +1,52 @@
 /* eslint-disable import/no-anonymous-default-export */
 import logo from '../../assets/image/common/ostrich.svg';
 import open from '../../assets/image/common/open.svg';
+import metamask from '../../assets/image/wallets/metamask.png';
 import community from '../../assets/json/community';
 import './Footer.scss'
 import { useState } from 'react';
+import { Tooltip } from 'antd';
+import { findAddressByName } from '../../lib/util';
 export default () => {
   const [imgIndex, setIndex] = useState(0)
+  const addToMetamask = () => {
+    if (window.ethereum) {
+      window.ethereum.request({
+      method: 'wallet_watchAsset',
+      params: {
+          type: 'ERC20', // Initially only supports ERC20, but eventually more!
+          options: {
+              address: findAddressByName('Orich'), // The address that the token is at.
+              symbol: 'Orich', // A ticker symbol or shorthand, up to 5 chars.
+              decimals: 18 // The number of decimals in the token
+              // image: outputToken.logo, // A string url of the token logo
+          },
+      }})
+      window.ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+            type: 'ERC20', // Initially only supports ERC20, but eventually more!
+            options: {
+                address: findAddressByName('Orich-ETH'), // The address that the token is at.
+                symbol: 'Orich-ETH', // A ticker symbol or shorthand, up to 5 chars.
+                decimals: 18 // The number of decimals in the token
+                // image: outputToken.logo, // A string url of the token logo
+            },
+        }})
+
+      window.ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+            type: 'ERC20', // Initially only supports ERC20, but eventually more!
+            options: {
+                address: findAddressByName('Bitcoin'), // The address that the token is at.
+                symbol: 'Bitcoin', // A ticker symbol or shorthand, up to 5 chars.
+                decimals: 18 // The number of decimals in the token
+                // image: outputToken.logo, // A string url of the token logo
+            },
+        }})
+    }
+  }
   return (
     <div className="footer p-t-70">
       <div className="footer-inner">
@@ -23,6 +64,7 @@ export default () => {
                   </a>
                 })
               }
+              <img src={metamask} alt="" className='pointer' onClick={addToMetamask} width={33}/>
             </span>
           </div>
           <div className="other-info p-t-20  p-b-50 flex flex-end flex-column flex-between align-items">
@@ -37,6 +79,10 @@ export default () => {
                   </a>
                 })
               }
+              <Tooltip title="add $Orich/$Orich-ETH/$Bitcoin to metamask">
+              <img src={metamask} className='pointer' alt="" width={33} onClick={addToMetamask}/>
+              </Tooltip>
+              
             </span>
             <span className='c2e fz-14 copyright m-t-16'>
               ©  Copybyte Ostrichlove 2020 - 2023. All Rights Reserved.

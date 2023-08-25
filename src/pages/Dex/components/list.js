@@ -106,6 +106,18 @@ import { findAddressByName } from '../../../lib/util'
       desc: 'BITCOIN token',
       icon: require('../../../assets/image/token/BITCOIN.png'),
       hide: false
+    },
+    {
+      title: 'USDbC',
+      desc: 'USDbC token',
+      icon: require('../../../assets/image/token/USDbC.svg').default,
+      hide: false
+    },
+    {
+      title: 'DAI',
+      desc: 'DAI token',
+      icon: require('../../../assets/image/token/DAI.svg').default,
+      hide: false
     }
   ]
 
