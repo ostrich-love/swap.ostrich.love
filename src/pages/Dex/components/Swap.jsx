@@ -143,7 +143,7 @@ const toApprove = ()=>{
  useEffect(async() => {
   try {
     if(type == 'input' && buyer) {
-      let amountOut = await getAmountOut([findAddressByName(inputToken == 'ETH'?'WETH':inputToken) , findAddressByName(outToken== 'ETH'?'WETH':outToken)], toWei(buyer))
+      let amountOut = await getAmountOut([findAddressByName(inputToken == 'ETH'?'WETH':inputToken) , findAddressByName(outToken== 'ETH'?'WETH':outToken)], toWei(buyer ,getTokenByName(inputToken).decimal||18))
        setPrice(amountOut/buyer)
        setSeller(toFixed(fromUnit(amountOut),4))
     } else if(type == 'input' && !buyer ) {
@@ -158,7 +158,7 @@ const toApprove = ()=>{
  useEffect(async() => {
   try {
     if(type == 'output' && seller) {
-      let amountIn = await getAmountIn([findAddressByName(inputToken == 'ETH'?'WETH':inputToken) , findAddressByName(outToken== 'ETH'?'WETH':outToken)], toWei(seller))
+      let amountIn = await getAmountIn([findAddressByName(inputToken == 'ETH'?'WETH':inputToken) , findAddressByName(outToken== 'ETH'?'WETH':outToken)], toWei(seller, getTokenByName(outToken).decimal||18))
        setPrice(seller/amountIn)
        setBuyer(toFixed(fromUnit(amountIn),4))
   
@@ -196,6 +196,8 @@ const toApprove = ()=>{
   // 3, 余额不足
   // 4, seller > reservey  流动性不足
   // 5，未输入金额
+console.log(getTokenByName(inputToken).decimal)
+console.log(buyer)
 console.log(seller*1, fromUnit(reserveY)*1)
   if(!reserveX) { // 交易对不存在
     setCanSwap(false)
@@ -205,10 +207,10 @@ console.log(seller*1, fromUnit(reserveY)*1)
     setCanSwap(false)
     setErrMsg('Connect Wallet')
   }
-  else if(buyer*1 > fromUnit(inputBalance)*1, getTokenByName(inputToken).decimal||18) { // 余额不足
+  else if(buyer*1 > fromUnit(inputBalance, getTokenByName(inputToken).decimal||18)*1) { // 余额不足
      setCanSwap(false)
      setErrMsg(`Insufficient Input token balance`)
-  } else if(seller*1 > fromUnit(reserveY)*1) { // 流动性不足
+  } else if(seller*1 > fromUnit(reserveY, getTokenByName(outToken).decimal||18)*1) { // 流动性不足
     setCanSwap(false)
     setErrMsg(`Insufficient liquidity for this trade.`)
  }
@@ -220,7 +222,7 @@ console.log(seller*1, fromUnit(reserveY)*1)
     setErrMsg('')
   }
 
- }, [props.account, inputBalance, buyer, reserveX, reserveY])
+ }, [props.account, inputBalance, buyer, reserveX, reserveY, inputToken, outToken])
 
  // 获取balance
  useEffect( async () => {
