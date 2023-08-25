@@ -53,7 +53,7 @@ function SelectToken(props) {
        Promise.all(p).then(res => {
         console.log(res)
         showlist.map((item, index) => {
-          item.balance = res[index] == null ? null:fromUnit(res[index])
+          item.balance = res[index] == null ? null:fromUnit(res[index], getTokenByName(item.title).decimal||18)
           item.loading = false
           console.log(item)
           return item

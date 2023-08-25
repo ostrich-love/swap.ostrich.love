@@ -94,8 +94,8 @@ const toSwap = async() => {
   console.log(buyer)
   console.log(seller)
   let method = type == 'input' ? 'swapExactTokenForTokenSupportingFeeOnTransferTokens':'swapExactTokenForTokenSupportingFeeOnTransferTokens'
-  let inputNum = type =='input' ? toWei(toFixed(buyer*(1), UNIT_DECIMAL)):toWei(toFixed(buyer*(1+slip/100), UNIT_DECIMAL))
-  let outputNum = type == 'input' ? toWei(toFixed(seller*(1-slip/100), UNIT_DECIMAL)):toWei(toFixed(seller, UNIT_DECIMAL))
+  let inputNum = type =='input' ? toWei(toFixed(buyer*(1), getTokenByName(inputToken).decimal||18),getTokenByName(inputToken).decimal||18):toWei(toFixed(buyer*(1+slip/100), getTokenByName(inputToken).decimal||18),getTokenByName(inputToken).decimal||18)
+  let outputNum = type == 'input' ? toWei(toFixed(seller*(1-slip/100), getTokenByName(outToken).decimal||18), getTokenByName(outToken).decimal||18):toWei(toFixed(seller, getTokenByName(outToken).decimal||18),getTokenByName(outToken).decimal||18)
   
   swap(
     inputNum,
@@ -205,7 +205,7 @@ console.log(seller*1, fromUnit(reserveY)*1)
     setCanSwap(false)
     setErrMsg('Connect Wallet')
   }
-  else if(buyer*1 > fromUnit(inputBalance)*1) { // 余额不足
+  else if(buyer*1 > fromUnit(inputBalance)*1, getTokenByName(inputToken).decimal||18) { // 余额不足
      setCanSwap(false)
      setErrMsg(`Insufficient Input token balance`)
   } else if(seller*1 > fromUnit(reserveY)*1) { // 流动性不足
@@ -239,7 +239,7 @@ console.log(seller*1, fromUnit(reserveY)*1)
   if(props.account) {
     let allow = await allowance(findAddressByName(inputToken), findAddressByName('SwapAggregator'))
     console.log(allow)
-    setNeedApprove(Number(fromUnit(allow))<Number(buyer))
+    setNeedApprove(Number(fromUnit(allow, getTokenByName(inputToken).decimal||18))<Number(buyer))
   }
 
  }, [props.account, inputToken, buyer, approveRefresh])
@@ -314,7 +314,7 @@ console.log(seller*1, fromUnit(reserveY)*1)
                       // if(!routers.length) {
                       //   return
                       // }
-                      setBuyer(toFixed(fromUnit(inputBalance)*el.value/100, decimal))
+                      setBuyer(toFixed(fromUnit(inputBalance, getTokenByName(inputToken).decimal||18)*el.value/100, decimal))
                       // setSeller(toFixed(getAmountOut(fromUnit(inputBalance)*el.value/100, reservex, reservey), decimal))
                       setType('input')
                     }
@@ -327,7 +327,7 @@ console.log(seller*1, fromUnit(reserveY)*1)
               <img className='m-r-9' src={wallet} alt="" />
               <span className='c2b fz-14'>{
                 loadingInputBalance ? <Skeleton.Button active size={'small'} />:
-                toFixed(fromUnit(inputBalance)||0, 4)
+                toFixed(fromUnit(inputBalance, getTokenByName(inputToken).decimal||18)||0, 4)
               }</span>
             </div>
           </div>
@@ -382,7 +382,7 @@ console.log(seller*1, fromUnit(reserveY)*1)
               <img className='m-r-9' src={wallet} alt="" />
               <span className='c2b fz-14'>
                 {loadingOutputBalance ? <Skeleton.Button active size={'small'} />:
-                toFixed(fromUnit(outBalance)||0, 4)}</span>
+                toFixed(fromUnit(outBalance, getTokenByName(outToken).decimal||18)||0, 4)}</span>
             </div>
           </div>
           <div className='flex flex-between flex-center m-t-14'>

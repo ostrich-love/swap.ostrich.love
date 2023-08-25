@@ -58,19 +58,18 @@ export const toUnit = (amount) => {
   }
  
 };
-export const toWei = (amount) => {
+export const toWei = (amount, decimal=18) => {
   try {
-    return web3.utils.toWei(amount, "ether");
+    return web3.utils.toWei(amount, decimal==18?"ether":"mwei");
   } catch {
     return 0
   }
 };
 
 
-export const fromUnit = (wei) => {
-  
-  let weiwei = toFixed(Number(wei), 0) || 0
-  return (web3.utils.fromWei((numberToStr(weiwei) || 0).toString(), "ether"));
+export const fromUnit = (wei, decimal=18) => {
+  let weiwei = Number(wei) || 0
+  return (web3.utils.fromWei((numberToStr(weiwei) || 0).toString(), decimal==18?"ether":"mwei"));
 };
 
 export const toBN = (n) => {

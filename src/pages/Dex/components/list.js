@@ -111,7 +111,8 @@ import { findAddressByName } from '../../../lib/util'
       title: 'USDbC',
       desc: 'USDbC token',
       icon: require('../../../assets/image/token/USDbC.svg').default,
-      hide: false
+      hide: false,
+      decimal: 6
     },
     {
       title: 'DAI',

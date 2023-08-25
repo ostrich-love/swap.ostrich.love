@@ -110,8 +110,8 @@ const AddLiquidity = (props) => {
       addLiq(
         findAddressByName(inputToken),
         findAddressByName(outToken),
-        toWei(toFixed(buyer*(1), UNIT_DECIMAL)),
-        toWei(toFixed(seller*(1), UNIT_DECIMAL)),
+        toWei(toFixed(buyer*(1), getTokenByName(inputToken).decimal||18), getTokenByName(inputToken).decimal||18),
+        toWei(toFixed(seller*(1), getTokenByName(outToken).decimal||18), getTokenByName(outToken).decimal||18),
         0, 0,
         outToken == 'ETH' || inputToken == 'ETH'
       ).then(res => {
@@ -134,6 +134,7 @@ const AddLiquidity = (props) => {
     if (props.account) {
       setLoadingInputBalance(true)
       let bal = await getBalance(props.account, findAddressByName(inputToken))
+      console.log(bal)
       setinputBalance(bal)
       setLoadingInputBalance(false)
     } else {
@@ -196,8 +197,8 @@ const AddLiquidity = (props) => {
     try {
       if(props.account) {
         let allow = await allowance(findAddressByName(inputToken), findAddressByName('SwapRouter'))
-        console.log(fromUnit(allow)*1)
-        setNeedApproveInput(fromUnit(allow)*1)
+        console.log((allow)*1)
+        setNeedApproveInput(fromUnit(allow, getTokenByName(inputToken).decimal||18)*1)
       }
     } catch (err) {
 
@@ -208,7 +209,7 @@ const AddLiquidity = (props) => {
       if(props.account) {
         let allow = await allowance(findAddressByName(outToken), findAddressByName('SwapRouter'))
         console.log(allow)
-        setNeedApproveOutput(fromUnit(allow)*1)
+        setNeedApproveOutput(fromUnit(allow, getTokenByName(outToken).decimal||18)*1)
       }
     } catch (err) {
 
@@ -226,7 +227,7 @@ const AddLiquidity = (props) => {
       <div className='liquidity-from m-t-24'>
         <div className='flex flex-last'>
           <span className='fz-14 c2b lh-18'>{t('Balance')}: {
-            loadingInputBalance ? <Skeleton.Button active size={'small'} /> : (numFormat(fromUnit(inputBalance) || '0'))}</span>
+            loadingInputBalance ? <Skeleton.Button active size={'small'} /> : (numFormat(fromUnit(inputBalance, getTokenByName(inputToken).decimal||18) || '0'))}</span>
         </div>
         <div className='m-t-14 flex flex-between flex-center'>
           <input
@@ -260,8 +261,8 @@ const AddLiquidity = (props) => {
                   key={el.label}
                   onClick={
                     () => {
-                      setBuyer(fromUnit(inputBalance) * el.value / 100);
-                      hasPair && setSeller(fromUnit(inputBalance) * el.value / 100 * price)
+                      setBuyer(fromUnit(inputBalance, getTokenByName(inputToken).decimal||18) * el.value / 100);
+                      hasPair && setSeller(fromUnit(inputBalance, getTokenByName(inputToken).decimal||18) * el.value / 100 * price)
                     }
                   }
                 >{el.label}</div>
@@ -277,7 +278,7 @@ const AddLiquidity = (props) => {
         <div className='flex flex-last'>
           <span className='fz-14 c2b lh-18'>{t('Balance')}: {
             loadingOutputBalance ? <Skeleton.Button active size={'small'} /> :
-              (numFormat(fromUnit(outBalance) || '0'))}</span>
+              (numFormat(fromUnit(outBalance, getTokenByName(outToken).decimal||18) || '0'))}</span>
         </div>
         <div className='m-t-14 flex flex-between flex-center'>
           <input
@@ -311,8 +312,8 @@ const AddLiquidity = (props) => {
                 <div className='radio-btn flex-1 c2b fz-12 pointer' key={el.label}
                   onClick={
                     () => {
-                      setSeller(fromUnit(outBalance) * el.value / 100);
-                      hasPair && setBuyer(fromUnit(outBalance) * el.value / 100 / price)
+                      setSeller(fromUnit(outBalance, getTokenByName(outToken).decimal||18) * el.value / 100);
+                      hasPair && setBuyer(fromUnit(outBalance, getTokenByName(outToken).decimal||18) * el.value / 100 / price)
                     }
                   }
                 >{el.label}</div>
@@ -344,9 +345,9 @@ const AddLiquidity = (props) => {
       { <span className="flex gap-20">
         {
           props.account ? (
-            fromUnit(inputBalance)*1 < buyer*1 ?
+            fromUnit(inputBalance, getTokenByName(inputToken).decimal||18)*1 < buyer*1 ?
               <Button disabled className='unlock-wallet fz-18 fwb'>{t('Insufficient Input token balance')}</Button>:
-              fromUnit(outBalance)*1 < seller*1 ?
+              fromUnit(outBalance, getTokenByName(outToken).decimal||18)*1 < seller*1 ?
               <Button disabled className='unlock-wallet fz-18 fwb'>{t('Insufficient Output token balance')}</Button>:
               ((buyer*1 >needApproveInput*1) || (seller*1>needApproveOutput*1) ? (
               <>
