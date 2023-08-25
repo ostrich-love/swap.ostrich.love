@@ -34,5 +34,22 @@ export const providerOptions = ({walletconnectOptions}) => {
           return null;
         },
       },
+      'custom-coinbase': {
+        display: {
+          name: 'Coinbase',
+          description: 'Coinbase-Wallet',
+          logo: okx,
+        },
+        package: 'coinbase',
+        connector: async (ProviderPackage, options) => {
+          if (window.coinbaseWalletExtension|| window.ethereum.isCoinbaseWallet) {
+            const provider =  window.ethereum;
+            await provider.enable();
+            return provider;
+          }
+          window.open('https://www.coinbase.com/')
+          return null;
+        },
+      },
     }
   }

@@ -22,6 +22,7 @@ import connectWallet from '../../wallet/connectWallet';
 import metamask from '../../assets/image/wallets/metamask.png'
 import walletconnect from '../../assets/image/wallets/walletconnect.png'
 import okx from '../../assets/image/wallets/okx.jpg'
+import coinbase from '../../assets/image/wallets/coinbase.svg'
 import zks from '../../assets/image/wallets/zks.jpg'
 import btc from '../../assets/image/token/BTC.svg'
 import { useTranslation } from 'react-i18next';
@@ -173,10 +174,10 @@ function Connect (props) {
                   <img src={walletconnect} alt={`walletconnect icon`} className='wallet-logo m-r-5'/>
                                 <div className="wallet-name tl">WalletConnect</div>
                             </div>
-                            {/* <div   className={"wallet-item ta flex flex-center flex-middle pointer"} onClick={async _ => {handleConnect('custom-okx')}} >
-                  <img src={okx} alt={`okx icon`} className='wallet-logo m-r-5'/>
-                                <div className="wallet-name tl">OKX</div>
-                            </div> */}
+                            <div   className={"wallet-item ta flex flex-center flex-middle pointer"} onClick={async _ => {handleConnect('custom-coinbase')}} >
+                  <img src={coinbase} alt={`coinbase icon`} className='wallet-logo m-r-5'/>
+                                <div className="wallet-name tl">Coinbase</div>
+                            </div>
                 </>
               )
             }

@@ -9,42 +9,22 @@ import { Tooltip } from 'antd';
 import { findAddressByName } from '../../lib/util';
 export default () => {
   const [imgIndex, setIndex] = useState(0)
+  const tokenList = ['Orich', 'Orich-ETH', 'Bitcoin', 'USDbC', 'DAI']
   const addToMetamask = () => {
     if (window.ethereum) {
-      window.ethereum.request({
-      method: 'wallet_watchAsset',
-      params: {
-          type: 'ERC20', // Initially only supports ERC20, but eventually more!
-          options: {
-              address: findAddressByName('Orich'), // The address that the token is at.
-              symbol: 'Orich', // A ticker symbol or shorthand, up to 5 chars.
-              decimals: 18 // The number of decimals in the token
-              // image: outputToken.logo, // A string url of the token logo
-          },
-      }})
-      window.ethereum.request({
-        method: 'wallet_watchAsset',
-        params: {
-            type: 'ERC20', // Initially only supports ERC20, but eventually more!
-            options: {
-                address: findAddressByName('Orich-ETH'), // The address that the token is at.
-                symbol: 'Orich-ETH', // A ticker symbol or shorthand, up to 5 chars.
-                decimals: 18 // The number of decimals in the token
-                // image: outputToken.logo, // A string url of the token logo
-            },
-        }})
-
-      window.ethereum.request({
-        method: 'wallet_watchAsset',
-        params: {
-            type: 'ERC20', // Initially only supports ERC20, but eventually more!
-            options: {
-                address: findAddressByName('Bitcoin'), // The address that the token is at.
-                symbol: 'Bitcoin', // A ticker symbol or shorthand, up to 5 chars.
-                decimals: 18 // The number of decimals in the token
-                // image: outputToken.logo, // A string url of the token logo
-            },
-        }})
+      Promise.all(tokenList.map(item => {
+        return window.ethereum.request({
+          method: 'wallet_watchAsset',
+          params: {
+              type: 'ERC20', // Initially only supports ERC20, but eventually more!
+              options: {
+                  address: findAddressByName(item), // The address that the token is at.
+                  symbol: item, // A ticker symbol or shorthand, up to 5 chars.
+                  decimals: 18 // The number of decimals in the token
+                  // image: outputToken.logo, // A string url of the token logo
+              },
+          }})
+      }))
     }
   }
   return (
@@ -79,7 +59,7 @@ export default () => {
                   </a>
                 })
               }
-              <Tooltip title="add $Orich/$Orich-ETH/$Bitcoin to metamask">
+              <Tooltip title="add $Orich/$Orich-ETH/$Bitcoin/USDbC/DAI to metamask">
               <img src={metamask} className='pointer' alt="" width={33} onClick={addToMetamask}/>
               </Tooltip>
               
