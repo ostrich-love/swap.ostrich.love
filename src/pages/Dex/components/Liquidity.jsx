@@ -164,12 +164,12 @@ const AddLiquidity = (props) => {
       console.log(reserve_x)
       let reserveIn = findAddressByName(inputToken == 'ETH'?'WETH':inputToken) < findAddressByName(outToken== 'ETH'?'WETH':outToken) ? reserve_x : reserve_y
       let reserveOut = findAddressByName(inputToken == 'ETH'?'WETH':inputToken) > findAddressByName(outToken== 'ETH'?'WETH':outToken) ? reserve_x : reserve_y
-      setPrice(new BigNumber(reserveOut).dividedBy(new BigNumber(reserveIn)).toString())
+      setPrice(new BigNumber(fromUnit(reserveOut, getTokenByName(outToken).decimal||18)).dividedBy(new BigNumber(fromUnit(reserveIn, getTokenByName(inputToken).decimal||18))).toString())
       if (findAddressByName(inputToken== 'ETH'?'WETH':inputToken) < findAddressByName(outToken== 'ETH'?'WETH':outToken)) {
-        setPrice(toFixed(reserve_y / reserve_x, 4))
+        // setPrice(toFixed(reserve_y / reserve_x, 4))
         setReserveX(reserve_x)
       } else {
-        setPrice(toFixed(reserve_x / reserve_y, 4))
+        // setPrice(toFixed(reserve_x / reserve_y, 4))
         setReserveX(reserve_y)
       }
       setPairCreated(!!pairs)
@@ -587,7 +587,7 @@ function Liquidity(props) {
                                 }
                                       <span>{t('Pooled')} {findNameByAddress(el.token0)}</span>
                                     </div>
-                                    <span>{el.supply ? toFixed(fromUnit(el.reserve_x * (el.value / el.supply)), decimal) : '--'}</span>
+                                    <span>{el.supply ? toFixed(fromUnit(el.reserve_x * (el.value / el.supply), getTokenByName(findNameByAddress(el.token0)).decimal||18), decimal) : '--'}</span>
                                   </div>
                                   <div className='flex flex-between m-t-5'>
                                     <div className='flex flex-center'>
@@ -596,7 +596,7 @@ function Liquidity(props) {
                                 }
                                       <span>{t('Pooled')} {findNameByAddress(el.token1)}</span>
                                     </div>
-                                    <span>{el.supply ? toFixed(fromUnit(el.reserve_y * (el.value / el.supply)), decimal) : "--"}</span>
+                                    <span>{el.supply ? toFixed(fromUnit(el.reserve_y * (el.value / el.supply), getTokenByName(findNameByAddress(el.token1)).decimal||18), decimal) : "--"}</span>
                                   </div>
                                   <div className='flex flex-center'>
                                     <hr className='share-line flex-1'></hr>

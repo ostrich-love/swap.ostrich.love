@@ -18,7 +18,7 @@ import * as echarts from 'echarts'
 import { reqKlineList, reqTrendlineList } from '../../../api/dex'
 import { showK, showLine } from './chart'
 import list, { getTokenByName } from './list'
-import { calcVolume, decimal, findAddressByName, findNameByAddress, formatTime, formatZeroToSub, toFixed } from '../../../lib/util'
+import { calcVolume, decimal, findAddressByName, findNameByAddress, formatTime, formatZeroToSub, fromUnit, toFixed } from '../../../lib/util'
 import { queryTokenPairReserve } from '../../../methods/swap'
 import Loading from '../../../components/common/Loading'
 import { getNetwork } from '../../../contracts'
@@ -45,12 +45,15 @@ function Charts(props) {
     {
       label: 'Orich/ETH', value: 'Orich/WETH'
     },
-     {
-      label: 'Bitcoin/ETH', value: 'Bitcoin/WETH'
+    //  {
+    //   label: 'Bitcoin/ETH', value: 'Bitcoin/WETH'
+    // },
+    {
+      label: 'USDbC/ETH', value: 'USDbC/WETH'
+    },
+    {
+      label: 'DAI/USDbC', value: 'DAI-USDbC'
     }
-    // {
-    //   label: 'BALD/ETH', value: 'BALD/WETH'
-    // }
   ]
   const [timeValue, setTimeValue] = useState('1d');
   const [ChartType, setChartType] = useState('line')
@@ -80,9 +83,10 @@ function Charts(props) {
     let pair = findAddressByName(name)
     console.log(pair)
     let { reserve0, reserve1 } = await getReserves(pair)
+    console.log(reserve0, reserve1)
     let reserve_x = findAddressByName(name.split('-')[0]) < findAddressByName(name.split('-')[1]) ? reserve0 : reserve1
     let reserve_y = findAddressByName(name.split('-')[0]) < findAddressByName(name.split('-')[1]) ? reserve1 : reserve0
-    setPrice(toFixed(reserve_y / reserve_x, decimal))
+    setPrice(toFixed((fromUnit(reserve_y, getTokenByName(name.split('-')[1]).decimal||18)) / fromUnit(reserve_x, getTokenByName(name.split('-')[0]).decimal||18), decimal))
   }
   const getChart = async (timeValue, ChartType, name) => {
     let interval = 300;
@@ -272,14 +276,14 @@ function Charts(props) {
               <span className='flex flex-center'>
                 {
                   loading ? <Skeleton.Button active size={'small'} /> :
-                    <span className='fz-24 fwb'>{formatZeroToSub(price)}</span>
+                    <span className='fz-24 fwb'>{hasnodata ?'':formatZeroToSub(price)}</span>
                 }
-                <span className='fz-16 fwb m-l-8'>{tokenPair.split('/')[1] =='WETH'?'ETH':tokenPair.split('/')[1]}</span>
+                <span className='fz-16 fwb m-l-8'>{hasnodata ?'':tokenPair.split('/')[1] =='WETH'?'ETH':tokenPair.split('/')[1]}</span>
                 {/* <span className='fz-16 fwb m-l-8'>{tokenPair.split('/')[1]}</span> */}
               </span>
               <span>
                 {
-                  priceData.length ? (
+                  hasnodata ?'':(priceData.length ? (
                     <>
                       <span className={'fwb fz-14 price_change m-l-20 ' +
                         (priceData[1]?.close * 1 > priceData[0]?.open * 1 ? 'cy' : priceData[1]?.close * 1 < priceData[0]?.open * 1 ? 'blue' : 'grey')
@@ -294,7 +298,7 @@ function Charts(props) {
                       </span>
                     </>
 
-                  ) : ''
+                  ) : '')
                 }
               </span>
 

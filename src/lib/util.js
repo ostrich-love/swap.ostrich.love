@@ -68,7 +68,7 @@ export const toWei = (amount, decimal=18) => {
 
 
 export const fromUnit = (wei, decimal=18) => {
-  let weiwei = Number(wei) || 0
+  let weiwei = Number(toFixed(wei, 0)) || 0
   return (web3.utils.fromWei((numberToStr(weiwei) || 0).toString(), decimal==18?"ether":"mwei"));
 };
 

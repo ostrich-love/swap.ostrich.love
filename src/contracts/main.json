@@ -25,7 +25,7 @@
         "FlexiblePoolV2(Orich->Orich)": "0x19c9e86f7fb545ded7c9590211cf0c51509d0ae9",
         "TradingPoolV2": "0xd48a089801dc703c8c0a881381fa1a578402ff83",
         "OrichAirdrop": "0xe6c29ef718bd853a04fd03cbb5dbc8f3763afcf3",
-        "WETH-USDbC": "0x5aa0945581cc2d27a2351d5e067e7135e57d7274",
+        "USDbC-WETH": "0x5aa0945581cc2d27a2351d5e067e7135e57d7274",
         "USDbC-ETH": "0x5aa0945581cc2d27a2351d5e067e7135e57d7274",
         "DAI-USDbC": "0x35b964f8f91321ce2778db380ddec45a771ef438",
         "RewardVault": "0x53ce57f4d8900a975bafc655b3992a2d9ab59e87",
