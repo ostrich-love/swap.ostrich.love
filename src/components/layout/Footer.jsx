@@ -7,25 +7,44 @@ import './Footer.scss'
 import { useState } from 'react';
 import { Tooltip } from 'antd';
 import { findAddressByName } from '../../lib/util';
+import { getTokenByName } from '../../pages/Dex/components/list';
 export default () => {
   const [imgIndex, setIndex] = useState(0)
   const tokenList = ['Orich', 'Orich-ETH', 'Bitcoin', 'USDbC', 'DAI']
-  const addToMetamask = () => {
+  const addToMetamask = (name) => {
     if (window.ethereum) {
-      Promise.all(tokenList.map(item => {
-        return window.ethereum.request({
-          method: 'wallet_watchAsset',
-          params: {
-              type: 'ERC20', // Initially only supports ERC20, but eventually more!
-              options: {
-                  address: findAddressByName(item), // The address that the token is at.
-                  symbol: item, // A ticker symbol or shorthand, up to 5 chars.
-                  decimals: 18 // The number of decimals in the token
-                  // image: outputToken.logo, // A string url of the token logo
-              },
-          }})
-      }))
+      window.ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+            type: 'ERC20', // Initially only supports ERC20, but eventually more!
+            options: {
+                address: findAddressByName(name), // The address that the token is at.
+                symbol: name, // A ticker symbol or shorthand, up to 5 chars.
+                decimals: 18 // The number of decimals in the token
+                // image: outputToken.logo, // A string url of the token logo
+            },
+        }})
     }
+  }
+
+  const Content = () => {
+    return (
+      <div>
+          {
+            tokenList.map(item => {
+              return (
+                <div className='p-10 pointer flex gap-10' onClick={()=>addToMetamask(item)}>{
+                  getTokenByName(item).icon?
+                  <img src={getTokenByName(item).icon} className='asset-icon'></img>:
+                  <span className="icon-offset asset-icon">LP</span>
+                  }
+                  {item}
+                  </div>
+              )
+            })
+          }
+      </div>
+    )
   }
   return (
     <div className="footer p-t-70">
@@ -44,7 +63,8 @@ export default () => {
                   </a>
                 })
               }
-              <img src={metamask} alt="" className='pointer' onClick={addToMetamask} width={33}/>
+              <Tooltip title={<Content/>}><img src={metamask} alt="" className='pointer' onClick={addToMetamask} width={33}/></Tooltip>
+              
             </span>
           </div>
           <div className="other-info p-t-20  p-b-50 flex flex-end flex-column flex-between align-items">
@@ -59,7 +79,7 @@ export default () => {
                   </a>
                 })
               }
-              <Tooltip title="add $Orich/$Orich-ETH/$Bitcoin/USDbC/DAI to metamask">
+              <Tooltip title={<Content/>}>
               <img src={metamask} className='pointer' alt="" width={33} onClick={addToMetamask}/>
               </Tooltip>
               
