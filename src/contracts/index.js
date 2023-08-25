@@ -20,7 +20,7 @@ const BASE_MAIN = {
   networkId: 8453,
   httpProviderURL: 'https://mainnet.base.org',
   connectors: {
-    network: 'base',
+    network: 'mainnet',
     cacheProvider: true,
     providerOptions: providerOptions({
       walletconnectOptions: {
