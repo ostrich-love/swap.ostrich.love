@@ -145,7 +145,7 @@ const toApprove = ()=>{
     if(type == 'input' && buyer) {
       let amountOut = await getAmountOut([findAddressByName(inputToken == 'ETH'?'WETH':inputToken) , findAddressByName(outToken== 'ETH'?'WETH':outToken)], toWei(buyer ,getTokenByName(inputToken).decimal||18))
        setPrice(amountOut/buyer)
-       setSeller(toFixed(fromUnit(amountOut),4))
+       setSeller(toFixed(fromUnit(amountOut,getTokenByName(outToken).decimal||18),4))
     } else if(type == 'input' && !buyer ) {
       setSeller('')
     }
@@ -160,7 +160,7 @@ const toApprove = ()=>{
     if(type == 'output' && seller) {
       let amountIn = await getAmountIn([findAddressByName(inputToken == 'ETH'?'WETH':inputToken) , findAddressByName(outToken== 'ETH'?'WETH':outToken)], toWei(seller, getTokenByName(outToken).decimal||18))
        setPrice(seller/amountIn)
-       setBuyer(toFixed(fromUnit(amountIn),4))
+       setBuyer(toFixed(fromUnit(amountIn, getTokenByName(inputToken).decimal||18),4))
   
     }else if(type == 'output' && !seller) {
       setBuyer('')
