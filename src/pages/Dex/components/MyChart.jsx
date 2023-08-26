@@ -188,18 +188,14 @@ function Charts(props) {
 
     let today = formatTime(new Date().getTime() / 1000).split(' ')[0]
     let lastday = formatTime(new Date().getTime() / 1000 - 24 * 60 * 60).split(' ')[0]
-    console.log(new Date(today).getTime(), new Date(lastday).getTime())
     let EightPrice = ConstList.find((item) => {
-      return item.time * 1 == (new Date().getTime() * 1 < new Date(today).getTime() ? new Date(lastday).getTime() / 1000 : new Date(today).getTime()) * 1 / 1000
+      return item.time * 1000 == (new Date().getTime() * 1 < new Date(today).getTime()*1 ? new Date(lastday).getTime()*1 : new Date(today).getTime()) * 1
     })
     console.log(EightPrice)
     if (!EightPrice?.open) {
       EightPrice = ConstList[0]
     }
     timeValue == 1 && setPriceData([EightPrice, ConstList[ConstList.length - 1]])
-    console.log(xaxis)
-    console.log(yaxis)
-    console.log('==>==>==>==>==>==>')
     setOptions(ChartType === 'line' ?
       showLine(xaxis, yaxis, echarts, timeValue, ConstList[ConstList.length - 1]?.open * 1 > EightPrice?.open * 1 ? 'green' : ConstList[ConstList.length - 1]?.open * 1 < EightPrice?.open * 1 ? 'blue' : 'grey', ConstList) :
       showK(xaxis, yaxis, timeValue, ConstList))
