@@ -69,7 +69,7 @@ const FarmItem = (props) => {
 
 
       <Modal isVisible={showReward} title={t("Reward")} onClose={() => setShowReward(false)} 
-       info={t("The Orich obtained by the single currency pool needs to be unlocked by staking Orich-USDC to obtain rewards.")} border>
+       info={t("The Orich obtained by the single currency pool needs to be unlocked by staking Orich-ETH to obtain rewards.")} border>
         <Reward info={props.info} account={props.account} pendingReward={props.info.pending_reward}  onSuccess={() => {setRefreshTrigger(refreshTrigger+1);}}/>
       </Modal>
       </>

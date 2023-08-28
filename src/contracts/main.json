@@ -32,5 +32,7 @@
         "FixedPool(WETH-USDbC->Orich)": "0x7bb9c32431e18c6913b7acdfc90e260c1b0bf56c",
         "FixedPool(DAI-USDbC->Orich)": "0x329f5bf0181733c88b2d7c78ae394b8570eb6055",
         "FlexiblePool(WETH-USDbC->Orich)": "0x235492f4ae7c2d77b35dbef8a0f6f6815eaebe1f",
-        "FlexiblePool(DAI-USDbC->Orich)": "0x67bfcfde96f53d1c3ec8ee120d61824a0719c49e"
+        "FlexiblePool(DAI-USDbC->Orich)": "0x67bfcfde96f53d1c3ec8ee120d61824a0719c49e",
+        "Bitcoin-WETH": "0x69ca91cb9db3d187e39aad0bd16e2e0957a563ad",
+        "Bitcoin-ETH": "0x69ca91cb9db3d187e39aad0bd16e2e0957a563ad"
 }

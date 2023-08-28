@@ -45,9 +45,9 @@ function Charts(props) {
     {
       label: 'Orich/ETH', value: 'Orich/WETH'
     },
-    //  {
-    //   label: 'Bitcoin/ETH', value: 'Bitcoin/WETH'
-    // },
+     {
+      label: 'Bitcoin/ETH', value: 'Bitcoin/WETH'
+    },
     {
       label: 'USDbC/ETH', value: 'USDbC/WETH'
     },

@@ -8,10 +8,12 @@ import { claim, queryAllPoolViews, queryAllUserPoolViews } from '../../contracts
 import { findNameByAddress, fromUnit, toFixed } from '../../lib/util';
 import { useTranslation } from 'react-i18next';
 import { getTokenByName } from '../Dex/components/list';
+import Modal from '../../components/common/Modal'
 import BigNumber from 'bignumber.js';
 import { Button, Radio } from 'antd';
 import Loading from '../../components/common/Loading';
 import Rank from './Rank';
+import Reward from './components/Reward';
 // import { useNavigate } from 'react-router-dom';
 const Index = (props) => {
   const [pools, setPools] = useState([])
@@ -22,7 +24,9 @@ const Index = (props) => {
   const [myPendingRewards, setMyPendingRewards] = useState(0)
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState(1)
-  const [rank, setRank] = useState(1)
+     let [refreshTrigger, setRefreshTrigger] = useState(0)
+     const [showReward, setShowReward] = useState(false)
+     const [rank, setRank] = useState(1)
   const [refresh, setRefresh] = useState(0)
   let { t, i18n } = useTranslation()
   const optionsWithDisabled = [
@@ -113,7 +117,7 @@ const Index = (props) => {
               </div>
             </div>
             {
-              myPendingRewards && <Button className='buttom' loading={loading} onClick={toHarvest}>Harvest</Button>
+              myPendingRewards && <Button className='buttom' loading={loading} onClick={()=> setShowReward(true)}>Harvest</Button>
             }
             
           </div>
@@ -218,6 +222,10 @@ const Index = (props) => {
 
 
       </div>
+      <Modal isVisible={showReward} title={t("Reward")} onClose={() => setShowReward(false)} 
+       info={t("The Orich obtained by the single currency pool needs to be unlocked by staking Orich-ETH to obtain rewards.")} border>
+        <Reward  account={props.account} pendingReward={myPendingRewards}  onSuccess={() => {setRefreshTrigger(refreshTrigger+1);}}/>
+      </Modal>
     </div>
   )
 }

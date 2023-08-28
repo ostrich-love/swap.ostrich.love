@@ -198,7 +198,7 @@ export function deposit_unlocker (amount) {
       const accounts = await web3.eth.getAccounts();
       const address = accounts[0];
       let hanlder = new web3.eth.Contract(RewardUnlocker, findAddressByName('RewardUnlocker')).methods.deposit(
-        findAddressByName('Orich-USDC'),
+        findAddressByName('Orich-ETH'),
         amount
       )
       let msg = {from: address}
@@ -350,7 +350,7 @@ export function withdraw_unlocker (amount) {
       const accounts = await web3.eth.getAccounts();
       const address = accounts[0];
       let hanlder = new web3.eth.Contract(RewardUnlocker, findAddressByName('RewardUnlocker')).methods.withdraw(
-        findAddressByName('Orich-USDC'),
+        findAddressByName('Orich-ETH'),
         amount
       )
       let msg = {from: address}

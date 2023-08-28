@@ -241,7 +241,7 @@ function Connect (props) {
                         
                     </div>
                     {
-                      props.account && false && <div className="reward-area p-12 w100 flex flex-between flex-center gap-20 m-t-21">
+                      props.account  && <div className="reward-area p-12 w100 flex flex-between flex-center gap-20 m-t-21">
                       <span className="cy fz-14">You have <span className='fwb underline italic'>{toFixed(fromUnit(myPendingRewards),2)} Orich</span>  trading rewards to claim</span>
                       <NavLink className="cf check-btn ta" to="/swap_rewards">Details</NavLink>
                    </div>
