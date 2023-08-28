@@ -68,7 +68,9 @@ export const toWei = (amount) => {
 
 
 export const fromUnit = (wei) => {
-  
+  if(isNaN(wei)) {
+    return 0
+  }
   let weiwei = toFixed(Number(wei), 0) || 0
   return (web3.utils.fromWei((numberToStr(weiwei) || 0).toString(), "ether"));
 };

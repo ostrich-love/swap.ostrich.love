@@ -20,7 +20,7 @@ const BASE_MAIN = {
   networkId: 8453,
   httpProviderURL: 'https://mainnet.base.org',
   connectors: {
-    network: 'base',
+    network: 'mainnet',
     cacheProvider: true,
     providerOptions: providerOptions({
       walletconnectOptions: {
@@ -47,7 +47,7 @@ const BASE_TEST = {
   networkId: 84531,
   httpProviderURL: 'https://goerli.base.org',
   connectors: {
-    network: 'base',
+    network: 'mainnet',
     cacheProvider: true,
     providerOptions: providerOptions({
       walletconnectOptions: {

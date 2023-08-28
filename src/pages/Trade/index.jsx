@@ -104,7 +104,7 @@ const Index = (props) => {
             <div className='title'>Current volume (In pool)</div>
             <div className='value'>{toFixed(fromUnit(currentVolume),2)}</div>
           </div>
-          <div className='card bg'>
+           <div className='card bg'>
             <div className='content-bg'>
               <div className='title'>Your withdrawable rewards ORICH</div>
               <div className='value'>
@@ -117,6 +117,7 @@ const Index = (props) => {
             }
             
           </div>
+          
         </div>
         <div className='tip'> <img  src={Attention} alt=''/> After the withdrawal of your rewards, you will lose the transaction mining weight</div>
         <div className='trading'>
