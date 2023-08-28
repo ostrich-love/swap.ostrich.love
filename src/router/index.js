@@ -10,7 +10,7 @@ import Dex from '../pages/Dex/index'
 // import Invite from '../pages/airdrop/invite/index.jsx';
 // import Launch from '../pages/Launch/index.jsx';
 // import Detail from '../pages/Launch/detail.jsx';
-// import Trade from '../pages/Trade/index'
+import Trade from '../pages/Trade/index'
 
 export default [
     {
@@ -28,6 +28,10 @@ export default [
     {
       path: '/liquidity',
       component: <Dex />
+    },
+    {
+      path: '/swap_rewards',
+      component: <Trade />
     }
     
 ]

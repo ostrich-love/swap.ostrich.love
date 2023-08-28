@@ -23,8 +23,10 @@ import metamask from '../../assets/image/wallets/metamask.png'
 import walletconnect from '../../assets/image/wallets/walletconnect.png'
 import okx from '../../assets/image/wallets/okx.jpg'
 import zks from '../../assets/image/wallets/zks.jpg'
+import { queryAllUserPoolViews } from '../../contracts/methods/tradingpool';
 import btc from '../../assets/image/token/BTC.svg'
 import { useTranslation } from 'react-i18next';
+import BigNumber from 'bignumber.js';
 import {MetaMaskSDK} from '@metamask/sdk'
 
 const coinList = ['Orich', 'ETH']
@@ -37,6 +39,8 @@ function Connect (props) {
 
     let { t, i18n } = useTranslation()
      let { pathname } = useLocation()
+     const [myPendingRewards, setMyPendingRewards] = useState(0)
+
     const { wallets:aptosWallets, select: aptosSelect, disconnect:aptosDisconnect, connect:aptosConnect,  wallet: aptosWallet, account} = useWallet();
 
   const [providerController, setProviderController] = useState({});
@@ -125,6 +129,17 @@ function Connect (props) {
           setProviderController(createProviderController());
           connectWallet();
       }, []);
+
+  useEffect(async ()=>{
+    let my_pending_rewards = 0
+    if(props.account) {
+      let my_pools = await queryAllUserPoolViews(props.account)
+      my_pools.map(item => {
+        my_pending_rewards= new BigNumber(my_pending_rewards).plus(new BigNumber(item.info.pendingReward)).toString()
+      })
+    }
+    setMyPendingRewards((my_pending_rewards))
+}, [props.account])
 
     return (
         <div className='connect'>
@@ -224,10 +239,12 @@ function Connect (props) {
                         }
                         
                     </div>
-                    {/* <div className="reward-area p-12 w100 flex flex-between flex-center gap-20 m-t-21">
-                       <span className="cy fz-14">You have <span className='fwb underline italic'>45.6 Orich</span>  trading rewards to claim</span>
-                       <NavLink className="cf check-btn ta" to="/swap_rewards">Details</NavLink>
-                    </div> */}
+                    {
+                      props.account && <div className="reward-area p-12 w100 flex flex-between flex-center gap-20 m-t-21">
+                      <span className="cy fz-14">You have <span className='fwb underline italic'>{toFixed(fromUnit(myPendingRewards),2)} Orich</span>  trading rewards to claim</span>
+                      <NavLink className="cf check-btn ta" to="/swap_rewards">Details</NavLink>
+                   </div>
+                    }
 
                     <img src={BgTop} alt="" className='bg bg-top' />
                     {/* <img src={BgBottom} className='bg bg-bottom' alt="" /> */}
