@@ -14,7 +14,7 @@ export default ({rank}) => {
     let [loading ,setLoading] = useState(false)
     useEffect(()=> {
         setLoading(true)
-        get(urls[rank||1], {
+        get(urls[rank||0], {
             chain_id: getNetwork().networkId
         }).then(res => {
             setLoading(false)
