@@ -19,7 +19,7 @@ function Dex(props) {
   let { t, i18n } = useTranslation()
   console.log(pathname)
   const [tabValue, setTabValue] = useState(pathname.replace('/', '') =='liquidity'?'liquidity':'swap')
-  const [show,setShow]=useState(true)
+  const [show,setShow]=useState(false)
   useEffect(async ()=>{
     let my_pending_rewards = 0
     if(props.account) {

@@ -33,7 +33,7 @@ import { useTranslation } from 'react-i18next';
 import { allowance, approve } from '../../../contracts/methods/swap';
 import { get } from '../../../api';
 import { getNetwork } from '../../../contracts';
-import { localName } from '../../../global';
+import { localName, slip_name } from '../../../global';
 
 const baseLength = '1000000000000000000'.length - 1;
 const option = [
@@ -397,7 +397,7 @@ function Liquidity(props) {
   const [refresh, setRefresh] = useState(0)
   const [removePercent, setRmovePercent] = useState(0)
   const [showRemove, setShowRemove] = useState(false)
-  const [slip, setSlip] = useState(localStorage.getItem('slip') || '0.5')
+  const [slip, setSlip] = useState(localStorage.getItem(slip_name) || '90')
   let { t, i18n } = useTranslation()
 
   let location = useLocation()
@@ -416,12 +416,13 @@ function Liquidity(props) {
     let assetReceive = new BigNumber((value)).multipliedBy((reserve_x)).dividedBy((supply)).toString()
     let baseReceive = new BigNumber((value)).multipliedBy((reserve_y)).dividedBy((supply)).toString()
     console.log(assetReceive, baseReceive)
+    console.log(slip)
 
     setRemoveLoading(true)
     reduceLiq(
       findAddressByName(inputToken),
       findAddressByName(outToken),
-      (toFixed((new BigNumber(value)).toString(), 0)).toString(),
+      (toFixed((new BigNumber(value).minus(new BigNumber(1000))).toString(), 0)).toString(),
       (toFixed((new BigNumber(assetReceive).multipliedBy(new BigNumber(1).minus(new BigNumber(slip).dividedBy(100)))).toString(), 0)).toString(),
       (toFixed((new BigNumber(baseReceive).multipliedBy(new BigNumber(1).minus(new BigNumber(slip).dividedBy(100)))).toString(), 0)).toString(),
       outToken == 'ETH' || inputToken == 'ETH'
@@ -501,7 +502,7 @@ function Liquidity(props) {
       console.log(reserves)
       console.log(approves)
       lptoken_list.map((item, index) => {
-        (balances[index])>0 && lp.push({
+        (balances[index])>1000 && lp.push({
           name: findNameByAddress(item.token0)+'-'+findNameByAddress(item.token1),
           value:(balances[index]),
           reserve_x: item.token0 < item.token1 ?reserves[index].reserve0:reserves[index].reserve1,

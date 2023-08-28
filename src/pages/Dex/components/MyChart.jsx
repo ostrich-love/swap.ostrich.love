@@ -153,7 +153,7 @@ function Charts(props) {
       return false
     }
     setHasNoData(false)
-    list = [...calcVolume(list, timeValue * 1 == 4)]
+    list = [...calcVolume(list, timeValue * 1 >= 4)]
     // if(timeValue == 1) {
     //   setPriceData([list[0], list[list.length-1]])
     // }
