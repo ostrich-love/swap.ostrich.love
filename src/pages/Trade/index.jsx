@@ -5,7 +5,7 @@ import ORICH from '../../assets/image/newTrade/ORICH.svg'
 import {connect as reducxConnect} from 'react-redux'
 import Attention from '../../assets/image/newTrade/attention.svg'
 import { claim, queryAllPoolViews, queryAllUserPoolViews } from '../../contracts/methods/tradingpool';
-import { findNameByAddress, fromUnit, toFixed } from '../../lib/util';
+import { findNameByAddress, fromUnit, numFormat, toFixed } from '../../lib/util';
 import { useTranslation } from 'react-i18next';
 import { getTokenByName } from '../Dex/components/list';
 import Modal from '../../components/common/Modal'
@@ -29,13 +29,13 @@ const Index = (props) => {
      const [rank, setRank] = useState(1)
   const [refresh, setRefresh] = useState(0)
   let { t, i18n } = useTranslation()
-  const optionsWithDisabled = [
+  const optionsWithDisabled = (t)=> [
     {
-      label: ('Trading'),
+      label: t('Trading'),
       value: 1,
     },
     {
-      label: ('Ranking'),
+      label: t('Ranking'),
       value: 2,
     }
   ];
@@ -94,40 +94,40 @@ const Index = (props) => {
   return (
     <div className='farm-main'>
       <div className='heads'>
-        <div className='title'>Swap Rewards</div>
-        <div className='tip'>Multiple staking options for you to earn more rewards</div>
+        <div className='title'>{t('Swap Rewards')}</div>
+        <div className='tip'>{t('Multiple staking options for you to earn more rewards')}</div>
         {/* <div className='buttom'>Supply</div> */}
       </div>
       <div className='the-body'>
         <div className='head-card'>
           <div className='card'>
-            <div className='title'>Total volume</div>
-            <div className='value'>{toFixed(fromUnit(totalVolume),2)}</div>
+            <div className='title'>{t('Total volume')}</div>
+            <div className='value'>{ numFormat(toFixed(fromUnit(totalVolume),2)) }</div>
           </div>
           <div className='card'>
-            <div className='title'>Current volume (In pool)</div>
-            <div className='value'>{toFixed(fromUnit(currentVolume),2)}</div>
+            <div className='title'>{t('Current volume (In pool)')}</div>
+            <div className='value'>{numFormat(toFixed(fromUnit(currentVolume),2))}</div>
           </div>
           <div className='card bg'>
             <div className='content-bg'>
-              <div className='title'>Your withdrawable rewards ORICH</div>
+              <div className='title'>{t('Your withdrawable rewards ORICH')}</div>
               <div className='value'>
                 <img src={ORICH} alt='' width={32} />
-                <div className='number'> {toFixed(fromUnit(myPendingRewards),2)}</div>
+                <div className='number'> {numFormat(toFixed(fromUnit(myPendingRewards),2))}</div>
               </div>
             </div>
             {
-              myPendingRewards && <Button className='buttom' loading={loading} onClick={()=> setShowReward(true)}>Harvest</Button>
+              myPendingRewards && <Button className='buttom' loading={loading} onClick={()=> setShowReward(true)}>{t('Harvest')}</Button>
             }
             
           </div>
         </div>
-        <div className='tip'> <img  src={Attention} alt=''/> After the withdrawal of your rewards, you will lose the transaction mining weight</div>
+        <div className='tip'> <img  src={Attention} alt=''/> {t('After the withdrawal of your rewards, you will lose the transaction mining weight')}</div>
         <div className='trading'>
          <div className="flex flex-between rank-tab flex-center gap-10">
           <Radio.Group
             className='my-radio-card-main'
-            options={optionsWithDisabled}
+            options={optionsWithDisabled(t)}
             onChange={(v) =>setStatus(v.target.value)}
             value={status}
             optionType="button"
@@ -146,7 +146,7 @@ const Index = (props) => {
          </div>
          {
           status == 1 &&
-          <div className='tips m-t-20'>All trading volume will mine Orich block output pro rate.Thus, the trading volume is similar to a 'mining machine' which will be distoried when you harvest.</div>
+          <div className='tips m-t-20'>{t("All trading volume will mine Orich block output pro rate.Thus, the trading volume is similar to a 'mining machine' which will be distoried when you harvest.")}</div>
          }
         </div>
         {
@@ -179,16 +179,16 @@ const Index = (props) => {
                   <div className='InformationBlock'>
                       <div className='row'>
                         <div className='left'>{t('Rewards allocated')}</div>
-                        <div className='right'>{toFixed(fromUnit(res.info.cumulativeRewards), 2)} Orich</div>
+                        <div className='right'>{numFormat(toFixed(fromUnit(res.info.cumulativeRewards), 2))} Orich</div>
                       </div>
                       <div className='row'>
                         <div className='left'>{t('Total volume')}</div>
-                        <div className='right'>{toFixed(fromUnit(res.info.cumulativePoints), 2)}</div>
+                        <div className='right'>{numFormat(toFixed(fromUnit(res.info.cumulativePoints), 2))}</div>
                       </div>
 
                       <div className='row'>
                         <div className='left'>{t('Current volume')}</div>
-                        <div className='right'>{toFixed(fromUnit(res.info.points), 2)}</div>
+                        <div className='right'>{numFormat(toFixed(fromUnit(res.info.points), 2))}</div>
                       </div>
                   </div>
                   <div className='line' />
@@ -197,13 +197,13 @@ const Index = (props) => {
                     <div className='right'>{t('My volume')}</div>
                   </div>
                   <div className='lastline'>
-                    <div className='left'>{toFixed(fromUnit(new BigNumber(mypools[index]?.info?.claimedReward).plus(new BigNumber(mypools[index]?.info?.pendingReward))), 2)}</div>
-                    <div className='right'>{toFixed(fromUnit(new BigNumber(mypools[index]?.info?.points)), 2)}</div>
+                    <div className='left'>{numFormat(toFixed(fromUnit(new BigNumber(mypools[index]?.info?.claimedReward).plus(new BigNumber(mypools[index]?.info?.pendingReward))), 2))}</div>
+                    <div className='right'>{numFormat(toFixed(fromUnit(new BigNumber(mypools[index]?.info?.points)), 2))}</div>
                   </div>
                 </div>
                 <div className={`farm-foot`}>
                   <div className='title'>{t('Unclaimed reward')}</div>
-                  <div className='value'>{toFixed(fromUnit(new BigNumber(mypools[index]?.info?.pendingReward)), 2)} Orich</div>
+                  <div className='value'>{numFormat(toFixed(fromUnit(new BigNumber(mypools[index]?.info?.pendingReward)), 2))} Orich</div>
                 </div>
               </div>
             )

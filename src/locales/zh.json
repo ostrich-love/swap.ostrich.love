@@ -265,5 +265,17 @@
 "Expected Earned": "预计获得",
 "Total Reward": "总奖励",
 "Deposit ends in": "质押结束于",
-"Harvest starts in": "收获开始于"
+"Harvest starts in": "收获开始于",
+"Rewards allocated": "分配的奖励",
+"Current volume": "有效交易量",
+"Cumulative reward": "累计奖励",
+"Current volume (In pool)":"当前交易量",
+"Trading": "交易挖矿",
+"Ranking": "排名",
+"Swap Rewards": "交易奖励",
+"Harvest": "收获",
+"Unclaimed reward": "未领取奖励",
+"All trading volume will mine Orich block output pro rate.Thus, the trading volume is similar to a 'mining machine' which will be distoried when you harvest.": "所有交易量都将按比例挖掘Orich区块输出。因此，交易量类似于“矿机”，当你收割时会被销毁。",
+"Your withdrawable rewards ORICH": "你可以领取的Orich奖励",
+"After the withdrawal of your rewards, you will lose the transaction mining weight": "提取奖励后，您将失去交易挖矿权重"
 }
