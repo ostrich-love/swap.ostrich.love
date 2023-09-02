@@ -19,6 +19,7 @@ import { getUserStore } from '../../methods/staking';
 import Loading from '../common/Loading';
 import { createProviderController } from '../../wallet/createProviderController';
 import connectWallet from '../../wallet/connectWallet';
+import math from '../../assets/image/wallets/math.png'
 import metamask from '../../assets/image/wallets/metamask.png'
 import walletconnect from '../../assets/image/wallets/walletconnect.png'
 import okx from '../../assets/image/wallets/okx.jpg'
@@ -192,6 +193,11 @@ function Connect (props) {
                             <div   className={"wallet-item ta flex flex-center flex-middle pointer"} onClick={async _ => {handleConnect('custom-coinbase')}} >
                   <img src={coinbase} alt={`coinbase icon`} className='wallet-logo m-r-5'/>
                                 <div className="wallet-name tl">Coinbase</div>
+                            </div>
+
+                            <div   className={"wallet-item ta flex flex-center flex-middle pointer"} onClick={async _ => {handleConnect('custom-math')}} >
+                  <img src={math} alt={`coinbase icon`} className='wallet-logo m-r-5'/>
+                                <div className="wallet-name tl">Math Wallet</div>
                             </div>
                 </>
               )

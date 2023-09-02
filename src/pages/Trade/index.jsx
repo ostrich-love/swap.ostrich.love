@@ -42,15 +42,15 @@ const Index = (props) => {
   const rankOptions = [
     {
       label: ('24 hours'),
-      value: 1,
+      value: 0,
     },
     {
       label: ('7 Days'),
-      value: 2,
+      value: 1,
     },
     {
       label: ('30 Days'),
-      value: 3,
+      value: 2,
     }
   ];
   // const Navigate = useNavigate()

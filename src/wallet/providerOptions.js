@@ -1,5 +1,6 @@
 
 import WalletConnectProvider from '@walletconnect/web3-provider';
+import math from '../assets/image/wallets/math.png'
 import okx from '../assets/image/wallets/okx.jpg'
 export const providerOptions = ({walletconnectOptions}) => {
     return {
@@ -49,6 +50,24 @@ export const providerOptions = ({walletconnectOptions}) => {
           }
           window.open('https://www.coinbase.com/')
           return null;
+        },
+      },
+      'custom-math': {
+        display: {
+          name: 'Math',
+          description: 'Math-Wallet',
+          logo: math,
+        },
+        package: 'math',
+        connector: async (ProviderPackage, options) => {
+          if (window.ethereum && window.ethereum.isMathWallet) {
+            console.log('MathWallet is installed!');
+            const provider = (window).ethereum;
+            await provider.enable();
+            return provider;
+          }
+          window.open('https://mathwallet.org/')
+          return null
         },
       },
     }
