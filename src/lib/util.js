@@ -346,7 +346,7 @@ export const onCopyToText=(text, t)=>{
   textField.select()
   document.execCommand('copy')
   textField.remove()
-  message.success(t('Copied'))
+  // message.success(t('Copied'))ß
 };
 
 export function consoleLog () {
