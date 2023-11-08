@@ -99,11 +99,13 @@ export function swap(
             cb && cb()
             // addHistory(`Swap ${toFixed(fromUnit(amountIn), 4)} ${path[0]} for ${toFixed(fromUnit(result.events.SWAP.returnValues.amountOut), 4)} ${path[path.length-1]} `, result.transactionHash)
           }).on('error', function (error) {
-            OpenNotification('error', 'error', 'Transaction Failed')
+            console.log(error)
+            // OpenNotification('error', 'error', 'Transaction Failed')
             rej(error);
           })
           .catch((error) => {
-            OpenNotification('error', 'error', 'Transaction Failed')
+            let msg = error.code == -32603 ? 'Insufficient funds for gas * price + value': (error.data.message||'Transaction Failed')
+            OpenNotification('error', 'error', msg)
             rej(error);
           });
 
